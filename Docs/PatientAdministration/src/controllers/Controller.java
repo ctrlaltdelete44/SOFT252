@@ -10,7 +10,6 @@ import utilities.serialised.RequestSingleton;
 import utilities.serialised.StockSingleton;
 import utilities.accounts.AccountType;
 import accounts.*;
-import utilities.PasswordAdapter;
 import utilities.serialised.Compilation;
 
 /**
@@ -81,8 +80,7 @@ public class Controller {
         c.deconstruct();
         
         //convert char[] to string
-        PasswordAdapter passwordAdapter = new PasswordAdapter(arrPassword);
-        String strPassword = passwordAdapter.convert();
+        String strPassword = String.valueOf(arrPassword);
         
         //loop through accts
         for (Account a : accounts.getAccounts())

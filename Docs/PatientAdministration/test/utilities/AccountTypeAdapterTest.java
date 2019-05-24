@@ -37,20 +37,10 @@ public class AccountTypeAdapterTest {
     @After
     public void tearDown() {
     }
-
-    private AccountTypeAdapter empty;
-    private AccountTypeAdapter valid;
-    private AccountTypeAdapter invalid;
     
     @Test
     public void testConvert() {
-        empty = new AccountTypeAdapter("");
-        valid = new AccountTypeAdapter("Secretary");
-        invalid = new AccountTypeAdapter("Egg");
-        
-        assertEquals(null, empty.convert());
-        assertEquals(AccountType.SECRETARY, valid.convert());
-        assertEquals(null, invalid.convert());
+
     }
     
 }

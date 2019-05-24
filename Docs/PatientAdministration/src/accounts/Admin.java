@@ -79,11 +79,9 @@ public class Admin extends Account implements Serializable, IViewAccounts{
      */
     public String createAccount(String first, String last, String address, char[] arrPassword, String strAccountType)
     {
-        PasswordAdapter passwordAdapter = new PasswordAdapter(arrPassword);
-        String strPassword = passwordAdapter.convert();
-        
-        AccountTypeAdapter accountAdapter = new AccountTypeAdapter(strAccountType);
-        AccountType accountType = accountAdapter.convert();
+        String strPassword = String.valueOf(arrPassword);
+
+        AccountType accountType = AccountType.valueOf(strAccountType.toUpperCase());
         
         String newId = accountFactory.createAccount(first, last, address, strPassword, accountType);
         return newId;

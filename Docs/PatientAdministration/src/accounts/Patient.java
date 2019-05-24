@@ -17,7 +17,6 @@ import requests.requestfactory.ConcreteRequestFactory;
 import utilities.serialised.AccountSingleton;
 import utilities.serialised.IdGenerator;
 import utilities.AccountAdapter;
-import utilities.PasswordAdapter;
 import appointments.Appointment;
 import appointments.Prescription;
 import requests.PrescriptionRequest;
@@ -77,8 +76,7 @@ public class Patient extends Account implements Serializable, IViewAccounts, IVi
      */
     public void assignPatientInfo(String sex, int age, char[] arrPassword)
     {
-        PasswordAdapter adapter = new PasswordAdapter(arrPassword);
-        String strPassword = adapter.convert();
+        String strPassword = String.valueOf(arrPassword);
         
         this.sex = sex;
         this.age = age;

@@ -59,7 +59,8 @@ public class LoginController {
 
                     switch (a.getAccountType()) {
                         case ADMIN:
-                            System.out.println("admin");
+                            new AdminController(a);
+                            gui.dispose();
                             return;
                         case SECRETARY:
                             new SecretaryController(a);

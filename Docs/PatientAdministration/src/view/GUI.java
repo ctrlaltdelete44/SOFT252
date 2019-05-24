@@ -109,26 +109,6 @@ public class GUI extends javax.swing.JFrame {
         addAccount_btnBack = new javax.swing.JButton();
         jScrollPane22 = new javax.swing.JScrollPane();
         addAccount_txtAddress = new javax.swing.JTextArea();
-        panelSecretary = new javax.swing.JPanel();
-        secretary_lblWelcome = new javax.swing.JLabel();
-        secretary_btnLogout = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        secretary_lstRequests = new javax.swing.JList<>();
-        secretary_lblRequests = new javax.swing.JLabel();
-        secretary_btnDeleteRequest = new javax.swing.JButton();
-        secretary_btnConfirmRequest = new javax.swing.JButton();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        secretary_lstStock = new javax.swing.JList<>();
-        secretary_lblStock = new javax.swing.JLabel();
-        secretary_txtStockName = new javax.swing.JTextField();
-        secretary_lblStockItemName = new javax.swing.JLabel();
-        secretary_lblQuantity = new javax.swing.JLabel();
-        secretary_spnQuantity = new javax.swing.JSpinner();
-        secretary_btnAddStock = new javax.swing.JButton();
-        secretary_lblPatients = new javax.swing.JLabel();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        secretary_lstPatients = new javax.swing.JList<>();
-        secretary_btnDeleteAccount = new javax.swing.JButton();
         panelDoctor = new javax.swing.JPanel();
         doctor_lblWelcome = new javax.swing.JLabel();
         doctor_btnLogout = new javax.swing.JButton();
@@ -245,11 +225,6 @@ public class GUI extends javax.swing.JFrame {
 
         login_btnLogin.setFont(new java.awt.Font("Tahoma", 0, 17)); // NOI18N
         login_btnLogin.setText("Log in");
-        login_btnLogin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                login_btnLoginActionPerformed(evt);
-            }
-        });
 
         login_lblErrorMessage.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         login_lblErrorMessage.setForeground(new java.awt.Color(255, 0, 0));
@@ -257,11 +232,6 @@ public class GUI extends javax.swing.JFrame {
 
         login_btnRequestAccount.setFont(new java.awt.Font("Tahoma", 0, 17)); // NOI18N
         login_btnRequestAccount.setText("Request New Account");
-        login_btnRequestAccount.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                login_btnRequestAccountActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout panelLoginLayout = new javax.swing.GroupLayout(panelLogin);
         panelLogin.setLayout(panelLoginLayout);
@@ -282,12 +252,11 @@ public class GUI extends javax.swing.JFrame {
                             .addComponent(login_txtUsername)
                             .addComponent(login_lblPassword)
                             .addComponent(login_txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(login_lblErrorMessage))))
+                            .addComponent(login_lblErrorMessage)))
+                    .addGroup(panelLoginLayout.createSequentialGroup()
+                        .addGap(362, 362, 362)
+                        .addComponent(login_lblWelcome)))
                 .addContainerGap(351, Short.MAX_VALUE))
-            .addGroup(panelLoginLayout.createSequentialGroup()
-                .addGap(362, 362, 362)
-                .addComponent(login_lblWelcome)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelLoginLayout.setVerticalGroup(
             panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -306,7 +275,7 @@ public class GUI extends javax.swing.JFrame {
                 .addComponent(login_btnLogin)
                 .addGap(10, 10, 10)
                 .addComponent(login_lblErrorMessage)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 422, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 409, Short.MAX_VALUE)
                 .addComponent(login_btnRequestAccount)
                 .addContainerGap())
         );
@@ -438,7 +407,7 @@ public class GUI extends javax.swing.JFrame {
                 .addComponent(requestAccount_txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(requestAccount_btnRequest)
-                .addContainerGap(256, Short.MAX_VALUE))
+                .addContainerGap(231, Short.MAX_VALUE))
         );
 
         panelAdmin.setPreferredSize(new java.awt.Dimension(1000, 1000));
@@ -558,7 +527,7 @@ public class GUI extends javax.swing.JFrame {
                                             .addComponent(admin_lblFeedbackTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(admin_lblPatientCommentsTitle))
                                         .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(jScrollPane21, javax.swing.GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE)))
+                                    .addComponent(jScrollPane21, javax.swing.GroupLayout.DEFAULT_SIZE, 484, Short.MAX_VALUE)))
                             .addGroup(panelAdminLayout.createSequentialGroup()
                                 .addComponent(admin_lblWelcome)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -673,14 +642,14 @@ public class GUI extends javax.swing.JFrame {
                             .addComponent(addAccount_txtPassword)
                             .addComponent(addAccount_cmbAccountType, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jScrollPane22))))
-                .addContainerGap(394, Short.MAX_VALUE))
+                .addContainerGap(397, Short.MAX_VALUE))
         );
         panelAddAccountLayout.setVerticalGroup(
             panelAddAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAddAccountLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(addAccount_btnBack)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 134, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
                 .addComponent(addAccount_lblFirst)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(addAccount_txtFirst, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -701,191 +670,6 @@ public class GUI extends javax.swing.JFrame {
                 .addGap(36, 36, 36)
                 .addComponent(addAccount_btnAddAccount)
                 .addGap(297, 297, 297))
-        );
-
-        panelSecretary.setPreferredSize(new java.awt.Dimension(1000, 1000));
-
-        secretary_lblWelcome.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        secretary_lblWelcome.setText("Welcome");
-
-        secretary_btnLogout.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        secretary_btnLogout.setText("Log Out");
-        secretary_btnLogout.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                secretary_btnLogoutActionPerformed(evt);
-            }
-        });
-
-        secretary_lstRequests.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        secretary_lstRequests.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        secretary_lstRequests.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                secretary_lstRequestsValueChanged(evt);
-            }
-        });
-        jScrollPane1.setViewportView(secretary_lstRequests);
-
-        secretary_lblRequests.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        secretary_lblRequests.setText("Active Requests");
-
-        secretary_btnDeleteRequest.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        secretary_btnDeleteRequest.setText("Delete Request");
-        secretary_btnDeleteRequest.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                secretary_btnDeleteRequestActionPerformed(evt);
-            }
-        });
-
-        secretary_btnConfirmRequest.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        secretary_btnConfirmRequest.setText("Confirm Request");
-        secretary_btnConfirmRequest.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                secretary_btnConfirmRequestActionPerformed(evt);
-            }
-        });
-
-        secretary_lstStock.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        secretary_lstStock.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        secretary_lstStock.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                secretary_lstStockValueChanged(evt);
-            }
-        });
-        jScrollPane5.setViewportView(secretary_lstStock);
-
-        secretary_lblStock.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        secretary_lblStock.setText("Stock");
-
-        secretary_txtStockName.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-
-        secretary_lblStockItemName.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        secretary_lblStockItemName.setText("Item Name");
-
-        secretary_lblQuantity.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        secretary_lblQuantity.setText("Quantity");
-
-        secretary_spnQuantity.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        secretary_spnQuantity.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
-
-        secretary_btnAddStock.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        secretary_btnAddStock.setText("Replenish Stock");
-        secretary_btnAddStock.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                secretary_btnAddStockActionPerformed(evt);
-            }
-        });
-
-        secretary_lblPatients.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        secretary_lblPatients.setText("Patient Accounts");
-
-        secretary_lstPatients.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        secretary_lstPatients.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        secretary_lstPatients.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                secretary_lstPatientsValueChanged(evt);
-            }
-        });
-        jScrollPane6.setViewportView(secretary_lstPatients);
-
-        secretary_btnDeleteAccount.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        secretary_btnDeleteAccount.setText("Delete Selected Account");
-        secretary_btnDeleteAccount.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                secretary_btnDeleteAccountActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout panelSecretaryLayout = new javax.swing.GroupLayout(panelSecretary);
-        panelSecretary.setLayout(panelSecretaryLayout);
-        panelSecretaryLayout.setHorizontalGroup(
-            panelSecretaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelSecretaryLayout.createSequentialGroup()
-                .addGroup(panelSecretaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelSecretaryLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(secretary_lblWelcome)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(secretary_btnLogout))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSecretaryLayout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addGroup(panelSecretaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane6)
-                            .addComponent(secretary_lblPatients)
-                            .addComponent(secretary_btnDeleteAccount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(panelSecretaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelSecretaryLayout.createSequentialGroup()
-                                .addGroup(panelSecretaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(panelSecretaryLayout.createSequentialGroup()
-                                        .addComponent(secretary_lblStockItemName)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addGroup(panelSecretaryLayout.createSequentialGroup()
-                                        .addComponent(secretary_txtStockName, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                .addGroup(panelSecretaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(panelSecretaryLayout.createSequentialGroup()
-                                        .addComponent(secretary_lblQuantity)
-                                        .addGap(152, 152, 152))
-                                    .addComponent(secretary_spnQuantity, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSecretaryLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(panelSecretaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSecretaryLayout.createSequentialGroup()
-                                        .addComponent(secretary_lblRequests)
-                                        .addGap(303, 303, 303))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSecretaryLayout.createSequentialGroup()
-                                        .addComponent(secretary_btnDeleteRequest)
-                                        .addGap(117, 117, 117)
-                                        .addComponent(secretary_btnConfirmRequest)
-                                        .addGap(147, 147, 147))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSecretaryLayout.createSequentialGroup()
-                                        .addComponent(secretary_lblStock)
-                                        .addGap(343, 343, 343))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSecretaryLayout.createSequentialGroup()
-                                        .addComponent(secretary_btnAddStock)
-                                        .addGap(277, 277, 277)))))))
-                .addContainerGap())
-        );
-        panelSecretaryLayout.setVerticalGroup(
-            panelSecretaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelSecretaryLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panelSecretaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(secretary_lblWelcome)
-                    .addComponent(secretary_btnLogout))
-                .addGap(35, 35, 35)
-                .addGroup(panelSecretaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelSecretaryLayout.createSequentialGroup()
-                        .addComponent(secretary_lblPatients)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane6))
-                    .addGroup(panelSecretaryLayout.createSequentialGroup()
-                        .addComponent(secretary_lblRequests)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(panelSecretaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(secretary_btnDeleteRequest)
-                            .addComponent(secretary_btnConfirmRequest))
-                        .addGap(18, 18, 18)
-                        .addComponent(secretary_lblStock)
-                        .addGap(13, 13, 13)
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(panelSecretaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(secretary_lblStockItemName)
-                            .addComponent(secretary_lblQuantity))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(panelSecretaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(secretary_txtStockName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(secretary_spnQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelSecretaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(secretary_btnAddStock)
-                    .addComponent(secretary_btnDeleteAccount))
-                .addGap(100, 100, 100))
         );
 
         panelDoctor.setPreferredSize(new java.awt.Dimension(1000, 1000));
@@ -980,7 +764,7 @@ public class GUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 823, Short.MAX_VALUE)
                         .addComponent(doctor_btnLogout))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDoctorLayout.createSequentialGroup()
-                        .addGap(0, 567, Short.MAX_VALUE)
+                        .addGap(0, 575, Short.MAX_VALUE)
                         .addGroup(panelDoctorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDoctorLayout.createSequentialGroup()
                                 .addComponent(doctor_lblOrderStockTitle)
@@ -1029,7 +813,7 @@ public class GUI extends javax.swing.JFrame {
                     .addComponent(doctor_btnFreeDays)
                     .addComponent(doctor_btnBookings))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(doctor_btnTakeAppointment)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1164,7 +948,7 @@ public class GUI extends javax.swing.JFrame {
                                             .addComponent(patient_lblNextAppointment)
                                             .addComponent(patient_lblHistoryTitle))
                                         .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(jScrollPane13, javax.swing.GroupLayout.DEFAULT_SIZE, 598, Short.MAX_VALUE)
+                                    .addComponent(jScrollPane13, javax.swing.GroupLayout.DEFAULT_SIZE, 604, Short.MAX_VALUE)
                                     .addComponent(patient_btnViewPrescription, javax.swing.GroupLayout.Alignment.TRAILING)))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPatientLayout.createSequentialGroup()
                         .addGap(0, 849, Short.MAX_VALUE)
@@ -1195,7 +979,7 @@ public class GUI extends javax.swing.JFrame {
                         .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 506, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 506, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(panelPatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(patient_btnProvideFeedback)
                     .addComponent(patient_btnRequestAppointment)
@@ -1284,7 +1068,7 @@ public class GUI extends javax.swing.JFrame {
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(feedback_btnSubmit)
-                .addContainerGap(345, Short.MAX_VALUE))
+                .addContainerGap(339, Short.MAX_VALUE))
         );
 
         panelViewAvailability.setPreferredSize(new java.awt.Dimension(1000, 1000));
@@ -1333,12 +1117,12 @@ public class GUI extends javax.swing.JFrame {
                     .addGroup(panelViewAvailabilityLayout.createSequentialGroup()
                         .addGap(389, 389, 389)
                         .addComponent(availability_btnAssign)))
-                .addContainerGap(400, Short.MAX_VALUE))
+                .addContainerGap(399, Short.MAX_VALUE))
         );
         panelViewAvailabilityLayout.setVerticalGroup(
             panelViewAvailabilityLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelViewAvailabilityLayout.createSequentialGroup()
-                .addContainerGap(34, Short.MAX_VALUE)
+                .addContainerGap(27, Short.MAX_VALUE)
                 .addComponent(availability_txtTitle)
                 .addGap(18, 18, 18)
                 .addComponent(availability_lblRequest)
@@ -1561,7 +1345,7 @@ public class GUI extends javax.swing.JFrame {
                             .addComponent(appointment_lblNextAppointmentTitle))
                         .addGap(18, 18, 18)
                         .addComponent(appointment_rdoYears)
-                        .addGap(0, 26, Short.MAX_VALUE)))
+                        .addGap(0, 16, Short.MAX_VALUE)))
                 .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(appointment_btnProcessAppointment)
@@ -1677,7 +1461,7 @@ public class GUI extends javax.swing.JFrame {
                 .addComponent(prescription_lblDosageTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane16, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(380, Short.MAX_VALUE))
+                .addContainerGap(373, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -1694,11 +1478,6 @@ public class GUI extends javax.swing.JFrame {
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(panelAddAccount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(panelSecretary, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -1757,11 +1536,6 @@ public class GUI extends javax.swing.JFrame {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(panelSecretary, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(panelDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1804,7 +1578,6 @@ public class GUI extends javax.swing.JFrame {
         panelRequestAccount.setVisible(false);
         panelAdmin.setVisible(false);
         panelAddAccount.setVisible(false);
-        panelSecretary.setVisible(false);
         panelDoctor.setVisible(false);
         panelPatient.setVisible(false);
         panelFeedback.setVisible(false);
@@ -1814,37 +1587,6 @@ public class GUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void login_btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login_btnLoginActionPerformed
-        AccountType acct = controller.login(login_txtUsername.getText(), login_txtPassword.getPassword());
-        
-        if (acct != null)
-        {
-            switch (acct)
-            {
-                case ADMIN:
-                    cleanUI(panelLogin, panelAdmin);
-                    break;
-                case SECRETARY:
-                    cleanUI(panelLogin, panelSecretary);
-                    break;
-                case DOCTOR:
-                    cleanUI(panelLogin, panelDoctor);
-                    break;
-                case PATIENT:
-                    cleanUI(panelLogin, panelPatient);
-                    break;
-                default:
-                    login_lblErrorMessage.setText("Invalid login, please try again");
-            }
-            viewNotifications();
-        }        
-        else
-            login_lblErrorMessage.setText("Invalid login, please try again");
-        
-        
-        
-    }//GEN-LAST:event_login_btnLoginActionPerformed
 
     private void admin_btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admin_btnLogoutActionPerformed
         logout();
@@ -1872,25 +1614,17 @@ public class GUI extends javax.swing.JFrame {
         cleanUI(panelAdmin, panelAddAccount);
     }//GEN-LAST:event_admin_btnAddAccountActionPerformed
 
-    private void secretary_btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_secretary_btnLogoutActionPerformed
-        logout();
-    }//GEN-LAST:event_secretary_btnLogoutActionPerformed
-
     private void admin_btnDeleteDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admin_btnDeleteDoctorActionPerformed
         int input = JOptionPane.showConfirmDialog(null, "Are you sure you wish to delete this doctor account?", "Confirm delete", JOptionPane.YES_NO_OPTION);
         //0=yes, 1=no
         if (input == 0)
             adminController.deleteSelected(admin_lstDoctors.getSelectedValue());
-        cleanAdmin();
+        
     }//GEN-LAST:event_admin_btnDeleteDoctorActionPerformed
 
     private void doctor_btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doctor_btnLogoutActionPerformed
         logout();
     }//GEN-LAST:event_doctor_btnLogoutActionPerformed
-
-    private void login_btnRequestAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login_btnRequestAccountActionPerformed
-        cleanUI(panelLogin, panelRequestAccount);
-    }//GEN-LAST:event_login_btnRequestAccountActionPerformed
 
     private void requestAccount_btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestAccount_btnCancelActionPerformed
         cleanUI(panelRequestAccount, panelLogin);
@@ -1917,29 +1651,6 @@ public class GUI extends javax.swing.JFrame {
         
         cleanUI(panelRequestAccount, panelLogin);
     }//GEN-LAST:event_requestAccount_btnRequestActionPerformed
-
-    private void secretary_btnDeleteRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_secretary_btnDeleteRequestActionPerformed
-        int input = JOptionPane.showConfirmDialog(null, "This will permanently delete this request. Do you want to continue?", "Confirm delete", JOptionPane.YES_NO_OPTION);
-        //0=yes, 1=no
-        if (input == 0)
-            secretaryController.deleteRequest(secretary_lstRequests.getSelectedValue());
-        cleanSecretary();
-    }//GEN-LAST:event_secretary_btnDeleteRequestActionPerformed
-
-    private void secretary_btnConfirmRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_secretary_btnConfirmRequestActionPerformed
-        String output = secretaryController.authoriseRequest(secretary_lstRequests.getSelectedValue());
-        String request = secretary_lstRequests.getSelectedValue();
-        if (!request.contains("APPOINTMENT"))
-        {     
-            JOptionPane.showMessageDialog(null, output, "Request approved", JOptionPane.INFORMATION_MESSAGE);
-            cleanSecretary();
-        }
-        else
-        {           
-            cleanUI(panelSecretary, panelViewAvailability);
-            availability_lblRequest.setText(request);
-        }
-    }//GEN-LAST:event_secretary_btnConfirmRequestActionPerformed
 
     private void patient_btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patient_btnLogoutActionPerformed
         logout();
@@ -1990,7 +1701,7 @@ public class GUI extends javax.swing.JFrame {
         //0=yes, 1=no
         if (input == 0)
             adminController.deleteSelected(admin_lstSecretaries.getSelectedValue());
-        cleanAdmin();
+       
     }//GEN-LAST:event_admin_btnDeleteSecretaryActionPerformed
 
     private void admin_lstDoctorsValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_admin_lstDoctorsValueChanged
@@ -2009,47 +1720,6 @@ public class GUI extends javax.swing.JFrame {
         else
             admin_btnDeleteSecretary.setEnabled(false);
     }//GEN-LAST:event_admin_lstSecretariesValueChanged
-
-    private void secretary_lstStockValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_secretary_lstStockValueChanged
-        if (secretary_lstStock.getSelectedValue() != null)
-            secretary_txtStockName.setText(secretaryController.getStockName(secretary_lstStock.getSelectedValue()));
-    }//GEN-LAST:event_secretary_lstStockValueChanged
-
-    private void secretary_btnAddStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_secretary_btnAddStockActionPerformed
-        String name = secretary_txtStockName.getText();
-        int quantity = (int)secretary_spnQuantity.getValue();
-        
-        secretaryController.addToStock(name, quantity);
-        cleanSecretary();
-    }//GEN-LAST:event_secretary_btnAddStockActionPerformed
-
-    private void secretary_lstRequestsValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_secretary_lstRequestsValueChanged
-        if (secretary_lstRequests.getSelectedValue() != null)
-        {
-            secretary_btnConfirmRequest.setEnabled(true);
-            secretary_btnDeleteRequest.setEnabled(true);
-        }
-        else
-        {
-            secretary_btnConfirmRequest.setEnabled(false);
-            secretary_btnDeleteRequest.setEnabled(false);
-        }
-    }//GEN-LAST:event_secretary_lstRequestsValueChanged
-
-    private void secretary_btnDeleteAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_secretary_btnDeleteAccountActionPerformed
-        int input = JOptionPane.showConfirmDialog(null, "Are you sure you wish to delete this patient account?", "Confirm delete", JOptionPane.YES_NO_OPTION);
-        //0=yes, 1=no
-        if (input == 0)
-            secretaryController.deleteAccount(secretary_lstPatients.getSelectedValue());
-        cleanSecretary();
-    }//GEN-LAST:event_secretary_btnDeleteAccountActionPerformed
-
-    private void secretary_lstPatientsValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_secretary_lstPatientsValueChanged
-        if (secretary_lstPatients.getSelectedValue() != null)
-            secretary_btnDeleteAccount.setEnabled(true);
-        else
-            secretary_btnDeleteAccount.setEnabled(false);
-    }//GEN-LAST:event_secretary_lstPatientsValueChanged
 
 
     private void patient_btnRequestAppointmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patient_btnRequestAppointmentActionPerformed
@@ -2097,7 +1767,7 @@ public class GUI extends javax.swing.JFrame {
         {
         String output = secretaryController.scheduleAppointment(request, assignedDoctor, assignedDate);        
         JOptionPane.showMessageDialog(null, output, "Appointment made", JOptionPane.OK_OPTION);
-        cleanUI(panelViewAvailability, panelSecretary);
+      
         }      
     }//GEN-LAST:event_availability_btnAssignActionPerformed
 
@@ -2276,7 +1946,7 @@ public class GUI extends javax.swing.JFrame {
                 cleanUI(panelPatient, panelLogin);
                 break;
             case SECRETARY:
-                cleanUI(panelSecretary, panelLogin);
+          
                 break;
             case DOCTOR:
                 cleanUI(panelDoctor, panelLogin);
@@ -2308,10 +1978,10 @@ public class GUI extends javax.swing.JFrame {
         if (controller.getLoggedIn() != null)
         {
             if (adminController.getAuthorisingAdmin() != null)
-                cleanAdmin();
+              
             if (secretaryController.getAuthorisingSecretary() != null)
             {
-                cleanSecretary();
+
                 cleanAvailability();
             }
             if (doctorController.getAuthorisingDoctor() != null)
@@ -2335,31 +2005,8 @@ public class GUI extends javax.swing.JFrame {
         login_txtPassword.setText("");
         login_lblErrorMessage.setText("");
     }
-    private void cleanAdmin()
-    {
-        admin_lstDoctors.setListData(adminController.viewDoctors());
-        admin_lstSecretaries.setListData(adminController.viewSecretaries());
-        admin_btnDeleteDoctor.setEnabled(false);
-        admin_btnDeleteSecretary.setEnabled(false);
-        admin_lblWelcome.setText("Logged in as: " + controller.getLoggedIn().getFirstName() + " " + controller.getLoggedIn().getSurname());
-        admin_txtFeedbackMessage.setText("");
-        admin_lstComments.setListData(new String[0]);
-    }
-    private void cleanSecretary()
-    {
-        secretary_lstRequests.setListData(secretaryController.viewRequests());
-        secretary_lstStock.setListData(secretaryController.viewStock());
-        secretary_lstPatients.setListData(secretaryController.viewPatientAccounts());
-        
-        secretary_btnConfirmRequest.setEnabled(false);
-        secretary_btnDeleteRequest.setEnabled(false);
-        secretary_btnDeleteAccount.setEnabled(false);
-        
-        secretary_txtStockName.setText("");
-        secretary_spnQuantity.setValue(0);
-        secretary_lblWelcome.setText("Logged in as: " + controller.getLoggedIn().getFirstName() + " " + controller.getLoggedIn().getSurname());
-        
-    }
+
+
     
     private void cleanAvailability()
     {
@@ -2534,7 +2181,6 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel feedback_lblRating;
     private javax.swing.JSlider feedback_sldRating;
     private javax.swing.JTextArea feedback_txtComments;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane12;
@@ -2552,8 +2198,6 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane23;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
@@ -2575,7 +2219,6 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JPanel panelPatient;
     private javax.swing.JPanel panelPrescription;
     private javax.swing.JPanel panelRequestAccount;
-    private javax.swing.JPanel panelSecretary;
     private javax.swing.JPanel panelViewAvailability;
     private javax.swing.JButton patient_btnDelete;
     private javax.swing.JButton patient_btnLogout;
@@ -2617,21 +2260,5 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JTextField requestAccount_txtFirst;
     private javax.swing.JPasswordField requestAccount_txtPassword;
     private javax.swing.JTextField requestAccount_txtSurname;
-    private javax.swing.JButton secretary_btnAddStock;
-    private javax.swing.JButton secretary_btnConfirmRequest;
-    private javax.swing.JButton secretary_btnDeleteAccount;
-    private javax.swing.JButton secretary_btnDeleteRequest;
-    private javax.swing.JButton secretary_btnLogout;
-    private javax.swing.JLabel secretary_lblPatients;
-    private javax.swing.JLabel secretary_lblQuantity;
-    private javax.swing.JLabel secretary_lblRequests;
-    private javax.swing.JLabel secretary_lblStock;
-    private javax.swing.JLabel secretary_lblStockItemName;
-    private javax.swing.JLabel secretary_lblWelcome;
-    private javax.swing.JList<String> secretary_lstPatients;
-    private javax.swing.JList<String> secretary_lstRequests;
-    private javax.swing.JList<String> secretary_lstStock;
-    private javax.swing.JSpinner secretary_spnQuantity;
-    private javax.swing.JTextField secretary_txtStockName;
     // End of variables declaration//GEN-END:variables
 }

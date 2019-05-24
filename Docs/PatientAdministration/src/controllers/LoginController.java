@@ -62,7 +62,8 @@ public class LoginController {
                             System.out.println("admin");
                             return;
                         case SECRETARY:
-                            System.out.println("secretary");
+                            new SecretaryController(a);
+                            gui.dispose();
                             return;
                         case PATIENT:
                             System.out.println("patient");
@@ -71,6 +72,7 @@ public class LoginController {
                             System.out.println("doctor");
                             return;
                     }
+                    
                 }
                 else {
                     gui.getLblErrorInvalidUsername().setVisible(true);

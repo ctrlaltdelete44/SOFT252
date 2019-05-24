@@ -5,9 +5,11 @@
  */
 package controllers;
 
+import accounts.Patient;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
+import utilities.serialised.Compilation;
 import utilities.view.PlaceHolderTextListener;
 import view.RequestAccount;
 
@@ -32,6 +34,14 @@ public class RequestAccountController {
         gui.setVisible(true);
     }
 
+    private void requestCreation(String first, String last, String address, String sex, int age, char[] arrPassword)
+    {        
+        Compilation c= new Compilation();
+        c.deconstruct();
+        Patient p = new Patient(first, last, address);
+        p.assignPatientInfo(sex, age, arrPassword);
+    }
+    
     private class btnConfirmListener implements ActionListener {
 
         @Override
@@ -49,6 +59,7 @@ public class RequestAccountController {
                 sex = "F";
             }
             
+            requestCreation(first, last, address, sex, age, password);
             JOptionPane.showMessageDialog(null, "We have received your request. Once it has been approved, you will be able to log in", "Request processed", JOptionPane.INFORMATION_MESSAGE);
         }
 

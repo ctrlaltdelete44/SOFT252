@@ -5,6 +5,8 @@
  */
 package view;
 
+import java.awt.event.ActionListener;
+import java.awt.event.FocusListener;
 import javax.swing.JButton;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
@@ -34,11 +36,8 @@ public class RequestAccount extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblFirst = new javax.swing.JLabel();
         txtFirst = new javax.swing.JTextField();
-        lblSurname = new javax.swing.JLabel();
         txtSurname = new javax.swing.JTextField();
-        lblAddress = new javax.swing.JLabel();
         lblSex = new javax.swing.JLabel();
         rdoMale = new javax.swing.JRadioButton();
         rdoFemale = new javax.swing.JRadioButton();
@@ -50,23 +49,19 @@ public class RequestAccount extends javax.swing.JFrame {
         txtPassword = new javax.swing.JPasswordField();
         jScrollPane23 = new javax.swing.JScrollPane();
         txtAddress = new javax.swing.JTextArea();
+        lblAddress = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(612, 680));
         setSize(new java.awt.Dimension(612, 680));
 
-        lblFirst.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        lblFirst.setText("First Name");
-
         txtFirst.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-
-        lblSurname.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        lblSurname.setText("Surname");
+        txtFirst.setForeground(java.awt.Color.gray);
+        txtFirst.setText("First Name");
 
         txtSurname.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-
-        lblAddress.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        lblAddress.setText("Address");
+        txtSurname.setForeground(java.awt.Color.gray);
+        txtSurname.setText("Surname");
 
         lblSex.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         lblSex.setText("Sex");
@@ -93,11 +88,19 @@ public class RequestAccount extends javax.swing.JFrame {
         lblPassword.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         lblPassword.setText("Password");
 
+        txtPassword.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtPassword.setForeground(java.awt.Color.gray);
+        txtPassword.setText("Password");
+
         txtAddress.setColumns(20);
-        txtAddress.setFont(new java.awt.Font("Monospaced", 0, 16)); // NOI18N
+        txtAddress.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtAddress.setForeground(java.awt.Color.gray);
         txtAddress.setLineWrap(true);
         txtAddress.setRows(5);
         jScrollPane23.setViewportView(txtAddress);
+
+        lblAddress.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        lblAddress.setText("Address");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -105,47 +108,52 @@ public class RequestAccount extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnCancel)
-                .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnCancel)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(132, 132, 132)
-                                .addComponent(rdoMale)
-                                .addGap(31, 31, 31)
-                                .addComponent(rdoFemale))
+                                .addGap(164, 164, 164)
+                                .addComponent(btnSubmit)
+                                .addContainerGap(218, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(103, 103, 103)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblSex)
-                                    .addComponent(spnAge, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblAge)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(54, 54, 54)
-                                        .addComponent(lblFirst))
+                                        .addGap(136, 136, 136)
+                                        .addComponent(spnAge, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(61, 61, 61)
-                                        .addComponent(lblSurname))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(63, 63, 63)
-                                        .addComponent(lblAddress))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(59, 59, 59)
-                                        .addComponent(lblPassword)))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(33, 33, 33)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(txtFirst)
+                                            .addComponent(txtSurname)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(53, 53, 53)
+                                                .addComponent(jScrollPane23, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(131, 131, 131)
-                        .addComponent(btnSubmit)
-                        .addGap(120, 120, 120))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(txtFirst)
-                        .addComponent(txtSurname)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(53, 53, 53)
-                            .addComponent(jScrollPane23, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(98, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(lblAge)
+                                .addGap(284, 284, 284))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(rdoMale)
+                                        .addGap(31, 31, 31)
+                                        .addComponent(rdoFemale))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(69, 69, 69)
+                                        .addComponent(lblSex)))
+                                .addGap(208, 208, 208))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(lblPassword)
+                                .addGap(263, 263, 263))))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(286, 286, 286)
+                .addComponent(lblAddress)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,21 +163,17 @@ public class RequestAccount extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(btnCancel))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(lblFirst, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(61, 61, 61)
                         .addComponent(txtFirst, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblSurname)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(44, 44, 44)
                         .addComponent(txtSurname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(lblAddress)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane23, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(lblSex)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(rdoMale)
                             .addComponent(rdoFemale))
@@ -183,7 +187,7 @@ public class RequestAccount extends javax.swing.JFrame {
                         .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnSubmit)))
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addContainerGap(71, Short.MAX_VALUE))
         );
 
         pack();
@@ -225,13 +229,34 @@ public class RequestAccount extends javax.swing.JFrame {
     public JPasswordField getTxtPassword() {
         return txtPassword;
     }
-
-    /**
-     * @param args the command line arguments
-     */
+    
     public JTextField getTxtSurname() {
         return txtSurname;
     }
+
+    public void addConfirmEventHandler(ActionListener listener) {
+        btnSubmit.addActionListener(listener);
+    }
+    
+    public void addCancelEventHandler(ActionListener listener) {
+        btnCancel.addActionListener(listener);
+    }
+    
+    public void addFirstPlaceholder(FocusListener listener) {
+        txtFirst.addFocusListener(listener);
+    }
+    
+    public void addLastPlaceholder(FocusListener listener) {
+        txtSurname.addFocusListener(listener);
+    }
+    
+    public void addPasswordPlaceholder(FocusListener listener) {
+        txtPassword.addFocusListener(listener);
+    }
+    /**
+     * @param args the command line arguments
+     */
+    
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -240,10 +265,8 @@ public class RequestAccount extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane23;
     private javax.swing.JLabel lblAddress;
     private javax.swing.JLabel lblAge;
-    private javax.swing.JLabel lblFirst;
     private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblSex;
-    private javax.swing.JLabel lblSurname;
     private javax.swing.JRadioButton rdoFemale;
     private javax.swing.JRadioButton rdoMale;
     private javax.swing.JSpinner spnAge;

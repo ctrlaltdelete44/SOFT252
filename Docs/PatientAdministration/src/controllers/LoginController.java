@@ -36,7 +36,7 @@ public class LoginController {
         gui.setVisible(true);
     }
 
-    public class btnLoginListener implements ActionListener {
+    private class btnLoginListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -80,7 +80,7 @@ public class LoginController {
 
     }
     
-    public class btnRequestListener implements ActionListener {
+    private class btnRequestListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {

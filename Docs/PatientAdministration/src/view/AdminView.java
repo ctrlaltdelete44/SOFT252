@@ -56,6 +56,7 @@ public class AdminView extends javax.swing.JFrame {
         lstComments = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Admin Dashboard | PAA");
 
         lblWelcome.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         lblWelcome.setText("Welcome");

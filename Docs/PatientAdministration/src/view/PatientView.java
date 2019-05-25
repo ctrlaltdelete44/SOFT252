@@ -5,11 +5,13 @@
  */
 package view;
 
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JTextField;
+import javax.swing.event.ListSelectionListener;
 
 /**
  *
@@ -73,7 +75,29 @@ public class PatientView extends javax.swing.JFrame {
         return txtNextAppointment;
     }
     
+    public void addLogoutEventHandler(ActionListener listener) {
+        btnLogout.addActionListener(listener);
+    }
     
+    public void addDeleteEventHandler(ActionListener listener) {
+        btnDelete.addActionListener(listener);
+    }
+    
+    public void addProvideFeedbackEventHandler(ActionListener listener) {
+        btnProvideFeedback.addActionListener(listener);
+    }
+    
+    public void addRequestAppointmentEventHandler(ActionListener listener) {
+        btnRequestAppointment.addActionListener(listener);
+    }
+    
+    public void addViewPrescriptionEventHandler(ActionListener listener) {
+        btnViewPrescription.addActionListener(listener);
+    }
+    
+    public void addDoctorsChangedListener(ListSelectionListener listener) {
+        lstDoctors.addListSelectionListener(listener);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -104,6 +128,7 @@ public class PatientView extends javax.swing.JFrame {
         btnViewPrescription = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Patient Dashboard | PAA");
 
         lblWelcome.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         lblWelcome.setText("Welcome");
@@ -139,7 +164,7 @@ public class PatientView extends javax.swing.JFrame {
         lblAvailability.setText("Availability");
 
         lblNextAppointment.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        lblNextAppointment.setText("Your next appointment is...");
+        lblNextAppointment.setText("Your next appointment is with...");
 
         lblActiveAppointment.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         lblActiveAppointment.setForeground(new java.awt.Color(255, 0, 0));
@@ -161,7 +186,7 @@ public class PatientView extends javax.swing.JFrame {
         txtNextAppointment.setFont(new java.awt.Font("Courier New", 1, 24)); // NOI18N
 
         btnViewPrescription.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        btnViewPrescription.setText("View Prescription");
+        btnViewPrescription.setText("View Current Prescription");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

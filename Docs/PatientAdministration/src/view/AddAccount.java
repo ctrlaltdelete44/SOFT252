@@ -48,6 +48,7 @@ public class AddAccount extends javax.swing.JFrame {
         txtAddress = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Add Account | PAA");
 
         lblFirst.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         lblFirst.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);

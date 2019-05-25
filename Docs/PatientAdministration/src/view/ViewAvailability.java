@@ -41,6 +41,7 @@ public class ViewAvailability extends javax.swing.JFrame {
         lblRequest = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("View Availability | PAA");
 
         lstSchedule.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         lstSchedule.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
@@ -51,6 +52,7 @@ public class ViewAvailability extends javax.swing.JFrame {
 
         lstDoctors.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         lstDoctors.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        lstDoctors.setToolTipText("");
         jScrollPane10.setViewportView(lstDoctors);
 
         lblTitle.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N

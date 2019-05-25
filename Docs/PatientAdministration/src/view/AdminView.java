@@ -5,10 +5,13 @@
  */
 package view;
 
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JTextArea;
+import javax.swing.event.ListSelectionListener;
 
 /**
  *
@@ -91,12 +94,14 @@ public class AdminView extends javax.swing.JFrame {
         jScrollPane20.setViewportView(txtFeedbackMessage);
 
         lblFeedbackTitle.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        lblFeedbackTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblFeedbackTitle.setText("Feedback Message");
 
         btnProvideFeedback.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         btnProvideFeedback.setText("Provide Feedback");
 
         lblPatientCommentsTitle.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        lblPatientCommentsTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblPatientCommentsTitle.setText("Patient Comments");
 
         lstComments.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
@@ -184,6 +189,10 @@ public class AdminView extends javax.swing.JFrame {
         return btnAddAccount;
     }
 
+    public JLabel getLblWelcome() {
+        return lblWelcome;
+    }
+
     public JButton getBtnDeleteDoctor() {
         return btnDeleteDoctor;
     }
@@ -216,6 +225,33 @@ public class AdminView extends javax.swing.JFrame {
         return txtFeedbackMessage;
     }
     
+    public void addLogoutEventHandler(ActionListener listener) {
+        btnLogout.addActionListener(listener);
+    }
+    
+    public void addAddAccountEventHandler(ActionListener listener) {
+        btnAddAccount.addActionListener(listener);
+    }
+    
+    public void addDeleteDoctorEventHandler(ActionListener listener) {
+        btnDeleteDoctor.addActionListener(listener);
+    }
+    
+    public void addDeleteSecretaryEventHandler(ActionListener listener) {
+        btnDeleteSecretary.addActionListener(listener);
+    }
+    
+    public void addProvideFeedbackEventHandler(ActionListener listener) {
+        btnProvideFeedback.addActionListener(listener);
+    }
+    
+    public void addDoctorsChangedListener(ListSelectionListener listener) {
+        lstDoctors.addListSelectionListener(listener);
+    }
+    
+    public void addSecretariesChangedListener(ListSelectionListener listener) {
+        lstSecretaries.addListSelectionListener(listener);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddAccount;

@@ -39,33 +39,32 @@ public class SecretaryController {
         gui.addDeleteAccountEventHandler(new btnDeleteAccountListener());
         gui.addConfirmRequestEventHandler(new btnConfirmRequestListener());
         gui.addAddStockListener(new btnAddStockListener());
-        
+
         gui.addRequestsChangedListener(new lstRequestsValueListener());
         gui.addStockChangedListener(new lstStockValueListener());
         gui.addPatientsChangedListener(new lstPatientsValueListener());
     }
-    
+
+    private void cleanSecretary() {
+        gui.getLstRequests().setListData(authorisingSecretary.viewRequests());
+        gui.getLstStock().setListData(authorisingSecretary.viewStock());
+        gui.getLstPatients().setListData(authorisingSecretary.viewAccounts(AccountType.PATIENT));
+
+        gui.getBtnConfirmRequest().setEnabled(false);
+        gui.getBtnDeleteRequest().setEnabled(false);
+        gui.getBtnDeleteAccount().setEnabled(false);
+
+        gui.getTxtStockName().setText("");
+        gui.getSpnQuantity().setValue(0);
+        gui.getLblWelcome().setText("Logged in as: " + authorisingSecretary.getFirstName() + " " + authorisingSecretary.getSurname());
+
+    }
+
     private String getStockName(String strStock) {
         String[] splitString = strStock.split(":");
         return splitString[0];
     }
-    
-    private void cleanSecretary()
-    {
-        gui.getLstRequests().setListData(authorisingSecretary.viewRequests());
-        gui.getLstStock().setListData(authorisingSecretary.viewStock());
-        gui.getLstPatients().setListData(authorisingSecretary.viewAccounts(AccountType.PATIENT));
-        
-        gui.getBtnConfirmRequest().setEnabled(false);
-        gui.getBtnDeleteRequest().setEnabled(false);
-        gui.getBtnDeleteAccount().setEnabled(false);
-        
-        gui.getTxtStockName().setText("");
-        gui.getSpnQuantity().setValue(0);
-        gui.getLblWelcome().setText("Logged in as: " + authorisingSecretary.getFirstName() + " " + authorisingSecretary.getSurname());
-        
-    }
-    
+
     private class btnLogoutListener implements ActionListener {
 
         @Override
@@ -88,18 +87,19 @@ public class SecretaryController {
         }
 
     }
-    
+
     private class btnDeleteAccountListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
             int input = JOptionPane.showConfirmDialog(null, "Are you sure you wish to delete this patient account?", "Confirm delete", JOptionPane.YES_NO_OPTION);
-        //0=yes, 1=no
-        if (input == 0)
-        authorisingSecretary.removeAccount(gui.getLstPatients().getSelectedValue());
-        cleanSecretary();
+            //0=yes, 1=no
+            if (input == 0) {
+                authorisingSecretary.removeAccount(gui.getLstPatients().getSelectedValue());
+            }
+            cleanSecretary();
         }
-        
+
     }
 
     private class btnConfirmRequestListener implements ActionListener {

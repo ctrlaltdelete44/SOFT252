@@ -7,6 +7,14 @@ package controllers;
 
 import accounts.Account;
 import accounts.Admin;
+import accounts.Doctor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import utilities.AccountAdapter;
+import utilities.accounts.AccountType;
 import view.AdminView;
 
 /**
@@ -14,74 +22,139 @@ import view.AdminView;
  * @author Anthony
  */
 public class AdminController {
+
     private final AdminView gui;
     private final Admin authorisingAdmin;
 
     public AdminController(Account authorisingAdmin) {
         this.gui = new AdminView();
-        this.authorisingAdmin = (Admin)authorisingAdmin;
+        this.authorisingAdmin = (Admin) authorisingAdmin;
         
+        initialiseEventHandlers();
+
+        cleanAdmin();
         gui.setVisible(true);
     }
+
+    private void initialiseEventHandlers() {
+        gui.addLogoutEventHandler(new btnLogoutListener());
+        gui.addAddAccountEventHandler(new btnAddAccountListener(this));
+        gui.addDeleteDoctorEventHandler(new btnDeleteDoctorListener());
+        gui.addDeleteSecretaryEventHandler(new btnDeleteSecretaryListener());
+        gui.addProvideFeedbackEventHandler(new btnProvideFeedbackListener());
+        
+        gui.addDoctorsChangedListener(new lstDoctorsValueListener());
+        gui.addSecretariesChangedListener(new lstSecretariesValueListener());
+    }
+
+    void cleanAdmin() {
+        gui.getLstDoctors().setListData(authorisingAdmin.viewAccounts(AccountType.DOCTOR));
+        gui.getLstSecretaries().setListData(authorisingAdmin.viewAccounts(AccountType.SECRETARY));
+        gui.getBtnDeleteDoctor().setEnabled(false);
+        gui.getBtnDeleteSecretary().setEnabled(false);
+        gui.getLblWelcome().setText("Logged in as: " + authorisingAdmin.getFirstName() + " " + authorisingAdmin.getSurname());
+        gui.getTxtFeedbackMessage().setText("");
+        gui.getLstComments().setListData(new String[0]);
+    }
+
+    public String[] viewFeedback(String strDoctor) {
+        AccountAdapter adapter = new AccountAdapter(strDoctor);
+        Doctor d = (Doctor) adapter.convert();
+        return d.viewFeedback();
+    }
+
+    public Admin getAuthorisingAdmin() {
+        return authorisingAdmin;
+    }
+
+    private class btnLogoutListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            gui.dispose();
+            new LoginController();
+        }
+    }
     
-    
+    private class btnAddAccountListener implements ActionListener {
+        private final AdminController controller;
+
+        public btnAddAccountListener(AdminController controller) {
+            this.controller = controller;
+        }
+        
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            new AddAccountController(controller);
+        }
+    }
+
+    private class btnDeleteDoctorListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            int input = JOptionPane.showConfirmDialog(null, "Are you sure you wish to delete this doctor account?", "Confirm delete", JOptionPane.YES_NO_OPTION);
+            //0=yes, 1=no
+            if (input == 0) {
+                authorisingAdmin.deleteAccount(gui.getLstDoctors().getSelectedValue());
+            }
+            cleanAdmin();
+        }
+
+    }
+
+    private class btnDeleteSecretaryListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            int input = JOptionPane.showConfirmDialog(null, "Are you sure you wish to delete this secretary account?", "Confirm delete", JOptionPane.YES_NO_OPTION);
+            //0=yes, 1=no
+            if (input == 0) {
+                authorisingAdmin.deleteAccount(gui.getLstSecretaries().getSelectedValue());
+            }
+            cleanAdmin();
+        }
+    }
+
+    private class btnProvideFeedbackListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            String account = gui.getLstDoctors().getSelectedValue();
+            String message = gui.getTxtFeedbackMessage().getText();
+
+            if (account == null || message.contentEquals("")) {
+                JOptionPane.showMessageDialog(null, "Please enter a valid message for a doctor account", "Invalid selection", JOptionPane.OK_OPTION);
+            } else {
+                authorisingAdmin.provideFeedback(account, message);
+                JOptionPane.showMessageDialog(null, "Feedback sent", "Feedback sent", JOptionPane.OK_OPTION);
+            }
+        }
+    }
+
+    private class lstDoctorsValueListener implements ListSelectionListener {
+
+        @Override
+        public void valueChanged(ListSelectionEvent e) {
+            if (gui.getLstDoctors().getSelectedValue() != null) {
+                gui.getBtnDeleteDoctor().setEnabled(true);
+                gui.getLstComments().setListData(viewFeedback(gui.getLstDoctors().getSelectedValue()));
+            } else {
+                gui.getBtnDeleteDoctor().setEnabled(false);
+            }
+        }
+
+    }
+
+    private class lstSecretariesValueListener implements ListSelectionListener {
+
+        @Override
+        public void valueChanged(ListSelectionEvent e) {
+            if (gui.getLstSecretaries().getSelectedValue() != null) {
+                gui.getBtnDeleteSecretary().setEnabled(true);
+            } else {
+                gui.getBtnDeleteSecretary().setEnabled(false);
+            }
+        }
+    }
 }
-
-
-//private void admin_btnAddAccountActionPerformed(java.awt.event.ActionEvent evt) {                                                    
-//        cleanUI(panelAdmin, panelAddAccount);
-//    }                                                   
-//
-//    private void admin_btnDeleteDoctorActionPerformed(java.awt.event.ActionEvent evt) {                                                      
-//        int input = JOptionPane.showConfirmDialog(null, "Are you sure you wish to delete this doctor account?", "Confirm delete", JOptionPane.YES_NO_OPTION);
-//        //0=yes, 1=no
-//        if (input == 0)
-//            adminController.deleteSelected(admin_lstDoctors.getSelectedValue());
-//        cleanAdmin();
-//    }           
-//private void admin_btnDeleteSecretaryActionPerformed(java.awt.event.ActionEvent evt) {                                                         
-//        int input = JOptionPane.showConfirmDialog(null, "Are you sure you wish to delete this secretary account?", "Confirm delete", JOptionPane.YES_NO_OPTION);
-//        //0=yes, 1=no
-//        if (input == 0)
-//            adminController.deleteSelected(admin_lstSecretaries.getSelectedValue());
-//        cleanAdmin();
-//    }                                                        
-//
-//    private void admin_lstDoctorsValueChanged(javax.swing.event.ListSelectionEvent evt) {                                              
-//        if (admin_lstDoctors.getSelectedValue() != null)
-//        {
-//            admin_btnDeleteDoctor.setEnabled(true);
-//            admin_lstComments.setListData(adminController.viewFeedback(admin_lstDoctors.getSelectedValue()));
-//        }
-//        else
-//            admin_btnDeleteDoctor.setEnabled(false);
-//    }                                             
-//
-//    private void admin_lstSecretariesValueChanged(javax.swing.event.ListSelectionEvent evt) {                                                  
-//        if (admin_lstSecretaries.getSelectedValue() != null)
-//            admin_btnDeleteSecretary.setEnabled(true);
-//        else
-//            admin_btnDeleteSecretary.setEnabled(false);
-//private void admin_btnProvideFeedbackActionPerformed(java.awt.event.ActionEvent evt) {                                                         
-//        String account = admin_lstDoctors.getSelectedValue();
-//        String message = admin_txtFeedbackMessage.getText();
-//        
-//        if (account == null || message.contentEquals(""))
-//            JOptionPane.showMessageDialog(null, "Please enter a valid message for a doctor account", "Invalid selection", JOptionPane.OK_OPTION);
-//        else
-//        {
-//            adminController.giveFeedback(account, message);
-//            JOptionPane.showMessageDialog(null, "Feedback sent", "Feedback sent", JOptionPane.OK_OPTION);
-//        }
-//    }        
-
-//    private void cleanAdmin()
-//    {
-//        admin_lstDoctors.setListData(adminController.viewDoctors());
-//        admin_lstSecretaries.setListData(adminController.viewSecretaries());
-//        admin_btnDeleteDoctor.setEnabled(false);
-//        admin_btnDeleteSecretary.setEnabled(false);
-//        admin_lblWelcome.setText("Logged in as: " + controller.getLoggedIn().getFirstName() + " " + controller.getLoggedIn().getSurname());
-//        admin_txtFeedbackMessage.setText("");
-//        admin_lstComments.setListData(new String[0]);
-//    }

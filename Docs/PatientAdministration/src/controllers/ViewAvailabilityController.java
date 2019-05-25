@@ -5,10 +5,15 @@
  */
 package controllers;
 
+import accounts.Doctor;
 import accounts.Secretary;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import utilities.AccountAdapter;
+import utilities.accounts.AccountType;
 import view.ViewAvailability;
 
 /**
@@ -26,10 +31,27 @@ public class ViewAvailabilityController {
         this.request = request;
         this.authorisingSecretary = authorisingSecretary;
         
-        gui.getLblRequest().setText(request);
-        gui.addSubmitEventHandler(new btnSubmitListener());
+        initialiseUi();
+        initialiseEventHandlers();
 
         gui.setVisible(true);
+    }
+    
+    private void initialiseUi() {
+        gui.getLblRequest().setText(request);
+        gui.getLstDoctors().setListData(authorisingSecretary.viewAccounts(AccountType.DOCTOR));
+    }
+    
+    private void initialiseEventHandlers() {
+        gui.addSubmitEventHandler(new btnSubmitListener());
+        gui.addDoctorsChangedListener(new lstDoctorsValueListener());
+    }
+
+    public String[] viewDoctorFreeDays(String strDoctor) {
+        AccountAdapter adapter = new AccountAdapter(strDoctor);
+        Doctor doctor = (Doctor) adapter.convert();
+
+        return doctor.viewFreeDates();
     }
 
     private class btnSubmitListener implements ActionListener {
@@ -46,7 +68,21 @@ public class ViewAvailabilityController {
             } else {
                 String output = authorisingSecretary.authoriseRequest(request, assignedDoctor, assignedDate);
                 JOptionPane.showMessageDialog(null, output, "Appointment made", JOptionPane.OK_OPTION);
+                gui.dispose();
+            }
+        }
 
+    }
+
+    private class lstDoctorsValueListener implements ListSelectionListener {
+
+        @Override
+        public void valueChanged(ListSelectionEvent e) {
+            String selected = gui.getLstDoctors().getSelectedValue();
+            if (selected != null) {
+                gui.getLstSchedule().setListData(viewDoctorFreeDays(selected));
+            } else {
+                gui.getLstSchedule().setListData(new String[0]);
             }
         }
 

@@ -61,6 +61,9 @@ public class RequestAccountController {
             
             requestCreation(first, last, address, sex, age, password);
             JOptionPane.showMessageDialog(null, "We have received your request. Once it has been approved, you will be able to log in", "Request processed", JOptionPane.INFORMATION_MESSAGE);
+            
+            gui.dispose();
+            new LoginController();
         }
 
     }

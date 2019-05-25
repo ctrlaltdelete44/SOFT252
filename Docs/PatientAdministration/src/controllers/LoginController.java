@@ -67,7 +67,8 @@ public class LoginController {
                             gui.dispose();
                             return;
                         case PATIENT:
-                            System.out.println("patient");
+                            new PatientController(a);
+                            gui.dispose();
                             return;
                         case DOCTOR:
                             System.out.println("doctor");

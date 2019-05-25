@@ -113,9 +113,7 @@ public class SecretaryController {
                 JOptionPane.showMessageDialog(null, output, "Request approved", JOptionPane.INFORMATION_MESSAGE);
                 cleanSecretary();
             } else {
-                //switch to view availability
-                //cleanUI(panelSecretary, panelViewAvailability);
-                //availability_lblRequest.setText(request);
+                new ViewAvailabilityController(request, authorisingSecretary);
             }
         }
 

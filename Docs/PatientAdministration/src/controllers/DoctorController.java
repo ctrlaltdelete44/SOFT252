@@ -7,9 +7,11 @@ package controllers;
 
 import accounts.Account;
 import accounts.Doctor;
+import appointments.Appointment;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
+import utilities.AppointmentAdapter;
 import view.DoctorView;
 
 /**
@@ -24,12 +26,12 @@ public class DoctorController extends DashboardController {
     public DoctorController(Account authorisingDoctor) {
         this.gui = new DoctorView();
         this.authorisingDoctor = (Doctor) authorisingDoctor;
-        
+
         initialiseEventHandlers();
 
         cleanUi();
         gui.setVisible(true);
-        
+
         viewNotifications();
     }
 
@@ -49,10 +51,10 @@ public class DoctorController extends DashboardController {
         gui.getTxtStock().setText("");
         viewSchedule();
     }
-    
+
     @Override
     public String[] viewNotifications() {
-        return authorisingDoctor.getNotifications();        
+        return authorisingDoctor.getNotifications();
     }
 
     private void viewSchedule() {
@@ -66,6 +68,7 @@ public class DoctorController extends DashboardController {
     }
 
     private class btnRequestStockListener implements ActionListener {
+
         @Override
         public void actionPerformed(ActionEvent e) {
             String medicineRequested = gui.getTxtStock().getText();
@@ -80,6 +83,7 @@ public class DoctorController extends DashboardController {
     }
 
     private class btnScheduleWeekListener implements ActionListener {
+
         @Override
         public void actionPerformed(ActionEvent e) {
             authorisingDoctor.scheduleWeek();
@@ -88,6 +92,7 @@ public class DoctorController extends DashboardController {
     }
 
     private class btnFiltersListener implements ActionListener {
+
         @Override
         public void actionPerformed(ActionEvent e) {
             viewSchedule();
@@ -105,12 +110,9 @@ public class DoctorController extends DashboardController {
             } else if (selected.contains("No booking")) {
                 JOptionPane.showMessageDialog(null, "You have no booking on this day!", "No appointment", JOptionPane.OK_OPTION);
             } else {
-//                cleanUI(panelDoctor, panelAppointment);
-//                doctorController.setActiveAppointment(selected);
-//
-//                appointment_lblPatient.setText(doctorController.getActiveAppointmentPatient());
-//                appointment_lblDoctor.setText(doctorController.getActiveAppointmentDoctor());
-//                appointment_lstHistory.setListData(doctorController.viewActivePatientHistory());
+                AppointmentAdapter adapter = new AppointmentAdapter(selected, authorisingDoctor.getUniqueId());
+                Appointment activeAppointment = adapter.convert();
+                new AppointmentController(authorisingDoctor, activeAppointment);
             }
         }
 

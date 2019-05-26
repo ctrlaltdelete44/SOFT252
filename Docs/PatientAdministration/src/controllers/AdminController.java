@@ -31,9 +31,12 @@ public class AdminController extends DashboardController{
         this.authorisingAdmin = (Admin) authorisingAdmin;
         
         initialiseEventHandlers();
-
         cleanUi();
+        viewNotifications();
+        
         gui.setVisible(true);
+        
+        
     }
 
     @Override
@@ -57,6 +60,11 @@ public class AdminController extends DashboardController{
         gui.getLblWelcome().setText("Logged in as: " + authorisingAdmin.getFirstName() + " " + authorisingAdmin.getSurname());
         gui.getTxtFeedbackMessage().setText("");
         gui.getLstComments().setListData(new String[0]);
+    }
+    
+    @Override
+    public String[] viewNotifications() {
+        return authorisingAdmin.getNotifications();        
     }
 
     public String[] viewFeedback(String strDoctor) {

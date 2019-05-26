@@ -31,6 +31,8 @@ public class SecretaryController extends DashboardController {
         initialiseEventHandlers();
         cleanUi();
         gui.setVisible(true);
+        
+        viewNotifications();
     }
 
     @Override
@@ -61,6 +63,11 @@ public class SecretaryController extends DashboardController {
         gui.getLblWelcome().setText("Logged in as: " + authorisingSecretary.getFirstName() + " " + authorisingSecretary.getSurname());
     }
 
+    @Override
+    public String[] viewNotifications() {
+        return authorisingSecretary.getNotifications();        
+    }
+    
     private String getStockName(String strStock) {
         String[] splitString = strStock.split(":");
         return splitString[0];

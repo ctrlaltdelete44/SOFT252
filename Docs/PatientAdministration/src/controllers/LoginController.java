@@ -45,7 +45,7 @@ public class LoginController implements IController{
     public void cleanUi() {
         gui.getTxtUsername().setText("");
         gui.getTxtPassword().setText("");
-        gui.getLblErrorInvalidUsername().setVisible(false);
+        gui.getLblErrorInvalidLogin().setVisible(false);
     }
 
     private class btnLoginListener implements ActionListener {
@@ -67,7 +67,7 @@ public class LoginController implements IController{
             for (Account a : accounts.getAccounts()) {
                 //if password and login match, login - assign currently logged in, etc, return account type
                 if ((a.getUniqueId().contentEquals(username)) && (a.getPassword().contentEquals(strPassword))) {
-                    gui.getLblErrorInvalidUsername().setVisible(false);
+                    gui.getLblErrorInvalidLogin().setVisible(false);
 
                     switch (a.getAccountType()) {
                         case ADMIN:
@@ -90,7 +90,7 @@ public class LoginController implements IController{
                     
                 }
                 else {
-                    gui.getLblErrorInvalidUsername().setVisible(true);
+                    gui.getLblErrorInvalidLogin().setVisible(true);
                 }
             }
         }

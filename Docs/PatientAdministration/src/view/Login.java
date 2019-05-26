@@ -39,7 +39,6 @@ public class Login extends javax.swing.JFrame {
         txtPassword = new javax.swing.JPasswordField();
         btnLogin = new javax.swing.JButton();
         lblErrorInvalidLogin = new javax.swing.JLabel();
-        lblErrorInvalidUsername = new javax.swing.JLabel();
         btnRequestAccount = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -67,12 +66,7 @@ public class Login extends javax.swing.JFrame {
         lblErrorInvalidLogin.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
         lblErrorInvalidLogin.setForeground(new java.awt.Color(255, 0, 0));
         lblErrorInvalidLogin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblErrorInvalidLogin.setText("The entered username and password do not match. Please try again");
-
-        lblErrorInvalidUsername.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
-        lblErrorInvalidUsername.setForeground(new java.awt.Color(255, 0, 0));
-        lblErrorInvalidUsername.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblErrorInvalidUsername.setText("The entered username was not found, please try again");
+        lblErrorInvalidLogin.setText("Invalid credentials, please try again");
 
         btnRequestAccount.setFont(new java.awt.Font("Tahoma", 0, 17)); // NOI18N
         btnRequestAccount.setText("Request New Account");
@@ -85,19 +79,18 @@ public class Login extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(136, 136, 136)
-                        .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(32, 32, 32)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtPassword, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtUsername, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblErrorInvalidLogin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 544, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblErrorInvalidUsername, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 544, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(lblErrorInvalidLogin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 544, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(btnRequestAccount)))
                 .addGap(24, 24, 24))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(127, 127, 127))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -108,18 +101,15 @@ public class Login extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                .addComponent(lblErrorInvalidUsername)
-                .addGap(18, 18, 18)
                 .addComponent(lblErrorInvalidLogin)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
                 .addComponent(btnRequestAccount)
                 .addContainerGap())
         );
 
         lblErrorInvalidLogin.setVisible(false);
-        lblErrorInvalidUsername.setVisible(false);
 
         pack();
         setLocationRelativeTo(null);
@@ -138,15 +128,6 @@ public class Login extends javax.swing.JFrame {
     /**
      * standard accessor for ui elements
      *
-     * @return - returns the error message
-     */
-    public JLabel getLblErrorInvalidLogin() {
-        return lblErrorInvalidLogin;
-    }
-
-    /**
-     * standard accessor for ui elements
-     *
      * @return - returns the password box
      */
     public JPasswordField getTxtPassword() {
@@ -157,8 +138,8 @@ public class Login extends javax.swing.JFrame {
      * standard accessor
      * @return - returns error label for a username that wasnt found
      */
-    public JLabel getLblErrorInvalidUsername() {
-        return lblErrorInvalidUsername;
+    public JLabel getLblErrorInvalidLogin() {
+        return lblErrorInvalidLogin;
     }
 
     /**
@@ -201,7 +182,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnRequestAccount;
     private javax.swing.JLabel lblErrorInvalidLogin;
-    private javax.swing.JLabel lblErrorInvalidUsername;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsername;

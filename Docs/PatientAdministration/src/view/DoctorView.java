@@ -5,6 +5,7 @@
  */
 package view;
 
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -74,6 +75,29 @@ public class DoctorView extends javax.swing.JFrame {
         return txtStock;
     }
 
+    public void addLogoutEventHandler(ActionListener listener) {
+        btnLogout.addActionListener(listener);
+    }
+    
+    public void addRequestStockEventHandler(ActionListener listener) {
+        btnRequestStock.addActionListener(listener);
+        txtStock.addActionListener(listener);
+    }
+    
+    public void addScheduleWeekEventHandler(ActionListener listener) {
+        btnScheduleWeek.addActionListener(listener);
+    }
+    
+    public void addFilterByEventHandlers(ActionListener listener) {
+        btnSchedule.addActionListener(listener);
+        btnFreeDays.addActionListener(listener);
+        btnBookings.addActionListener(listener);
+    }
+    
+    public void addTakeAppointmentEventHandler(ActionListener listener) {
+        btnTakeAppointment.addActionListener(listener);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -83,6 +107,7 @@ public class DoctorView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         lblWelcome = new javax.swing.JLabel();
         btnLogout = new javax.swing.JButton();
         lblRating = new javax.swing.JLabel();
@@ -118,15 +143,18 @@ public class DoctorView extends javax.swing.JFrame {
         txtSchedule.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         txtSchedule.setText("Upcoming Schedule");
 
+        buttonGroup1.add(btnBookings);
         btnBookings.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         btnBookings.setText("Bookings");
         btnBookings.setPreferredSize(new java.awt.Dimension(229, 36));
 
+        buttonGroup1.add(btnSchedule);
         btnSchedule.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         btnSchedule.setSelected(true);
         btnSchedule.setText("Entire Schedule");
         btnSchedule.setPreferredSize(new java.awt.Dimension(262, 36));
 
+        buttonGroup1.add(btnFreeDays);
         btnFreeDays.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         btnFreeDays.setText("Free Days");
 
@@ -231,6 +259,7 @@ public class DoctorView extends javax.swing.JFrame {
     private javax.swing.JToggleButton btnSchedule;
     private javax.swing.JButton btnScheduleWeek;
     private javax.swing.JButton btnTakeAppointment;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JLabel lblOrderStockTitle;
     private javax.swing.JLabel lblRating;

@@ -197,7 +197,7 @@ public abstract class Account implements Serializable {
     {
         notifications.add(new Notification(message));
         c.construct();
-        //System.out.println("Notification \"" + message + "\" added to " + this.firstName + " " + this.surname + ". There are now " + notifications.size() + " notifications:ACCOUNT");
+        System.out.println("Notification \"" + message + "\" added to " + this.firstName + " " + this.surname + ". There are now " + notifications.size() + " notifications:ACCOUNT");
     }
     
     /**
@@ -206,6 +206,8 @@ public abstract class Account implements Serializable {
      */
     public String[] getNotifications()
     {
+        System.out.println("Getting notifs");
+        
         String[] strNotifications = new String[notifications.size()];
                
         for (int i = 0; i < notifications.size(); i++)
@@ -224,9 +226,9 @@ public abstract class Account implements Serializable {
     
     private void printNotifications()
     {
-        //System.out.println("Notifications for " + firstName + " " + surname + ":");
-        //for (Notification n : notifications)
-            //System.out.println(n.getContents());
+        System.out.println("Notifications for " + firstName + " " + surname + ":");
+        for (Notification n : notifications)
+            System.out.println(n.getContents());
     }
     
     private void clearNotifications()

@@ -15,6 +15,8 @@ import javax.swing.JFrame;
  */
 public abstract class DashboardController implements IController {
     
+    public abstract String[] viewNotifications();
+    
     protected class btnLogoutListener implements ActionListener {
         private final JFrame gui;
 

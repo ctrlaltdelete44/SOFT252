@@ -37,6 +37,8 @@ public class PatientController extends DashboardController {
 
         cleanUi();
         gui.setVisible(true);
+        
+        viewNotifications();
     }
     
     @Override
@@ -75,6 +77,11 @@ public class PatientController extends DashboardController {
             gui.getBtnViewPrescription().setEnabled(true);
         else
             gui.getBtnViewPrescription().setEnabled(false);
+    }
+    
+    @Override
+    public String[] viewNotifications() {
+        return authorisingPatient.getNotifications();        
     }
     
     private String[] viewDoctorAvailability(String strDoctor) {

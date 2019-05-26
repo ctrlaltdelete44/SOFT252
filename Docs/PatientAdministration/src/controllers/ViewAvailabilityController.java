@@ -20,7 +20,7 @@ import view.ViewAvailability;
  *
  * @author Anthony
  */
-public class ViewAvailabilityController {
+public class ViewAvailabilityController implements IController {
 
     private final ViewAvailability gui;
     private final String request;
@@ -31,20 +31,22 @@ public class ViewAvailabilityController {
         this.request = request;
         this.authorisingSecretary = authorisingSecretary;
         
-        initialiseUi();
+        cleanUi();
         initialiseEventHandlers();
 
         gui.setVisible(true);
     }
     
-    private void initialiseUi() {
-        gui.getLblRequest().setText(request);
-        gui.getLstDoctors().setListData(authorisingSecretary.viewAccounts(AccountType.DOCTOR));
-    }
-    
-    private void initialiseEventHandlers() {
+    @Override
+    public void initialiseEventHandlers() {
         gui.addSubmitEventHandler(new btnSubmitListener());
         gui.addDoctorsChangedListener(new lstDoctorsValueListener());
+    }
+    
+    @Override
+    public void cleanUi() {
+        gui.getLblRequest().setText(request);
+        gui.getLstDoctors().setListData(authorisingSecretary.viewAccounts(AccountType.DOCTOR));
     }
 
     public String[] viewDoctorFreeDays(String strDoctor) {

@@ -17,19 +17,14 @@ import view.RequestAccount;
  *
  * @author Anthony
  */
-public class RequestAccountController {
+public class RequestAccountController implements IController {
 
     private final RequestAccount gui;
 
     public RequestAccountController() {
         this.gui = new RequestAccount();
         
-        gui.addConfirmEventHandler(new btnConfirmListener());
-        gui.addCancelEventHandler(new btnCancelListener());
-        
-        gui.addFirstPlaceholder(new PlaceHolderTextListener("First Name"));
-        gui.addLastPlaceholder(new PlaceHolderTextListener("Surname"));
-        gui.addPasswordPlaceholder(new PlaceHolderTextListener("Password"));
+        initialiseEventHandlers();
 
         gui.setVisible(true);
     }
@@ -40,6 +35,27 @@ public class RequestAccountController {
         c.deconstruct();
         Patient p = new Patient(first, last, address);
         p.assignPatientInfo(sex, age, arrPassword);
+    }
+
+    @Override
+    public void initialiseEventHandlers() {
+        gui.addConfirmEventHandler(new btnConfirmListener());
+        gui.addCancelEventHandler(new btnCancelListener());
+        
+        gui.addFirstPlaceholder(new PlaceHolderTextListener("First Name"));
+        gui.addLastPlaceholder(new PlaceHolderTextListener("Surname"));
+        gui.addPasswordPlaceholder(new PlaceHolderTextListener("Password"));
+    }
+
+    @Override
+    public void cleanUi() {
+        gui.getTxtFirst().setText("");
+        gui.getTxtSurname().setText("");
+        gui.getTxtAddress().setText("");
+        gui.getRdoMale().setSelected(true);
+        gui.getRdoFemale().setSelected(false);
+        gui.getSpnAge().setValue(18);
+        gui.getTxtPassword().setText("");
     }
     
     private class btnConfirmListener implements ActionListener {

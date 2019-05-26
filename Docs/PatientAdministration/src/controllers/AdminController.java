@@ -21,7 +21,7 @@ import view.AdminView;
  *
  * @author Anthony
  */
-public class AdminController {
+public class AdminController extends DashboardController{
 
     private final AdminView gui;
     private final Admin authorisingAdmin;
@@ -32,12 +32,13 @@ public class AdminController {
         
         initialiseEventHandlers();
 
-        cleanAdmin();
+        cleanUi();
         gui.setVisible(true);
     }
 
-    private void initialiseEventHandlers() {
-        gui.addLogoutEventHandler(new btnLogoutListener());
+    @Override
+    public void initialiseEventHandlers() {
+        gui.addLogoutEventHandler(new btnLogoutListener(gui));
         gui.addAddAccountEventHandler(new btnAddAccountListener(this));
         gui.addDeleteDoctorEventHandler(new btnDeleteDoctorListener());
         gui.addDeleteSecretaryEventHandler(new btnDeleteSecretaryListener());
@@ -47,7 +48,8 @@ public class AdminController {
         gui.addSecretariesChangedListener(new lstSecretariesValueListener());
     }
 
-    void cleanAdmin() {
+    @Override
+    public void cleanUi() {
         gui.getLstDoctors().setListData(authorisingAdmin.viewAccounts(AccountType.DOCTOR));
         gui.getLstSecretaries().setListData(authorisingAdmin.viewAccounts(AccountType.SECRETARY));
         gui.getBtnDeleteDoctor().setEnabled(false);
@@ -65,15 +67,6 @@ public class AdminController {
 
     public Admin getAuthorisingAdmin() {
         return authorisingAdmin;
-    }
-
-    private class btnLogoutListener implements ActionListener {
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            gui.dispose();
-            new LoginController();
-        }
     }
     
     private class btnAddAccountListener implements ActionListener {
@@ -98,7 +91,7 @@ public class AdminController {
             if (input == 0) {
                 authorisingAdmin.deleteAccount(gui.getLstDoctors().getSelectedValue());
             }
-            cleanAdmin();
+            cleanUi();
         }
 
     }
@@ -112,7 +105,7 @@ public class AdminController {
             if (input == 0) {
                 authorisingAdmin.deleteAccount(gui.getLstSecretaries().getSelectedValue());
             }
-            cleanAdmin();
+            cleanUi();
         }
     }
 

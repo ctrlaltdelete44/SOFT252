@@ -19,7 +19,7 @@ import view.SecretaryView;
  *
  * @author Anthony
  */
-public class SecretaryController {
+public class SecretaryController extends DashboardController {
 
     private final SecretaryView gui;
     private final Secretary authorisingSecretary;
@@ -29,11 +29,12 @@ public class SecretaryController {
         this.authorisingSecretary = (Secretary) s;
 
         initialiseEventHandlers();
-        cleanSecretary();
+        cleanUi();
         gui.setVisible(true);
     }
 
-    private void initialiseEventHandlers() {
+    @Override
+    public void initialiseEventHandlers() {
         gui.addLogoutEventHandler(new btnLogoutListener());
         gui.addDeleteRequestEventHandler(new btnDeleteRequestListener());
         gui.addDeleteAccountEventHandler(new btnDeleteAccountListener());
@@ -44,8 +45,9 @@ public class SecretaryController {
         gui.addStockChangedListener(new lstStockValueListener());
         gui.addPatientsChangedListener(new lstPatientsValueListener());
     }
-
-    private void cleanSecretary() {
+    
+    @Override
+    public void cleanUi() {
         gui.getLstRequests().setListData(authorisingSecretary.viewRequests());
         gui.getLstStock().setListData(authorisingSecretary.viewStock());
         gui.getLstPatients().setListData(authorisingSecretary.viewAccounts(AccountType.PATIENT));
@@ -57,7 +59,6 @@ public class SecretaryController {
         gui.getTxtStockName().setText("");
         gui.getSpnQuantity().setValue(0);
         gui.getLblWelcome().setText("Logged in as: " + authorisingSecretary.getFirstName() + " " + authorisingSecretary.getSurname());
-
     }
 
     private String getStockName(String strStock) {
@@ -83,7 +84,7 @@ public class SecretaryController {
             if (input == 0) {
                 authorisingSecretary.deleteRequest(gui.getLstRequests().getSelectedValue());
             }
-            cleanSecretary();
+            cleanUi();
         }
 
     }
@@ -97,7 +98,7 @@ public class SecretaryController {
             if (input == 0) {
                 authorisingSecretary.removeAccount(gui.getLstPatients().getSelectedValue());
             }
-            cleanSecretary();
+            cleanUi();
         }
 
     }
@@ -111,7 +112,7 @@ public class SecretaryController {
 
             if (!request.contains("APPOINTMENT")) {
                 JOptionPane.showMessageDialog(null, output, "Request approved", JOptionPane.INFORMATION_MESSAGE);
-                cleanSecretary();
+                cleanUi();
             } else {
                 new ViewAvailabilityController(request, authorisingSecretary);
             }
@@ -129,7 +130,7 @@ public class SecretaryController {
             if (!name.equals("")) {
                 authorisingSecretary.addToStock(name, quantity);
             }
-            cleanSecretary();
+            cleanUi();
         }
 
     }

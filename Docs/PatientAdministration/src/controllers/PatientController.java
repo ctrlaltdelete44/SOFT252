@@ -24,7 +24,7 @@ import view.PatientView;
  *
  * @author Anthony
  */
-public class PatientController {
+public class PatientController extends DashboardController {
 
     private final PatientView gui;
     private final Patient authorisingPatient;
@@ -35,11 +35,12 @@ public class PatientController {
         
         initialiseEventHandlers();
 
-        cleanPatient();
+        cleanUi();
         gui.setVisible(true);
     }
     
-    private void initialiseEventHandlers() {
+    @Override
+    public void initialiseEventHandlers() {
         gui.addLogoutEventHandler(new btnLogoutListener());
         gui.addDeleteEventHandler(new btnDeleteListener());
         gui.addProvideFeedbackEventHandler(new btnProvideFeedbackListener());
@@ -49,8 +50,8 @@ public class PatientController {
         gui.addDoctorsChangedListener(new lstDoctorsValueListener());
     }
 
-    private void cleanPatient()
-    {
+    @Override
+    public void cleanUi() {
         gui.getLblWelcome().setText("Logged in as: " + authorisingPatient.getFirstName() + " " + authorisingPatient.getSurname());
         gui.getBtnProvideFeedback().setEnabled(false);
         gui.getLstDoctors().setListData(authorisingPatient.viewAccounts(AccountType.DOCTOR));

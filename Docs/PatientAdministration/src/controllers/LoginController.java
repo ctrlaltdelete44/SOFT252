@@ -17,7 +17,7 @@ import view.Login;
  *
  * @author Anthony
  */
-public class LoginController {
+public class LoginController implements IController{
 
     private final Login gui;
 
@@ -27,13 +27,25 @@ public class LoginController {
 
     public LoginController() {
         this.gui = new Login();
+        
+        initialiseEventHandlers();
 
+        gui.setVisible(true);
+    }
+
+    @Override
+    public void initialiseEventHandlers() {
         gui.addLoginEventHandler(new btnLoginListener());
         gui.addRequestEventHandler(new btnRequestListener());
         gui.addUsernamePlaceholder(new PlaceHolderTextListener("Username"));
         gui.addPasswordPlaceholder(new PlaceHolderTextListener("Password"));
+    }
 
-        gui.setVisible(true);
+    @Override
+    public void cleanUi() {
+        gui.getTxtUsername().setText("");
+        gui.getTxtPassword().setText("");
+        gui.getLblErrorInvalidUsername().setVisible(false);
     }
 
     private class btnLoginListener implements ActionListener {
@@ -71,7 +83,8 @@ public class LoginController {
                             gui.dispose();
                             return;
                         case DOCTOR:
-                            System.out.println("doctor");
+                            new DoctorController(a);
+                            gui.dispose();
                             return;
                     }
                     

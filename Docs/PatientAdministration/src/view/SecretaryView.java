@@ -58,7 +58,7 @@ public class SecretaryView extends javax.swing.JFrame {
         btnDeleteAccount = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Secretary Dashboard | PAA");
+        setTitle("Dashboard | PAA");
 
         lblWelcome.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         lblWelcome.setText("Welcome");

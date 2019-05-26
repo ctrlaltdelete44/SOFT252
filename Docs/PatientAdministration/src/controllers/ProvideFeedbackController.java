@@ -15,7 +15,7 @@ import view.ProvideFeedback;
  *
  * @author Anthony
  */
-public class ProvideFeedbackController {
+public class ProvideFeedbackController implements IController {
 
     private final ProvideFeedback gui;
     private final Patient authorisingPatient;
@@ -31,9 +31,16 @@ public class ProvideFeedbackController {
         gui.setVisible(true);
     }
 
-    private void initialiseEventHandlers() {
+    @Override
+    public void initialiseEventHandlers() {
         gui.addBackEventHandler(new btnBackListener());
         gui.addSubmitEventHandler(new btnSubmitListener());
+    }
+
+    @Override
+    public void cleanUi() {
+        gui.getSldRating().setValue(0);
+        gui.getTxtComments().setText("");
     }
 
     private class btnBackListener implements ActionListener {

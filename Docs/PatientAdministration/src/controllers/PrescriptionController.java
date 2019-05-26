@@ -15,7 +15,7 @@ import view.ViewPrescription;
  *
  * @author Anthony
  */
-public class PrescriptionController {
+public class PrescriptionController implements IController {
     private final ViewPrescription gui;
     private final Patient patient;
 
@@ -23,14 +23,20 @@ public class PrescriptionController {
         this.gui = new ViewPrescription();
         this.patient = (Patient)patient;
         
-        gui.addBackEventHandler(new btnBackListener());
+        initialiseEventHandlers();
         
-        cleanPrescription();
+        
+        cleanUi();
         gui.setVisible(true);
     }
-    
-    private void cleanPrescription()
-    {
+
+    @Override
+    public void initialiseEventHandlers() {
+        gui.addBackEventHandler(new btnBackListener());
+    }
+
+    @Override
+    public void cleanUi() {
         gui.getTxtPatient().setText(patient.viewPatient());
         gui.getTxtDoctor().setText(patient.viewDoctor());
         gui.getTxtNotes().setText(patient.viewNotes());

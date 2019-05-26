@@ -15,7 +15,7 @@ import view.AddAccount;
  *
  * @author Anthony
  */
-public class AddAccountController {
+public class AddAccountController implements IController {
 
     private final AddAccount gui;
     private final AdminController parentController;
@@ -29,9 +29,19 @@ public class AddAccountController {
         gui.setVisible(true);
     }
     
-    private void initialiseEventHandlers() {
+    @Override
+    public void initialiseEventHandlers() {
         gui.addBackEventHandler(new btnBackListener());
         gui.addSubmitEventHandler(new btnSubmitListener());
+    }
+
+    @Override
+    public void cleanUi() {
+        gui.getTxtFirst().setText("");
+        gui.getTxtLast().setText("");
+        gui.getTxtAddress().setText("");
+        gui.getTxtPassword().setText("");
+        gui.getCmbAccountType().setSelectedIndex(0);
     }
 
     private class btnBackListener implements ActionListener {
@@ -63,7 +73,7 @@ public class AddAccountController {
 
             JOptionPane.showMessageDialog(null, "Their id is: " + id, "Unique ID", JOptionPane.INFORMATION_MESSAGE);
             gui.dispose();
-            parentController.cleanAdmin();
+            parentController.cleanUi();
         }
 
     }

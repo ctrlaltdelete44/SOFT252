@@ -46,6 +46,8 @@ public class SecretaryController extends DashboardController {
         gui.addRequestsChangedListener(new lstRequestsValueListener());
         gui.addStockChangedListener(new lstStockValueListener());
         gui.addPatientsChangedListener(new lstPatientsValueListener());
+        
+        gui.addUpdatePageEventHandler(new refreshPageListener()); 
     }
     
     @Override

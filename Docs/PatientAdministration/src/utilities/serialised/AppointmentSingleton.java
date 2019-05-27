@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import appointments.Appointment;
+import utilities.Serialiser;
 
 /**
  * a list of all active appointments
@@ -18,11 +19,16 @@ public class AppointmentSingleton implements Serializable {
     private ArrayList<Appointment> appointments;
     private static AppointmentSingleton instance = null;
     
-    private final Compilation c = new Compilation();
+    //private final Compilation c = new Compilation();
+    //private final Serialiser appointmentSerialiser = new Serialiser("data/appointments.paa");
     
     private AppointmentSingleton()
     {
-        appointments = new ArrayList<>();
+        loadData();
+ 
+        //appointments = new ArrayList<>();
+          //  saveChanges();
+
     }
     
     /**
@@ -52,7 +58,8 @@ public class AppointmentSingleton implements Serializable {
                 return appointment;
             }
         }
-        c.construct();
+        saveChanges();
+        //c.construct();
         return null;
     }
     
@@ -63,8 +70,9 @@ public class AppointmentSingleton implements Serializable {
     public void addAppointment(Appointment a)
     {
         appointments.add(a);
+        saveChanges();
         //System.out.println("Added appointment");
-        c.construct();
+        //c.construct();
     }
     
     /**
@@ -73,6 +81,7 @@ public class AppointmentSingleton implements Serializable {
      */
     public ArrayList<Appointment> getAppointments()
     {
+        //loadData();
         return appointments;
     }
     
@@ -83,6 +92,7 @@ public class AppointmentSingleton implements Serializable {
      */
     public ArrayList<Appointment> getAppointments(String doctorId)
     {
+        //loadData();
         //c.deconstruct();
         ArrayList<Appointment> listReturn = new ArrayList<>();
         
@@ -112,6 +122,14 @@ public class AppointmentSingleton implements Serializable {
                 return a;
         }
         return null;
+    }
+    
+    public void saveChanges() {
+        new Serialiser("data/appointments.paa").serialise(appointments);
+    }
+    
+    public void loadData() {
+        appointments = (ArrayList<Appointment>)new Serialiser("data/appointments.paa").deserialise();
     }
 
     /**

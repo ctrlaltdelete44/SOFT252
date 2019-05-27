@@ -6,6 +6,7 @@
 package view;
 
 import java.awt.event.ActionListener;
+import java.awt.event.FocusListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -269,6 +270,10 @@ public class SecretaryView extends javax.swing.JFrame {
     
     public void addPatientsChangedListener(ListSelectionListener listener) {
         lstPatients.addListSelectionListener(listener);
+    }
+    
+    public void addUpdatePageEventHandler(FocusListener listener) {
+        this.addFocusListener(listener);
     }
    
     

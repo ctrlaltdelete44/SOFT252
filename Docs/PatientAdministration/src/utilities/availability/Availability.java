@@ -9,7 +9,8 @@ import java.io.Serializable;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import utilities.serialised.Compilation;
+import utilities.serialised.AccountSingleton;
+//import utilities.serialised.Compilation;
 
 /**
  * a list of dates that a doctor has scheduled
@@ -17,7 +18,8 @@ import utilities.serialised.Compilation;
  */
 public class Availability implements Serializable{
     private final ArrayList<AvailableDate> availability;
-    private final Compilation c = new Compilation();
+    private AccountSingleton accounts = AccountSingleton.getOrCreate();
+   // private final Compilation c = new Compilation();
     
     private LocalDate lastDate = LocalDate.now();
 
@@ -59,7 +61,7 @@ public class Availability implements Serializable{
                 break;
             }
         }
-        c.construct();
+        accounts.saveChanges();
     }
     
     /**
@@ -83,6 +85,6 @@ public class Availability implements Serializable{
         
         lastDate = newDay.plusDays(1);
         
-        c.construct();
+        accounts.saveChanges();
     }
 }

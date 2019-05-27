@@ -8,6 +8,7 @@ package utilities.serialised;
 import accounts.Account;
 import java.io.Serializable;
 import java.util.ArrayList;
+import utilities.Serialiser;
 
 /**
  * a list of all accounts stored in the program
@@ -17,11 +18,17 @@ public class AccountSingleton implements Serializable{
     private ArrayList<Account> accounts;
     private static AccountSingleton instance = null;
     
-    private static final Compilation c = new Compilation();
+    //private static final Compilation c = new Compilation();
+    //private final Serialiser accountSerialiser = new Serialiser("data/accounts.paa");
     
     private AccountSingleton()
     {
-        accounts = new ArrayList<>();
+        loadData();
+
+       //     accounts = new ArrayList<>();
+         //   saveChanges();
+
+        
     }
     
     /**
@@ -43,10 +50,10 @@ public class AccountSingleton implements Serializable{
     public void add(Account a)
     {
         accounts.add(a);
-        //System.out.println("Account of " + a.getFirstName() + " " + a.getSurname() + " tracked");
+        System.out.println("Account of " + a.getFirstName() + " " + a.getSurname() + " tracked");
        
-        
-        c.construct();
+        saveChanges();
+        //c.construct();
         //System.out.println("Writing - Add acct");
     }
     
@@ -61,7 +68,8 @@ public class AccountSingleton implements Serializable{
             accounts.remove(a);
             //System.out.println("Account of " + a.getFirstName() + " " + a.getSurname() + " removed");
         }
-        c.construct();
+        saveChanges();
+        //c.construct();
         //System.out.println("Writing - Remove acct");
     }
 
@@ -70,7 +78,16 @@ public class AccountSingleton implements Serializable{
      * @return - the list of stored accounts
      */
     public ArrayList<Account> getAccounts() {
+        //loadData();
         return accounts;
+    }
+    
+    public void saveChanges() {
+        new Serialiser("data/accounts.paa").serialise(accounts);
+    }
+    
+    public void loadData() {
+        accounts = (ArrayList<Account>)new Serialiser("data/accounts.paa").deserialise();
     }
 
     /**

@@ -83,7 +83,7 @@ public class Doctor extends Account implements Serializable, IViewAvailability{
         
         this.rating = (double)total / this.feedback.size();
         
-        c.construct();
+        accounts.saveChanges();
         
         return this.rating;
     }

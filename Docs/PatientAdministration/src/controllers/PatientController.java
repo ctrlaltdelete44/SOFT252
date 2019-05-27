@@ -50,6 +50,8 @@ public class PatientController extends DashboardController {
         gui.addViewPrescriptionEventHandler(new btnViewPrescriptionListener());
         
         gui.addDoctorsChangedListener(new lstDoctorsValueListener());
+        
+        gui.addUpdatePageEventHandler(new refreshPageListener()); 
     }
 
     @Override

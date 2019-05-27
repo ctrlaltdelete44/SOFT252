@@ -8,6 +8,7 @@ package requests.requestfactory;
 import accounts.Account;
 import java.io.Serializable;
 import requests.*;
+import utilities.serialised.AccountSingleton;
 
 /**
  * the concrete implementation of the factory

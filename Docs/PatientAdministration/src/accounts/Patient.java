@@ -251,7 +251,7 @@ public class Patient extends Account implements Serializable, IViewAccounts, IVi
     {
         patientHistory.add(0, h);
         //System.out.println("History added to patient record. Patient now has " + patientHistory.size() + " items:PATIENT");
-        c.construct();
+        accounts.saveChanges();
         
     }
     
@@ -356,7 +356,7 @@ public class Patient extends Account implements Serializable, IViewAccounts, IVi
         myRequests.add(r);
         //System.out.println("Request registered with patient. They now have " + myRequests.size() + " requests:PATIENT");
         
-        c.construct();
+        accounts.saveChanges();
     }
     
     /**
@@ -369,7 +369,7 @@ public class Patient extends Account implements Serializable, IViewAccounts, IVi
         myRequests.remove(r);
         //System.out.println("Request removed from patient. They now have " + myRequests.size() + " requests:PATIENT");
         
-        c.construct();
+        accounts.saveChanges();
     }
     
     /**
@@ -384,6 +384,6 @@ public class Patient extends Account implements Serializable, IViewAccounts, IVi
         myRequests.clear();
         //System.out.println("Requests cleared. They now have " + myRequests.size() + " requests:PATIENT");
         
-        c.construct();
+        accounts.saveChanges();
     }
 }

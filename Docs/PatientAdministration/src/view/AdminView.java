@@ -6,6 +6,7 @@
 package view;
 
 import java.awt.event.ActionListener;
+import java.awt.event.FocusListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -252,6 +253,10 @@ public class AdminView extends javax.swing.JFrame {
     
     public void addSecretariesChangedListener(ListSelectionListener listener) {
         lstSecretaries.addListSelectionListener(listener);
+    }
+    
+    public void addUpdatePageEventHandler(FocusListener listener) {
+        this.addFocusListener(listener);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

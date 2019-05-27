@@ -41,7 +41,7 @@ public class Serialiser implements Serializable {
                 {        
                     objectOutput.writeObject(object);
         
-                    //System.out.println("Writing object");       
+                    System.out.println("Writing to " + docTitle);       
                 }
             }
         
@@ -70,7 +70,7 @@ public class Serialiser implements Serializable {
                 try (ObjectInputStream objectInput = new ObjectInputStream(fileInput))
                 {           
                 object = (Serializable) objectInput.readObject();
-                //System.out.println("Reading object");
+                System.out.println("Reading from " + docTitle);
                 }
             }
         }

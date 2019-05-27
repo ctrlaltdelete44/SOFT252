@@ -9,8 +9,9 @@ import accounts.Doctor;
 import accounts.Patient;
 import java.io.Serializable;
 import java.time.LocalDate;
+import utilities.serialised.AccountSingleton;
 import utilities.serialised.AppointmentSingleton;
-import utilities.serialised.Compilation;
+//import utilities.serialised.Compilation;
 
 /**
  * class containing all information pertaining to an appointment
@@ -24,8 +25,9 @@ public class Appointment implements Serializable{
     private String doctorNotes;
     
     private final AppointmentSingleton appointments = AppointmentSingleton.getOrCreate();
+    private final AccountSingleton accounts = AccountSingleton.getOrCreate();
     
-    private final Compilation c = new Compilation();
+    //private final Compilation c = new Compilation();
 
     /**
      *
@@ -49,7 +51,8 @@ public class Appointment implements Serializable{
         appointments.addAppointment(this);
         patient.setAppointment(this);
         
-        c.construct();
+        accounts.saveChanges();
+        appointments.saveChanges();
     }
     
     /**

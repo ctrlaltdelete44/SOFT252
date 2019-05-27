@@ -10,6 +10,7 @@ import accounts.Admin;
 import accounts.Doctor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusListener;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -49,6 +50,8 @@ public class AdminController extends DashboardController{
         
         gui.addDoctorsChangedListener(new lstDoctorsValueListener());
         gui.addSecretariesChangedListener(new lstSecretariesValueListener());
+        
+        gui.addUpdatePageEventHandler(new refreshPageListener()); 
     }
 
     @Override

@@ -6,6 +6,7 @@
 package view;
 
 import java.awt.event.ActionListener;
+import java.awt.event.FocusListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -96,6 +97,10 @@ public class DoctorView extends javax.swing.JFrame {
     
     public void addTakeAppointmentEventHandler(ActionListener listener) {
         btnTakeAppointment.addActionListener(listener);
+    }
+    
+    public void addUpdatePageEventHandler(FocusListener listener) {
+        this.addFocusListener(listener);
     }
 
     /**
@@ -227,10 +232,11 @@ public class DoctorView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnSchedule, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnFreeDays)
-                            .addComponent(btnBookings, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(btnFreeDays)
+                                .addComponent(btnBookings, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 539, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()

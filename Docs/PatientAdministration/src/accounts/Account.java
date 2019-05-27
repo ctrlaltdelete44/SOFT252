@@ -6,11 +6,10 @@
 package accounts;
 
 import utilities.accounts.AccountType;
-import utilities.accounts.Notification;
 import java.io.Serializable;
 import java.util.ArrayList;
 import utilities.serialised.AccountSingleton;
-import utilities.serialised.Compilation;
+//import utilities.serialised.Compilation;
 import utilities.serialised.IdGenerator;
 
 /**
@@ -51,7 +50,7 @@ public abstract class Account implements Serializable {
      * various subclasses need to be serialised, providing an access
      * point to the compilation from all of them enables this
      */
-    protected static final Compilation c = new Compilation();
+    //protected static final Compilation c = new Compilation();
     
     /**
      * all accounts need to be saved to this list on creation,
@@ -59,7 +58,7 @@ public abstract class Account implements Serializable {
      */
     protected AccountSingleton accounts = AccountSingleton.getOrCreate();
     
-    private ArrayList<Notification> notifications = new ArrayList<>();
+    private ArrayList<String> notifications = new ArrayList<>();
     
     /**
      * on creation, only basic information is assigned to the account
@@ -87,10 +86,11 @@ public abstract class Account implements Serializable {
         uniqueId = IdGenerator.generateNextId(accountType);
         password = pword;
         
-        //System.out.println("Account of " + firstName + " authorised with password: " + password);
+        System.out.println("Account of " + firstName + " authorised with password: " + password);
         
         //track account
         accounts.add(this);
+        accounts.saveChanges();
         this.addNotification("Account authorised. Welcome, " + firstName);
     }
     
@@ -195,8 +195,8 @@ public abstract class Account implements Serializable {
      */
     public void addNotification(String message)
     {
-        notifications.add(new Notification(message));
-        c.construct();
+        notifications.add(message);
+        accounts.saveChanges();
         System.out.println("Notification \"" + message + "\" added to " + this.firstName + " " + this.surname + ". There are now " + notifications.size() + " notifications:ACCOUNT");
     }
     
@@ -212,7 +212,7 @@ public abstract class Account implements Serializable {
                
         for (int i = 0; i < notifications.size(); i++)
         {
-            strNotifications[i] = notifications.get(i).getContents();
+            strNotifications[i] = notifications.get(i);
         }
                 
         clearNotifications();
@@ -227,15 +227,15 @@ public abstract class Account implements Serializable {
     private void printNotifications()
     {
         System.out.println("Notifications for " + firstName + " " + surname + ":");
-        for (Notification n : notifications)
-            System.out.println(n.getContents());
+        for (String s : notifications)
+            System.out.println(s);
     }
     
     private void clearNotifications()
     {
         notifications = new ArrayList<>();
         //System.out.println("Notifications cleared from " + this.firstName + " " + this.surname + ". " + notifications.size() + " stored:ACCOUNT");
-        c.construct();
+        accounts.saveChanges();
     }
 
 }

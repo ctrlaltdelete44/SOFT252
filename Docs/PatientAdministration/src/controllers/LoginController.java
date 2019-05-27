@@ -6,10 +6,17 @@
 package controllers;
 
 import accounts.Account;
+import accounts.accountfactory.AbstractAccountFactory;
+import accounts.accountfactory.ConcreteAccountFactory;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import utilities.accounts.AccountType;
 import utilities.serialised.AccountSingleton;
-import utilities.serialised.Compilation;
+import utilities.serialised.AppointmentSingleton;
+import utilities.serialised.IdGenerator;
+import utilities.serialised.RequestSingleton;
+import utilities.serialised.StockSingleton;
+//import utilities.serialised.Compilation;
 import utilities.view.PlaceHolderTextListener;
 import view.Login;
 
@@ -23,10 +30,19 @@ public class LoginController implements IController{
 
     private final AccountSingleton accounts = AccountSingleton.getOrCreate();
 
-    private final Compilation c = new Compilation();
+    //private final Compilation c = new Compilation();
 
     public LoginController() {
         this.gui = new Login();
+        
+
+        //AppointmentSingleton.getOrCreate();        
+        //RequestSingleton.getOrCreate();
+        //StockSingleton.getOrCreate();
+        //new IdGenerator();
+        //AbstractAccountFactory accountFactory = new ConcreteAccountFactory();
+        //String newId = accountFactory.createAccount("Anthony", "Davies", "Discworld", "admin", AccountType.ADMIN);
+        
         
         initialiseEventHandlers();
 
@@ -55,36 +71,26 @@ public class LoginController implements IController{
 
             //retrieve info from gui
             String username = gui.getTxtUsername().getText();
-            char[] arrPassword = gui.getTxtPassword().getPassword();
-
-            //convert char[] to string
-            String strPassword = String.valueOf(arrPassword);
-
-            //retrieve info from docs
-            c.deconstruct();
+            String strPassword = String.valueOf(gui.getTxtPassword().getPassword());
 
             //loop through accts
             for (Account a : accounts.getAccounts()) {
                 //if password and login match, login - assign currently logged in, etc, return account type
                 if ((a.getUniqueId().contentEquals(username)) && (a.getPassword().contentEquals(strPassword))) {
-                    gui.getLblErrorInvalidLogin().setVisible(false);
+                    gui.dispose();
 
                     switch (a.getAccountType()) {
                         case ADMIN:
                             new AdminController(a);
-                            gui.dispose();
                             return;
                         case SECRETARY:
                             new SecretaryController(a);
-                            gui.dispose();
                             return;
                         case PATIENT:
                             new PatientController(a);
-                            gui.dispose();
                             return;
                         case DOCTOR:
                             new DoctorController(a);
-                            gui.dispose();
                             return;
                     }
                     

@@ -42,6 +42,8 @@ public class DoctorController extends DashboardController {
         gui.addScheduleWeekEventHandler(new btnScheduleWeekListener());
         gui.addFilterByEventHandlers(new btnFiltersListener());
         gui.addTakeAppointmentEventHandler(new btnTakeAppointmentListener());
+        
+        gui.addUpdatePageEventHandler(new refreshPageListener()); 
     }
 
     @Override

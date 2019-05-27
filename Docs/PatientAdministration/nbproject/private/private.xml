@@ -24,6 +24,7 @@
             <file>file:/C:/Users/Anthony/Documents/SOFT252/Docs/PatientAdministration/src/utilities/accounts/Notification.java</file>
             <file>file:/C:/Users/Anthony/Documents/SOFT252/Docs/PatientAdministration/src/view/DoctorView.java</file>
             <file>file:/C:/Users/Anthony/Documents/SOFT252/Docs/PatientAdministration/src/controllers/DoctorController.java</file>
+            <file>file:/C:/Users/Anthony/Documents/SOFT252/Docs/PatientAdministration/src/controllers/AppointmentController.java</file>
             <file>file:/C:/Users/Anthony/Documents/SOFT252/Docs/PatientAdministration/src/accounts/Patient.java</file>
             <file>file:/C:/Users/Anthony/Documents/SOFT252/Docs/PatientAdministration/src/view/ViewAvailability.java</file>
             <file>file:/C:/Users/Anthony/Documents/SOFT252/Docs/PatientAdministration/src/view/AdminView.java</file>
@@ -43,6 +44,7 @@
             <file>file:/C:/Users/Anthony/Documents/SOFT252/Docs/PatientAdministration/src/controllers/old/AdminController.java</file>
             <file>file:/C:/Users/Anthony/Documents/SOFT252/Docs/PatientAdministration/src/utilities/accounts/IViewAccounts.java</file>
             <file>file:/C:/Users/Anthony/Documents/SOFT252/Docs/PatientAdministration/src/utilities/accounts/IViewPrescription.java</file>
+            <file>file:/C:/Users/Anthony/Documents/SOFT252/Docs/PatientAdministration/src/view/AppointmentView.java</file>
             <file>file:/C:/Users/Anthony/Documents/SOFT252/Docs/PatientAdministration/src/view/ViewPrescription.java</file>
             <file>file:/C:/Users/Anthony/Documents/SOFT252/Docs/PatientAdministration/src/utilities/accounts/HistoryItem.java</file>
             <file>file:/C:/Users/Anthony/Documents/SOFT252/Docs/PatientAdministration/src/controllers/LoginController.java</file>

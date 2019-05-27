@@ -9,7 +9,8 @@ import accounts.Patient;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
-import utilities.serialised.Compilation;
+import utilities.serialised.AccountSingleton;
+//import utilities.serialised.Compilation;
 import utilities.view.PlaceHolderTextListener;
 import view.RequestAccount;
 
@@ -31,8 +32,9 @@ public class RequestAccountController implements IController {
 
     private void requestCreation(String first, String last, String address, String sex, int age, char[] arrPassword)
     {        
-        Compilation c= new Compilation();
-        c.deconstruct();
+//        Compilation c= new Compilation();
+//        c.deconstruct();
+        AccountSingleton accounts = AccountSingleton.getOrCreate();
         Patient p = new Patient(first, last, address);
         p.assignPatientInfo(sex, age, arrPassword);
     }

@@ -15,18 +15,16 @@ import utilities.Serialiser;
  *
  * @author davie
  */
-public class StockSingleton implements Serializable {
+public class StockSingleton implements Serializable, ISerialise {
 
     private ArrayList<StockItem> stock;
     private static StockSingleton instance = null;
 
-    //private final Compilation c = new Compilation();
-    //private final Serialiser stockSerialiser = new Serialiser("data/stock.paa");
     private StockSingleton() {
+        //stock = new ArrayList<>();
+        //saveChanges();
         loadData();
-       //     stock = new ArrayList<>();
-         //   saveChanges();
-        
+
     }
 
     /**
@@ -42,33 +40,10 @@ public class StockSingleton implements Serializable {
     }
 
     /**
-     * adds a new item to the medicine cabinet. if the item already exists, will
-     * increase it'item quantity. else will create a new item
+     * will removeObject stock from the cupboard. will check if the item exists, and
+ also if there is enough of it to removeObject
      *
-     * @param stockItem - item to add
-     */
-    public void addStock(StockItem stockItem) {
-        Boolean isAdded = false;
-        for (StockItem s : stock) {
-            if (s.getName().contentEquals(stockItem.getName())) {
-                s.setQuantity(s.getQuantity() + stockItem.getQuantity());
-                isAdded = true;
-                break;
-            }
-        }
-        if (!isAdded) {
-            stock.add(stockItem);
-        }
-
-        saveChanges();
-        //c.construct();
-    }
-
-    /**
-     * will remove stock from the cupboard. will check if the item exists, and
-     * also if there is enough of it to remove
-     *
-     * @param name - item to remove
+     * @param name - item to removeObject
      * @param quantity - how much is needed
      * @return - returns the item
      */
@@ -86,47 +61,52 @@ public class StockSingleton implements Serializable {
                     }
                     saveChanges();
                     return new StockItem(name, quantity);
-                    //return new stockItem(name, qunatity)
                 }
             }
         }
         return null;
     }
 
+    @Override
+    public void addObject(Object o) {
+        StockItem stockItem = (StockItem)o;
+        Boolean isAdded = false;
+        for (StockItem s : stock) {
+            if (s.getName().contentEquals(stockItem.getName())) {
+                s.setQuantity(s.getQuantity() + stockItem.getQuantity());
+                isAdded = true;
+                break;
+            }
+        }
+        if (!isAdded) {
+            stock.add(stockItem);
+        }
+
+        saveChanges();
+    }
+
+    @Override
+    public void removeObject(Object o) {
+        //unused in placed of dedicated requestStock method
+    }
+
+    @Override
+    public ArrayList getData() {
+        return stock;
+    }
+    
+    @Override
     public void saveChanges() {
         new Serialiser("data/stock.paa").serialise(stock);
     }
 
+    @Override
     public void loadData() {
         stock = (ArrayList<StockItem>) new Serialiser("data/stock.paa").deserialise();
     }
 
-    /**
-     * mutator used in serialisation. breaks singleton principle, but necessary
-     *
-     * @param newStock - the new list
-     */
-    public void setStock(ArrayList<StockItem> newStock) {
-        stock = newStock;
-    }
+    
 
-    /**
-     * prints a report on the stock, used for debugging
-     */
-    public void printStock() {
-        //System.out.println("Stock:");
-        //for (StockItem item : stock)
-        //System.out.println(item.getName() + ":" + item.getQuantity());
-    }
-
-    /**
-     * standard accessor
-     *
-     * @return - returns the list of stock
-     */
-    public ArrayList<StockItem> getStock() {
-        //loadData();
-        return stock;
-    }
+    
 
 }

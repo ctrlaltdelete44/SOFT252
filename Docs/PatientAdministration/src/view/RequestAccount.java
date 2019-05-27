@@ -195,7 +195,6 @@ public class RequestAccount extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-
     public JButton getBtnCancel() {
         return btnCancel;
     }
@@ -227,7 +226,7 @@ public class RequestAccount extends javax.swing.JFrame {
     public JPasswordField getTxtPassword() {
         return txtPassword;
     }
-    
+
     public JTextField getTxtSurname() {
         return txtSurname;
     }
@@ -235,27 +234,25 @@ public class RequestAccount extends javax.swing.JFrame {
     public void addConfirmEventHandler(ActionListener listener) {
         btnSubmit.addActionListener(listener);
     }
-    
+
     public void addCancelEventHandler(ActionListener listener) {
         btnCancel.addActionListener(listener);
     }
-    
+
     public void addFirstPlaceholder(FocusListener listener) {
         txtFirst.addFocusListener(listener);
     }
-    
+
     public void addLastPlaceholder(FocusListener listener) {
         txtSurname.addFocusListener(listener);
     }
-    
+
     public void addPasswordPlaceholder(FocusListener listener) {
         txtPassword.addFocusListener(listener);
     }
     /**
      * @param args the command line arguments
      */
-    
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;

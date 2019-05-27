@@ -10,13 +10,13 @@ import accounts.accountfactory.AbstractAccountFactory;
 import accounts.accountfactory.ConcreteAccountFactory;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import utilities.accounts.AccountType;
 import utilities.serialised.AccountSingleton;
 import utilities.serialised.AppointmentSingleton;
 import utilities.serialised.IdGenerator;
 import utilities.serialised.RequestSingleton;
 import utilities.serialised.StockSingleton;
-//import utilities.serialised.Compilation;
 import utilities.view.PlaceHolderTextListener;
 import view.Login;
 
@@ -24,26 +24,22 @@ import view.Login;
  *
  * @author Anthony
  */
-public class LoginController implements IController{
+public class LoginController implements IController {
 
     private final Login gui;
 
     private final AccountSingleton accounts = AccountSingleton.getOrCreate();
 
-    //private final Compilation c = new Compilation();
-
     public LoginController() {
         this.gui = new Login();
-        
 
-        //AppointmentSingleton.getOrCreate();        
-        //RequestSingleton.getOrCreate();
-        //StockSingleton.getOrCreate();
-        //new IdGenerator();
-        //AbstractAccountFactory accountFactory = new ConcreteAccountFactory();
-        //String newId = accountFactory.createAccount("Anthony", "Davies", "Discworld", "admin", AccountType.ADMIN);
-        
-        
+//        AppointmentSingleton.getOrCreate();        
+//        RequestSingleton.getOrCreate();
+//        StockSingleton.getOrCreate();
+//        new IdGenerator();
+//        AbstractAccountFactory accountFactory = new ConcreteAccountFactory();
+//        String newId = accountFactory.createAccount("Anthony", "Davies", "Discworld", "admin", AccountType.ADMIN);
+
         initialiseEventHandlers();
 
         gui.setVisible(true);
@@ -74,7 +70,7 @@ public class LoginController implements IController{
             String strPassword = String.valueOf(gui.getTxtPassword().getPassword());
 
             //loop through accts
-            for (Account a : accounts.getAccounts()) {
+            for (Account a : (ArrayList<Account>)accounts.getData()) {
                 //if password and login match, login - assign currently logged in, etc, return account type
                 if ((a.getUniqueId().contentEquals(username)) && (a.getPassword().contentEquals(strPassword))) {
                     gui.dispose();
@@ -93,16 +89,15 @@ public class LoginController implements IController{
                             new DoctorController(a);
                             return;
                     }
-                    
-                }
-                else {
+
+                } else {
                     gui.getLblErrorInvalidLogin().setVisible(true);
                 }
             }
         }
 
     }
-    
+
     private class btnRequestListener implements ActionListener {
 
         @Override
@@ -110,7 +105,6 @@ public class LoginController implements IController{
             gui.dispose();
             new RequestAccountController();
         }
-        
-        
+
     }
 }

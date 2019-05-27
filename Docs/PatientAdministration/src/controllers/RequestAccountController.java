@@ -24,14 +24,13 @@ public class RequestAccountController implements IController {
 
     public RequestAccountController() {
         this.gui = new RequestAccount();
-        
+
         initialiseEventHandlers();
 
         gui.setVisible(true);
     }
 
-    private void requestCreation(String first, String last, String address, String sex, int age, char[] arrPassword)
-    {        
+    private void requestCreation(String first, String last, String address, String sex, int age, char[] arrPassword) {
 //        Compilation c= new Compilation();
 //        c.deconstruct();
         AccountSingleton accounts = AccountSingleton.getOrCreate();
@@ -43,7 +42,7 @@ public class RequestAccountController implements IController {
     public void initialiseEventHandlers() {
         gui.addConfirmEventHandler(new btnConfirmListener());
         gui.addCancelEventHandler(new btnCancelListener());
-        
+
         gui.addFirstPlaceholder(new PlaceHolderTextListener("First Name"));
         gui.addLastPlaceholder(new PlaceHolderTextListener("Surname"));
         gui.addPasswordPlaceholder(new PlaceHolderTextListener("Password"));
@@ -59,7 +58,7 @@ public class RequestAccountController implements IController {
         gui.getSpnAge().setValue(18);
         gui.getTxtPassword().setText("");
     }
-    
+
     private class btnConfirmListener implements ActionListener {
 
         @Override
@@ -76,16 +75,16 @@ public class RequestAccountController implements IController {
             } else {
                 sex = "F";
             }
-            
+
             requestCreation(first, last, address, sex, age, password);
             JOptionPane.showMessageDialog(null, "We have received your request. Once it has been approved, you will be able to log in", "Request processed", JOptionPane.INFORMATION_MESSAGE);
-            
+
             gui.dispose();
             new LoginController();
         }
 
     }
-    
+
     private class btnCancelListener implements ActionListener {
 
         @Override
@@ -93,7 +92,6 @@ public class RequestAccountController implements IController {
             gui.dispose();
             new LoginController();
         }
-        
+
     }
 }
-

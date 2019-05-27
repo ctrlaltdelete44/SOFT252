@@ -21,13 +21,11 @@ public class PlaceHolderTextListener implements FocusListener {
     public PlaceHolderTextListener(String strPlaceholder) {
         this.strPlaceholder = strPlaceholder;
     }
-    
 
-
-     @Override
+    @Override
     public void focusGained(FocusEvent e) {
-        JTextField component = (JTextField)e.getComponent();
-        
+        JTextField component = (JTextField) e.getComponent();
+
         if (component.getText().equals(strPlaceholder)) {
             component.setText("");
             component.setForeground(Color.BLACK);
@@ -36,13 +34,12 @@ public class PlaceHolderTextListener implements FocusListener {
 
     @Override
     public void focusLost(FocusEvent e) {
-        JTextField component = (JTextField)e.getComponent();
-        
+        JTextField component = (JTextField) e.getComponent();
+
         if (component.getText().isEmpty()) {
             component.setText(strPlaceholder);
             component.setForeground(Color.GRAY);
         }
     }
-
 
 }

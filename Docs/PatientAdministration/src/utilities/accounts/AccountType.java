@@ -7,6 +7,7 @@ package utilities.accounts;
 
 /**
  * an enumeration to identify the access level for an account
+ *
  * @author Anthony
  */
 public enum AccountType {
@@ -15,19 +16,16 @@ public enum AccountType {
      * denotes the account as a patient
      */
     PATIENT,
-
     /**
      * denotes the account as a secretary
      */
     SECRETARY,
-
     /**
      * denotes the account as an admin
      */
     ADMIN,
-
     /**
      * denotes the account as a doctor
      */
-    DOCTOR    
+    DOCTOR
 }

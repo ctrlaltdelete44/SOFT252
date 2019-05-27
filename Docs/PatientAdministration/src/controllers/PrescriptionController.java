@@ -16,16 +16,16 @@ import view.ViewPrescription;
  * @author Anthony
  */
 public class PrescriptionController implements IController {
+
     private final ViewPrescription gui;
     private final Patient patient;
 
     public PrescriptionController(Account patient) {
         this.gui = new ViewPrescription();
-        this.patient = (Patient)patient;
-        
+        this.patient = (Patient) patient;
+
         initialiseEventHandlers();
-        
-        
+
         cleanUi();
         gui.setVisible(true);
     }
@@ -42,14 +42,13 @@ public class PrescriptionController implements IController {
         gui.getTxtNotes().setText(patient.viewNotes());
         gui.getTxtDosage().setText(patient.viewMedicine());
     }
-    
-    
+
     private class btnBackListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
             gui.dispose();
         }
-        
+
     }
 }

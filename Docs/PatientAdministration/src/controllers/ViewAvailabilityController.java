@@ -30,19 +30,19 @@ public class ViewAvailabilityController implements IController {
         this.gui = new ViewAvailability();
         this.request = request;
         this.authorisingSecretary = authorisingSecretary;
-        
+
         cleanUi();
         initialiseEventHandlers();
 
         gui.setVisible(true);
     }
-    
+
     @Override
     public void initialiseEventHandlers() {
         gui.addSubmitEventHandler(new btnSubmitListener());
         gui.addDoctorsChangedListener(new lstDoctorsValueListener());
     }
-    
+
     @Override
     public void cleanUi() {
         gui.getLblRequest().setText(request);

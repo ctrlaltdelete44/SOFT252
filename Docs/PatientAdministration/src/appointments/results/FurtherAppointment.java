@@ -12,16 +12,19 @@ import java.time.LocalDate;
 
 /**
  * used when an additional appointment is scheduled following an appointment
+ *
  * @author davie
  */
-public class FurtherAppointment extends Action implements Serializable{
+public class FurtherAppointment extends Action implements Serializable {
+
     private final LocalDate date;
     private final Patient p;
     private final Doctor d;
-    
+
     /**
-     * the date of the future appointment
-     * : the doctor and patient are assumed to be the same as current appointment
+     * the date of the future appointment : the doctor and patient are assumed
+     * to be the same as current appointment
+     *
      * @param date - date of appointment
      * @param p - patient making request
      * @param d - doctor being requested
@@ -34,28 +37,28 @@ public class FurtherAppointment extends Action implements Serializable{
 
     /**
      * standard accessor
+     *
      * @return returns date associated with this request
      */
     public LocalDate getDate() {
         return date;
     }
-    
+
     /**
      * creates a request for a new appointment
      */
     @Override
-    public void processRequest()
-    {
+    public void processRequest() {
         p.createAppointmentRequest(d.getUniqueId(), date);
     }
 
     /**
      * returns appointment enum
+     *
      * @return - returns APPOINTMENT
      */
     @Override
-    public ActionType getActionType()
-    {
+    public ActionType getActionType() {
         return ActionType.APPOINTMENT;
     }
 }

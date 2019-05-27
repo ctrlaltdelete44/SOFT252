@@ -22,7 +22,7 @@ import view.AdminView;
  *
  * @author Anthony
  */
-public class AdminController extends DashboardController{
+public class AdminController extends DashboardController {
 
     private final AdminView gui;
     private final Admin authorisingAdmin;
@@ -30,14 +30,13 @@ public class AdminController extends DashboardController{
     public AdminController(Account authorisingAdmin) {
         this.gui = new AdminView();
         this.authorisingAdmin = (Admin) authorisingAdmin;
-        
+
         initialiseEventHandlers();
         cleanUi();
         viewNotifications();
-        
+
         gui.setVisible(true);
-        
-        
+
     }
 
     @Override
@@ -47,11 +46,11 @@ public class AdminController extends DashboardController{
         gui.addDeleteDoctorEventHandler(new btnDeleteDoctorListener());
         gui.addDeleteSecretaryEventHandler(new btnDeleteSecretaryListener());
         gui.addProvideFeedbackEventHandler(new btnProvideFeedbackListener());
-        
+
         gui.addDoctorsChangedListener(new lstDoctorsValueListener());
         gui.addSecretariesChangedListener(new lstSecretariesValueListener());
-        
-        gui.addUpdatePageEventHandler(new refreshPageListener()); 
+
+        gui.addUpdatePageEventHandler(new refreshPageListener());
     }
 
     @Override
@@ -64,10 +63,10 @@ public class AdminController extends DashboardController{
         gui.getTxtFeedbackMessage().setText("");
         gui.getLstComments().setListData(new String[0]);
     }
-    
+
     @Override
     public String[] viewNotifications() {
-        return authorisingAdmin.getNotifications();        
+        return authorisingAdmin.getNotifications();
     }
 
     public String[] viewFeedback(String strDoctor) {
@@ -79,14 +78,15 @@ public class AdminController extends DashboardController{
     public Admin getAuthorisingAdmin() {
         return authorisingAdmin;
     }
-    
+
     private class btnAddAccountListener implements ActionListener {
+
         private final AdminController controller;
 
         public btnAddAccountListener(AdminController controller) {
             this.controller = controller;
         }
-        
+
         @Override
         public void actionPerformed(ActionEvent e) {
             new AddAccountController(controller);

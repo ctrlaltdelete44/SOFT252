@@ -6,109 +6,71 @@
 package utilities.serialised;
 
 import accounts.Account;
+import accounts.accountfactory.ConcreteAccountFactory;
 import java.io.Serializable;
 import java.util.ArrayList;
 import utilities.Serialiser;
+import utilities.accounts.AccountType;
 
 /**
  * a list of all accounts stored in the program
+ *
  * @author Anthony
  */
-public class AccountSingleton implements Serializable{
+public class AccountSingleton implements Serializable, ISerialise {
+
     private ArrayList<Account> accounts;
     private static AccountSingleton instance = null;
-    
-    //private static final Compilation c = new Compilation();
-    //private final Serialiser accountSerialiser = new Serialiser("data/accounts.paa");
-    
-    private AccountSingleton()
-    {
+
+    private AccountSingleton() {
         loadData();
-
-       //     accounts = new ArrayList<>();
-         //   saveChanges();
-
-        
+        //accounts = new ArrayList<Account>();
+        //saveChanges();
     }
-    
+
     /**
      * this is a singleton, and this method returns the active instance
+     *
      * @return - returns active instance
      */
-    public static AccountSingleton getOrCreate()
-    {
-        if (instance == null)
+    public static AccountSingleton getOrCreate() {
+        if (instance == null) {
             instance = new AccountSingleton();
+        }
 
         return instance;
     }
-    
-    /**
-     * tracks a new account
-     * @param a - the account to add to the singleton
-     */
-    public void add(Account a)
-    {
+
+    @Override
+    public void addObject(Object o) {
+        Account a = (Account) o;
         accounts.add(a);
         System.out.println("Account of " + a.getFirstName() + " " + a.getSurname() + " tracked");
-       
+
         saveChanges();
-        //c.construct();
-        //System.out.println("Writing - Add acct");
-    }
-    
-    /**
-     * untracks an account
-     * @param a - the account to remove
-     */
-    public void remove(Account a)
-    {
-        if (accounts.contains(a))
-        {
-            accounts.remove(a);
-            //System.out.println("Account of " + a.getFirstName() + " " + a.getSurname() + " removed");
-        }
-        saveChanges();
-        //c.construct();
-        //System.out.println("Writing - Remove acct");
     }
 
-    /**
-     * standard accessor
-     * @return - the list of stored accounts
-     */
-    public ArrayList<Account> getAccounts() {
-        //loadData();
+    @Override
+    public void removeObject(Object o) {
+        Account a = (Account) o;
+        if (accounts.contains(a)) {
+            accounts.remove(a);
+        }
+        saveChanges();
+    }
+
+    @Override
+    public ArrayList getData() {
         return accounts;
     }
-    
+
+    @Override
     public void saveChanges() {
         new Serialiser("data/accounts.paa").serialise(accounts);
     }
-    
-    public void loadData() {
-        accounts = (ArrayList<Account>)new Serialiser("data/accounts.paa").deserialise();
-    }
 
-    /**
-     * mutator - while this does break the singleton principle, it is only ever used
-     * on deserialisation and overwrites the currently active instance
-     * @param accounts - the new list to assign
-     */
-    public void setAccounts(ArrayList<Account> accounts) {
-        this.accounts = accounts;
-    }  
-    
-    /**
-     * used for debugging
-     */
-    public void printAccounts()
-    {
-        //c.deconstruct();
-        //System.out.println("Reading - print accts");
-        
-        //System.out.println("Accounts:");
-        //for (Account a : accounts)
-         //   System.out.println(a.getFirstName() + " " + a.getSurname() + ": " + a.getUniqueId() + ", " + a.getPassword() + ", " + a.getAccountType());
+    @Override
+    public void loadData() {
+        accounts = (ArrayList<Account>) new Serialiser("data/accounts.paa").deserialise();
     }
 }

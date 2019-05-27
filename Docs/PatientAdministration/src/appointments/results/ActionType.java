@@ -15,7 +15,6 @@ public enum ActionType {
      * for when a prescription is given
      */
     PRESCRIPTION,
-
     /**
      * for when a further appointment needed
      */

@@ -9,14 +9,16 @@ import java.io.Serializable;
 
 /**
  * a class containing information about a given medicine in stock
+ *
  * @author davie
  */
-public class StockItem implements Serializable{
+public class StockItem implements Serializable {
+
     private final String name;
     private int quantity;
 
     /**
-     * 
+     *
      * @param name - name of the medicine
      * @param quantity - how much of said medicine is in stock
      */
@@ -27,6 +29,7 @@ public class StockItem implements Serializable{
 
     /**
      * standard accessor
+     *
      * @return - name of the medicine
      */
     public String getName() {
@@ -35,6 +38,7 @@ public class StockItem implements Serializable{
 
     /**
      * standard accessor
+     *
      * @return - quantity in stock
      */
     public int getQuantity() {
@@ -43,11 +47,15 @@ public class StockItem implements Serializable{
 
     /**
      * standard mutator
+     *
      * @param quantity - setting the new quantity of an item
      */
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
-    
-    
+
+    public String viewItem() {
+        return this.name + ": " + this.quantity;
+    }
+
 }

@@ -11,18 +11,20 @@ import java.io.Serializable;
 
 /**
  * abstract factory for admin to create accounts
+ *
  * @author Anthony
  */
-public abstract class AbstractAccountFactory implements Serializable{
+public abstract class AbstractAccountFactory implements Serializable {
 
     /**
      * the storage place for the created account
      */
     protected Account account;
-    
+
     /**
      * the abstract method implemented by the concrete factory including all
      * relevant information for account creation
+     *
      * @param first - first name
      * @param last - surname
      * @param address - address

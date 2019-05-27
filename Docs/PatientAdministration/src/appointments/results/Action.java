@@ -8,10 +8,12 @@ package appointments.results;
 import java.io.Serializable;
 
 /**
- * the abstract class for a "further action" concept for following up an appointment
+ * the abstract class for a "further action" concept for following up an
+ * appointment
+ *
  * @author davie
  */
-public abstract class Action implements Serializable{
+public abstract class Action implements Serializable {
 
     /**
      * @return - returns an enum to identify the action type

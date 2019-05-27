@@ -16,16 +16,17 @@ import javax.swing.JFrame;
  * @author Anthony
  */
 public abstract class DashboardController implements IController {
-    
+
     public abstract String[] viewNotifications();
-    
+
     protected class btnLogoutListener implements ActionListener {
+
         private final JFrame gui;
 
         public btnLogoutListener(JFrame gui) {
             this.gui = gui;
         }
-        
+
         @Override
         public void actionPerformed(ActionEvent e) {
             gui.dispose();
@@ -33,7 +34,7 @@ public abstract class DashboardController implements IController {
         }
 
     }
-    
+
     protected class refreshPageListener implements FocusListener {
 
         @Override
@@ -44,6 +45,6 @@ public abstract class DashboardController implements IController {
         @Override
         public void focusLost(FocusEvent e) {
         }
-        
+
     }
 }

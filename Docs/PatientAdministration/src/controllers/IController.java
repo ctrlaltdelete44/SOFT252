@@ -10,6 +10,8 @@ package controllers;
  * @author Anthony
  */
 public interface IController {
+
     public abstract void initialiseEventHandlers();
+
     public abstract void cleanUi();
 }

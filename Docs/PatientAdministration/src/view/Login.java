@@ -115,7 +115,6 @@ public class Login extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    
     /**
      * standard accessor for ui elements
      *
@@ -136,6 +135,7 @@ public class Login extends javax.swing.JFrame {
 
     /**
      * standard accessor
+     *
      * @return - returns error label for a username that wasnt found
      */
     public JLabel getLblErrorInvalidLogin() {
@@ -165,18 +165,18 @@ public class Login extends javax.swing.JFrame {
         btnLogin.addActionListener(listener);
         txtPassword.addActionListener(listener);
     }
-    
+
     public void addRequestEventHandler(ActionListener listener) {
         btnRequestAccount.addActionListener(listener);
     }
+
     public void addUsernamePlaceholder(FocusListener listener) {
         txtUsername.addFocusListener(listener);
     }
-    
+
     public void addPasswordPlaceholder(FocusListener listener) {
         txtPassword.addFocusListener(listener);
     }
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;

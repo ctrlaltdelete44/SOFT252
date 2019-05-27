@@ -79,26 +79,26 @@ public class DoctorView extends javax.swing.JFrame {
     public void addLogoutEventHandler(ActionListener listener) {
         btnLogout.addActionListener(listener);
     }
-    
+
     public void addRequestStockEventHandler(ActionListener listener) {
         btnRequestStock.addActionListener(listener);
         txtStock.addActionListener(listener);
     }
-    
+
     public void addScheduleWeekEventHandler(ActionListener listener) {
         btnScheduleWeek.addActionListener(listener);
     }
-    
+
     public void addFilterByEventHandlers(ActionListener listener) {
         btnSchedule.addActionListener(listener);
         btnFreeDays.addActionListener(listener);
         btnBookings.addActionListener(listener);
     }
-    
+
     public void addTakeAppointmentEventHandler(ActionListener listener) {
         btnTakeAppointment.addActionListener(listener);
     }
-    
+
     public void addUpdatePageEventHandler(FocusListener listener) {
         this.addFocusListener(listener);
     }
@@ -254,8 +254,6 @@ public class DoctorView extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
- 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btnBookings;

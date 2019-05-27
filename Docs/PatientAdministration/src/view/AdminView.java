@@ -226,35 +226,35 @@ public class AdminView extends javax.swing.JFrame {
     public JTextArea getTxtFeedbackMessage() {
         return txtFeedbackMessage;
     }
-    
+
     public void addLogoutEventHandler(ActionListener listener) {
         btnLogout.addActionListener(listener);
     }
-    
+
     public void addAddAccountEventHandler(ActionListener listener) {
         btnAddAccount.addActionListener(listener);
     }
-    
+
     public void addDeleteDoctorEventHandler(ActionListener listener) {
         btnDeleteDoctor.addActionListener(listener);
     }
-    
+
     public void addDeleteSecretaryEventHandler(ActionListener listener) {
         btnDeleteSecretary.addActionListener(listener);
     }
-    
+
     public void addProvideFeedbackEventHandler(ActionListener listener) {
         btnProvideFeedback.addActionListener(listener);
     }
-    
+
     public void addDoctorsChangedListener(ListSelectionListener listener) {
         lstDoctors.addListSelectionListener(listener);
     }
-    
+
     public void addSecretariesChangedListener(ListSelectionListener listener) {
         lstSecretaries.addListSelectionListener(listener);
     }
-    
+
     public void addUpdatePageEventHandler(FocusListener listener) {
         this.addFocusListener(listener);
     }

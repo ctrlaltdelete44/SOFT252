@@ -362,7 +362,6 @@ public class AppointmentView extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnProcessAppointment;
     private javax.swing.JCheckBox chkAppointment;

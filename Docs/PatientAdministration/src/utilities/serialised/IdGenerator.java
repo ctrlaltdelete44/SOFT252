@@ -17,24 +17,14 @@ import utilities.Serialiser;
 public class IdGenerator implements Serializable {
 
     private static Integer idNumber;
-    //private static final Serialiser idSerialiser = new Serialiser("data/series.paa");
 
     public IdGenerator() {
-       loadData();
-
-            //idNumber = 0;
-            //saveChanges();
+        //idNumber = 0;
+        //saveChanges();
+        loadData();
 
     }
 
-    /**
-     * used only in deserialisation to assign a new base number
-     *
-     * @param number - the starting number for new id'idSerialiser
-     */
-    public static void setIdNumber(int number) {
-        idNumber = number;
-    }
 
     /**
      * standard accessor used in serialisation

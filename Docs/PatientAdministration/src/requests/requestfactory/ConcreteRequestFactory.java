@@ -12,21 +12,21 @@ import utilities.serialised.AccountSingleton;
 
 /**
  * the concrete implementation of the factory
+ *
  * @author Anthony
  */
 public class ConcreteRequestFactory extends AbstractRequestFactory implements Serializable {
-    
+
     /**
      * the method for creating a request
+     *
      * @param a - account making the request
      * @param rt - request type to make
      * @return - returns the request for further use
      */
     @Override
-    public Request createRequest(Account a, RequestType rt)
-    {
-        switch (rt)
-        {
+    public Request createRequest(Account a, RequestType rt) {
+        switch (rt) {
             case CREATE:
                 request = new CreateRequest(a, rt);
                 request.track();

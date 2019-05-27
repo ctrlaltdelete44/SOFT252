@@ -176,11 +176,11 @@ public class AddAccount extends javax.swing.JFrame {
     public JPasswordField getTxtPassword() {
         return txtPassword;
     }
-    
+
     public void addBackEventHandler(ActionListener listener) {
         btnBack.addActionListener(listener);
     }
-    
+
     public void addSubmitEventHandler(ActionListener listener) {
         btnAddAccount.addActionListener(listener);
     }

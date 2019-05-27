@@ -31,7 +31,7 @@ public class SecretaryController extends DashboardController {
         initialiseEventHandlers();
         cleanUi();
         gui.setVisible(true);
-        
+
         viewNotifications();
     }
 
@@ -46,10 +46,10 @@ public class SecretaryController extends DashboardController {
         gui.addRequestsChangedListener(new lstRequestsValueListener());
         gui.addStockChangedListener(new lstStockValueListener());
         gui.addPatientsChangedListener(new lstPatientsValueListener());
-        
-        gui.addUpdatePageEventHandler(new refreshPageListener()); 
+
+        gui.addUpdatePageEventHandler(new refreshPageListener());
     }
-    
+
     @Override
     public void cleanUi() {
         gui.getLstRequests().setListData(authorisingSecretary.viewRequests());
@@ -67,9 +67,9 @@ public class SecretaryController extends DashboardController {
 
     @Override
     public String[] viewNotifications() {
-        return authorisingSecretary.getNotifications();        
+        return authorisingSecretary.getNotifications();
     }
-    
+
     private String getStockName(String strStock) {
         String[] splitString = strStock.split(":");
         return splitString[0];

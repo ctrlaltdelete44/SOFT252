@@ -11,47 +11,49 @@ import java.time.LocalDate;
 
 /**
  * used by availability, used to store an date and any associated appointment
+ *
  * @author davie
  */
 public class AvailableDate implements Serializable {
+
     private final LocalDate date;
     private Appointment appointment;
-    
+
     /**
-     * the date associated with this 
+     * the date associated with this
+     *
      * @param date - date of appointment
      */
     public AvailableDate(LocalDate date) {
         this.date = date;
         appointment = null;
     }
-    
+
     /**
      * standard mutator for the appointment
+     *
      * @param appointment - the appointment to assign
      */
-    public void setAppointment(Appointment appointment)
-    {
+    public void setAppointment(Appointment appointment) {
         this.appointment = appointment;
     }
-    
+
     /**
      * standard accessor
+     *
      * @return - returns the associated date
      */
-    public LocalDate getDate()
-    {
+    public LocalDate getDate() {
         return date;
     }
 
     /**
      * standard accessor
+     *
      * @return - returns any appointment stored with this date
      */
     public Appointment getAppointment() {
         return appointment;
     }
 
-    
-    
 }

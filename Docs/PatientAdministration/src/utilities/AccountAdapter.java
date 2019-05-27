@@ -6,6 +6,7 @@
 package utilities;
 
 import accounts.Account;
+import java.util.ArrayList;
 import utilities.serialised.AccountSingleton;
 
 /**
@@ -31,8 +32,7 @@ public class AccountAdapter implements IConvert {
     @Override
     public Account convert()
     {
-        //String[] splitString = inputString.split(":");
-        for (Account a : AccountSingleton.getOrCreate().getAccounts())
+        for (Account a : (ArrayList<Account>)AccountSingleton.getOrCreate().getData())
         {
            if (inputString.contains(a.getUniqueId()))
                return a;

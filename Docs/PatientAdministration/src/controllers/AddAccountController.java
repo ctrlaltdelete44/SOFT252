@@ -25,10 +25,10 @@ public class AddAccountController implements IController {
         this.parentController = controller;
 
         initialiseEventHandlers();
-        
+
         gui.setVisible(true);
     }
-    
+
     @Override
     public void initialiseEventHandlers() {
         gui.addBackEventHandler(new btnBackListener());

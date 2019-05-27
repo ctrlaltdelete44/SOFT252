@@ -13,6 +13,7 @@ import view.Login;
  * @author Anthony
  */
 public class main {
+
     /**
      * @param args the command line arguments
      */

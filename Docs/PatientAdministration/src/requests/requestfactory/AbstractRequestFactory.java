@@ -12,6 +12,7 @@ import requests.RequestType;
 
 /**
  * the abstract factory denoting the methods used to create a new request
+ *
  * @author Anthony
  */
 public abstract class AbstractRequestFactory implements Serializable {
@@ -20,12 +21,14 @@ public abstract class AbstractRequestFactory implements Serializable {
      * the request created
      */
     protected Request request;
-    
+
     /**
      * the method for creating a request
+     *
      * @param a - account making the request
      * @param rt - request type required
-     * @return - returns the request made because some requests need to assign additional information to it
+     * @return - returns the request made because some requests need to assign
+     * additional information to it
      */
     public abstract Request createRequest(Account a, RequestType rt);
 }

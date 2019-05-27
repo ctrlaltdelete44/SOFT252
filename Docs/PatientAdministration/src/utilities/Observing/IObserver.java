@@ -7,6 +7,7 @@ package utilities.Observing;
 
 /**
  * an interface to identify observers
+ *
  * @author davie
  */
 public interface IObserver {

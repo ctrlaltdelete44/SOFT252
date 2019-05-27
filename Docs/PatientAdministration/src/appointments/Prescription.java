@@ -11,18 +11,21 @@ import java.io.Serializable;
 
 /**
  * class containing all information pertaining to a prescription
+ *
  * @author davie
  */
 public class Prescription implements Serializable {
+
     private final String medicine;
     private final int quantity;
     private final String dosage;
     private final String notes;
     private final Patient patient;
     private final Doctor doctor;
-    
+
     /**
      * all information required on creation of a prescription
+     *
      * @param medicine - the medicine prescribed
      * @param quantity - the quantity of medicine prescribed
      * @param dosage - dosage guidelines from doctor
@@ -37,13 +40,12 @@ public class Prescription implements Serializable {
         this.patient = patient;
         this.doctor = doctor;
         this.notes = notes;
-        
-        //System.out.println("Prescription has doasge of: " + this.dosage + ":PRESCRIPTION");
     }
 
     /**
      * standard accessor method
-     * @return - the type of medicine 
+     *
+     * @return - the type of medicine
      */
     public String getMedicine() {
         return medicine;
@@ -51,6 +53,7 @@ public class Prescription implements Serializable {
 
     /**
      * standard accessor method
+     *
      * @return - the quantity of medicine
      */
     public int getQuantity() {
@@ -59,6 +62,7 @@ public class Prescription implements Serializable {
 
     /**
      * standard accessor method
+     *
      * @return - any dosage guidelines being written by doctor
      */
     public String getDosage() {
@@ -67,6 +71,7 @@ public class Prescription implements Serializable {
 
     /**
      * standard accessor method
+     *
      * @return - the patient prescribed to
      */
     public Patient getPatient() {
@@ -75,6 +80,7 @@ public class Prescription implements Serializable {
 
     /**
      * standard accessor method
+     *
      * @return - doctor who prescribed this
      */
     public Doctor getDoctor() {
@@ -83,13 +89,11 @@ public class Prescription implements Serializable {
 
     /**
      * standard accessor method
+     *
      * @return - notes made by doctor
      */
     public String getNotes() {
         return notes;
     }
-    
-    
-    
-    
+
 }

@@ -122,23 +122,23 @@ public class ProvideFeedback extends javax.swing.JFrame {
     public JButton getBtnBack() {
         return btnBack;
     }
-    
+
     public JButton getBtnSubmit() {
         return btnSubmit;
     }
-    
+
     public JSlider getSldRating() {
         return sldRating;
     }
-    
+
     public JTextArea getTxtComments() {
         return txtComments;
     }
-    
+
     public void addBackEventHandler(ActionListener listener) {
         btnBack.addActionListener(listener);
     }
-    
+
     public void addSubmitEventHandler(ActionListener listener) {
         btnSubmit.addActionListener(listener);
     }

@@ -6,9 +6,11 @@
 package utilities.accounts;
 
 /**
- * when viewing a report on prescriptions, a compilation of different information
- * needed. kept as an interface in preparation for potential future updates allowing
- * a doctor to view a prescription associated with a historical record
+ * when viewing a report on prescriptions, a compilation of different
+ * information needed. kept as an interface in preparation for potential future
+ * updates allowing a doctor to view a prescription associated with a historical
+ * record
+ *
  * @author davie
  */
 public interface IViewPrescription {

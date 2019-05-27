@@ -75,31 +75,31 @@ public class PatientView extends javax.swing.JFrame {
     public JTextField getTxtNextAppointment() {
         return txtNextAppointment;
     }
-    
+
     public void addLogoutEventHandler(ActionListener listener) {
         btnLogout.addActionListener(listener);
     }
-    
+
     public void addDeleteEventHandler(ActionListener listener) {
         btnDelete.addActionListener(listener);
     }
-    
+
     public void addProvideFeedbackEventHandler(ActionListener listener) {
         btnProvideFeedback.addActionListener(listener);
     }
-    
+
     public void addRequestAppointmentEventHandler(ActionListener listener) {
         btnRequestAppointment.addActionListener(listener);
     }
-    
+
     public void addViewPrescriptionEventHandler(ActionListener listener) {
         btnViewPrescription.addActionListener(listener);
     }
-    
+
     public void addDoctorsChangedListener(ListSelectionListener listener) {
         lstDoctors.addListSelectionListener(listener);
     }
-    
+
     public void addUpdatePageEventHandler(FocusListener listener) {
         this.addFocusListener(listener);
     }
@@ -277,7 +277,6 @@ public class PatientView extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDelete;

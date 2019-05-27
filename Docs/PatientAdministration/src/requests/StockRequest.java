@@ -14,12 +14,13 @@ import utilities.serialised.StockSingleton;
  *
  * @author davie
  */
-public class StockRequest extends Request implements Serializable{
+public class StockRequest extends Request implements Serializable {
 
     private String requestedMedicine;
-    
+
     /**
      * all requests start with basic information assigned
+     *
      * @param a - the account making the request
      * @param rt - the type of request
      */
@@ -30,16 +31,17 @@ public class StockRequest extends Request implements Serializable{
     /**
      * after creation, a medicine is associated with the request. this is when
      * the request is considered complete, and when it is tracked
+     *
      * @param strMedicine - the medicine requested
      */
-    public void assignMedicine(String strMedicine)
-    {
+    public void assignMedicine(String strMedicine) {
         requestedMedicine = strMedicine;
         track();
     }
-    
+
     /**
      * returns request type for identification purposes
+     *
      * @return - returns STOCK
      */
     @Override
@@ -49,6 +51,7 @@ public class StockRequest extends Request implements Serializable{
 
     /**
      * STOCK template for viewing request
+     *
      * @return - returns a summary of the request
      */
     @Override
@@ -57,16 +60,17 @@ public class StockRequest extends Request implements Serializable{
     }
 
     /**
-     * in processing, just adds 20 of the requested stock to the medicine cabinet
+     * in processing, just adds 20 of the requested stock to the medicine
+     * cabinet
+     *
      * @return - returns a confirmation message
      */
     @Override
     public String process() {
         StockItem item = new StockItem(requestedMedicine, 20);
-        StockSingleton.getOrCreate().addStock(item);
-        
+        StockSingleton.getOrCreate().addObject(item);
+
         return "Added 20 " + requestedMedicine + " to stock";
     }
 
-    
 }

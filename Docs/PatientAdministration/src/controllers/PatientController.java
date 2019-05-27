@@ -32,15 +32,15 @@ public class PatientController extends DashboardController {
     public PatientController(Account authorisingPatient) {
         this.gui = new PatientView();
         this.authorisingPatient = (Patient) authorisingPatient;
-        
+
         initialiseEventHandlers();
 
         cleanUi();
         gui.setVisible(true);
-        
+
         viewNotifications();
     }
-    
+
     @Override
     public void initialiseEventHandlers() {
         gui.addLogoutEventHandler(new btnLogoutListener());
@@ -48,10 +48,10 @@ public class PatientController extends DashboardController {
         gui.addProvideFeedbackEventHandler(new btnProvideFeedbackListener());
         gui.addRequestAppointmentEventHandler(new btnRequestAppointmentListener());
         gui.addViewPrescriptionEventHandler(new btnViewPrescriptionListener());
-        
+
         gui.addDoctorsChangedListener(new lstDoctorsValueListener());
-        
-        gui.addUpdatePageEventHandler(new refreshPageListener()); 
+
+        gui.addUpdatePageEventHandler(new refreshPageListener());
     }
 
     @Override
@@ -60,53 +60,47 @@ public class PatientController extends DashboardController {
         gui.getBtnProvideFeedback().setEnabled(false);
         gui.getLstDoctors().setListData(authorisingPatient.viewAccounts(AccountType.DOCTOR));
         gui.getLstHistory().setListData(authorisingPatient.viewHistory());
-        
+
         String strAppt = viewNextAppointment();
         gui.getTxtNextAppointment().setText(strAppt);
-        
-        if (strAppt.contentEquals(""))
-        {
+
+        if (strAppt.contentEquals("")) {
             gui.getLblActiveAppointment().setVisible(false);
             gui.getBtnRequestAppointment().setEnabled(true);
-        }
-        else
-        {
+        } else {
             gui.getLblActiveAppointment().setVisible(true);
             gui.getBtnRequestAppointment().setEnabled(false);
-        }    
-        
-        if (authorisingPatient.getPrescription() != null)
+        }
+
+        if (authorisingPatient.getPrescription() != null) {
             gui.getBtnViewPrescription().setEnabled(true);
-        else
+        } else {
             gui.getBtnViewPrescription().setEnabled(false);
+        }
     }
-    
+
     @Override
     public String[] viewNotifications() {
-        return authorisingPatient.getNotifications();        
+        return authorisingPatient.getNotifications();
     }
-    
+
     private String[] viewDoctorAvailability(String strDoctor) {
         AccountAdapter adapter = new AccountAdapter(strDoctor);
         Doctor doctor = (Doctor) adapter.convert();
 
         return doctor.viewFreeDates();
     }
-    
-    private String viewNextAppointment()
-    {
+
+    private String viewNextAppointment() {
         Appointment app = authorisingPatient.getAppointment();
-        
-        if (app != null)
-        {
+
+        if (app != null) {
             //System.out.println("Returning that patient has appt:PCONTROLLER");
             return app.getDoctor().getFirstName() + " " + app.getDoctor().getSurname() + " on " + app.getDate();
-        }
-        else
-        {
+        } else {
             //System.out.println("Returning null:PCONTROLLER");
             return "";
-            
+
         }
     }
 

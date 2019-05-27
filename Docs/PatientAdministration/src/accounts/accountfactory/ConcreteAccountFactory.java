@@ -11,12 +11,14 @@ import java.io.Serializable;
 
 /**
  * concrete implementation of abstract factory
+ *
  * @author Anthony
  */
-public class ConcreteAccountFactory extends AbstractAccountFactory implements Serializable{
-    
+public class ConcreteAccountFactory extends AbstractAccountFactory implements Serializable {
+
     /**
      * the concrete factory used by the admin to create accounts
+     *
      * @param first - first name
      * @param last - surname
      * @param address - address
@@ -25,24 +27,22 @@ public class ConcreteAccountFactory extends AbstractAccountFactory implements Se
      * @return - returns the generated id so the admin can inform the new user
      */
     @Override
-    public String createAccount(String first, String last, String address, String password, AccountType accType)
-    {
-        switch (accType)
-            {
-                case SECRETARY:
-                    account = new Secretary(first, last, address);
-                    account.authorise(accType, password);
-                    break;
-                case DOCTOR:
-                    account = new Doctor(first, last, address);
-                    account.authorise(accType, password);
-                    break;
-                case ADMIN:
-                    account = new Admin(first, last, address);
-                    account.authorise(accType, password);
-                    break;
-            }
-        
+    public String createAccount(String first, String last, String address, String password, AccountType accType) {
+        switch (accType) {
+            case SECRETARY:
+                account = new Secretary(first, last, address);
+                account.authorise(accType, password);
+                break;
+            case DOCTOR:
+                account = new Doctor(first, last, address);
+                account.authorise(accType, password);
+                break;
+            case ADMIN:
+                account = new Admin(first, last, address);
+                account.authorise(accType, password);
+                break;
+        }
+
         return account.getUniqueId();
     }
 }

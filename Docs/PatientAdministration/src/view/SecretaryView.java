@@ -243,41 +243,40 @@ public class SecretaryView extends javax.swing.JFrame {
     public void addLogoutEventHandler(ActionListener listener) {
         btnLogout.addActionListener(listener);
     }
-    
+
     public void addDeleteRequestEventHandler(ActionListener listener) {
         btnDeleteRequest.addActionListener(listener);
     }
-    
+
     public void addDeleteAccountEventHandler(ActionListener listener) {
         btnDeleteAccount.addActionListener(listener);
     }
-    
+
     public void addConfirmRequestEventHandler(ActionListener listener) {
         btnConfirmRequest.addActionListener(listener);
     }
-    
+
     public void addAddStockListener(ActionListener listener) {
         btnAddStock.addActionListener(listener);
     }
 //        
+
     public void addRequestsChangedListener(ListSelectionListener listener) {
         lstRequests.addListSelectionListener(listener);
     }
-    
+
     public void addStockChangedListener(ListSelectionListener listener) {
         lstStock.addListSelectionListener(listener);
     }
-    
+
     public void addPatientsChangedListener(ListSelectionListener listener) {
         lstPatients.addListSelectionListener(listener);
     }
-    
+
     public void addUpdatePageEventHandler(FocusListener listener) {
         this.addFocusListener(listener);
     }
-   
-    
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddStock;
     private javax.swing.JButton btnConfirmRequest;

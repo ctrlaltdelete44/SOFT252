@@ -8,20 +8,23 @@ package utilities.Observing;
 import requests.Request;
 
 /**
- * observable interface to denote a class that can be observed. currently patients,
- * eventually also doctors to remove their active requests
+ * observable interface to denote a class that can be observed. currently
+ * patients, eventually also doctors to remove their active requests
+ *
  * @author davie
  */
 public interface IObservable {
-    
+
     /**
      * adds a request to the stored list
+     *
      * @param r - the request to register
      */
     public void registerObserver(Request r);
 
     /**
      * removes a request from the stored list
+     *
      * @param r - the request to remove
      */
     public void unregisterObserver(Request r);

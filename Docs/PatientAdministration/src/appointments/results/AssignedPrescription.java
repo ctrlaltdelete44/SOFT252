@@ -9,18 +9,20 @@ import accounts.Patient;
 import appointments.Prescription;
 import java.io.Serializable;
 
-
-
 /**
- * this combines the prescription class and the overridden method for processing a request
+ * this combines the prescription class and the overridden method for processing
+ * a request
+ *
  * @author davie
  */
-public class AssignedPrescription extends Action implements Serializable{
+public class AssignedPrescription extends Action implements Serializable {
+
     private final Prescription prescription;
     private final Patient p;
 
     /**
      * the prescription to process
+     *
      * @param prescription - the prescription
      * @param p - the patient making the request
      */
@@ -31,29 +33,30 @@ public class AssignedPrescription extends Action implements Serializable{
 
     /**
      * standard accessor
+     *
      * @return the prescription associated with this
      */
     public Prescription getPrescription() {
         return prescription;
     }
-    
+
     /**
-     * creates a new request from the patient who is currently having an appointment
+     * creates a new request from the patient who is currently having an
+     * appointment
      */
     @Override
-    public void processRequest()
-    {
+    public void processRequest() {
         p.createPrescriptionRequest(prescription);
     }
-    
+
     /**
      * returns prescription enum
+     *
      * @return - returns PRESCRIPTION
      */
     @Override
-    public ActionType getActionType()
-    {
+    public ActionType getActionType() {
         return ActionType.PRESCRIPTION;
     }
-    
+
 }

@@ -9,9 +9,11 @@ import java.io.Serializable;
 
 /**
  * an item of feedback as made by a patient referring to a doctor
+ *
  * @author davie
  */
 public class Feedback implements Serializable {
+
     private final int rating;
     private final String comments;
 
@@ -27,6 +29,7 @@ public class Feedback implements Serializable {
 
     /**
      * standard accessor
+     *
      * @return - the rating out of 5 associated with this feedback
      */
     public int getRating() {
@@ -35,12 +38,11 @@ public class Feedback implements Serializable {
 
     /**
      * standard accessor
+     *
      * @return - any comments associated with this feedback
      */
     public String getComments() {
         return comments;
     }
 
-    
-    
 }

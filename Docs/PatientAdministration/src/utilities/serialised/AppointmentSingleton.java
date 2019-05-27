@@ -13,146 +13,116 @@ import utilities.Serialiser;
 
 /**
  * a list of all active appointments
+ *
  * @author davie
  */
-public class AppointmentSingleton implements Serializable {
+public class AppointmentSingleton implements Serializable, ISerialise {
+
     private ArrayList<Appointment> appointments;
     private static AppointmentSingleton instance = null;
-    
-    //private final Compilation c = new Compilation();
-    //private final Serialiser appointmentSerialiser = new Serialiser("data/appointments.paa");
-    
-    private AppointmentSingleton()
-    {
+
+    private AppointmentSingleton() {
         loadData();
- 
-        //appointments = new ArrayList<>();
-          //  saveChanges();
+        //appointments = new ArrayList<Appointment>();
+        //saveChanges();
 
     }
-    
+
     /**
      * this is a singleton, this method returns the active instance
+     *
      * @return - returns active instance
      */
-    public static AppointmentSingleton getOrCreate()
-    {
-        if (instance == null)
+    public static AppointmentSingleton getOrCreate() {
+        if (instance == null) {
             instance = new AppointmentSingleton();
+        }
         return instance;
     }
-    
-    /**
-     * removes a given appointment from the singleton
-     * @param appRemove - the appointment to remove
-     * @return - returns the removed appointment for testing purposes
-     */
-    public Appointment removeAppointment(Appointment appRemove)
-    {        
-        for (Appointment appointment : appointments)
-        {
-            if (appointment.getDoctor().getUniqueId().contentEquals(appRemove.getDoctor().getUniqueId()) && appointment.getDate().equals(appRemove.getDate()))
-            {
-                //System.out.println("Removed appointment");
-                appointments.remove(appointment);
-                return appointment;
-            }
-        }
-        saveChanges();
-        //c.construct();
-        return null;
-    }
-    
-    /**
-     * adds an appointment to the tracker
-     * @param a - the appointment to add
-     */
-    public void addAppointment(Appointment a)
-    {
+
+    @Override
+    public void addObject(Object o) {
+        Appointment a = (Appointment) o;
         appointments.add(a);
         saveChanges();
-        //System.out.println("Added appointment");
-        //c.construct();
     }
-    
-    /**
-     * standard accessor
-     * @return - returns the list of appointments
-     */
-    public ArrayList<Appointment> getAppointments()
-    {
-        //loadData();
+
+    @Override
+    public void removeObject(Object o) {
+        Appointment appRemove = (Appointment) o;
+
+        for (Appointment appointment : appointments) {
+            if (appointment.getDoctor().getUniqueId().contentEquals(appRemove.getDoctor().getUniqueId()) && appointment.getDate().equals(appRemove.getDate())) {
+                appointments.remove(appointment);
+                saveChanges();
+            }
+        }
+
+    }
+
+    @Override
+    public void saveChanges() {
+        new Serialiser("data/appointments.paa").serialise(appointments);
+    }
+
+    @Override
+    public void loadData() {
+        appointments = (ArrayList<Appointment>) new Serialiser("data/appointments.paa").deserialise();
+    }
+
+    @Override
+    public ArrayList getData() {
         return appointments;
     }
-    
+
     /**
      * alternate accessor. retrieves only appointments from a given doctor
+     *
      * @param doctorId - the doctor to search for
      * @return - the list of appointments associated with this doctor
      */
-    public ArrayList<Appointment> getAppointments(String doctorId)
-    {
-        //loadData();
-        //c.deconstruct();
+    public ArrayList<Appointment> getAppointments(String doctorId) {
+
         ArrayList<Appointment> listReturn = new ArrayList<>();
-        
-        for (Appointment a : appointments)
-        {           
+
+        for (Appointment a : appointments) {
             if (!a.getDoctor().getUniqueId().contentEquals(doctorId)) {
             } else {
                 listReturn.add(a);
-                //System.out.println(a.getDoctor().getFirstName() + " and " + a.getPatient().getFirstName() + " on " + a.getDate() + ":APPOINTMENTSINGLETON");
             }
         }
-        
+
         return listReturn;
     }
-    
+
     /**
      * retrieves an appointment for a given doctor on a given date
+     *
      * @param doctorId - the doctor to search for
      * @param date - the date to search for
      * @return - the appointment, if found
      */
-    public Appointment getAppointment(String doctorId, LocalDate date)
-    {
-        for (Appointment a : getAppointments(doctorId))
-        {
-            if (a.getDate().equals(date))
+    public Appointment getAppointment(String doctorId, LocalDate date) {
+        for (Appointment a : getAppointments(doctorId)) {
+            if (a.getDate().equals(date)) {
                 return a;
+            }
         }
         return null;
     }
-    
-    public void saveChanges() {
-        new Serialiser("data/appointments.paa").serialise(appointments);
-    }
-    
-    public void loadData() {
-        appointments = (ArrayList<Appointment>)new Serialiser("data/appointments.paa").deserialise();
-    }
 
     /**
-     * mutator. breaks singleton principle, but is only ever used on deserialisation
-     * and overwrites previous instance
-     * @param appointments - the new appointments to set
-     */
-    public void setAppointments(ArrayList<Appointment> appointments) {
-        this.appointments = appointments;
-    }
-    
-    /**
      * returns a boolean on whether a doctor has an appointment on a given date
+     *
      * @param docId - the doctor to search for
      * @param date - the date to search for
      * @return - a boolean confirmation
      */
-    public boolean isActiveBooking(String docId, LocalDate date)
-    {
-        for (Appointment a : getAppointments(docId))
-        {
-            if (a.getDate().equals(date))
+    public boolean isActiveBooking(String docId, LocalDate date) {
+        for (Appointment a : getAppointments(docId)) {
+            if (a.getDate().equals(date)) {
                 return true;
+            }
         }
         return false;
     }

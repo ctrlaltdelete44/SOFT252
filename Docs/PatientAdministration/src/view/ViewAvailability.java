@@ -113,15 +113,14 @@ public class ViewAvailability extends javax.swing.JFrame {
     public JList<String> getLstSchedule() {
         return lstSchedule;
     }
-    
+
     public void addSubmitEventHandler(ActionListener listener) {
         btnAssign.addActionListener(listener);
     }
-    
+
     public void addDoctorsChangedListener(ListSelectionListener listener) {
         lstDoctors.addListSelectionListener(listener);
     }
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAssign;

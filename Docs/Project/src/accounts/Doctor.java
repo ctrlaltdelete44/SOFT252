@@ -9,18 +9,18 @@ import utilities.availability.IViewAvailability;
 import utilities.availability.Availability;
 import utilities.availability.AvailableDate;
 import appointments.Appointment;
-import appointments.Prescription;
-import appointments.results.AssignedPrescription;
-import appointments.results.FurtherAppointment;
 import appointments.resultsfactories.AbstractResultsFactory;
-import appointments.resultsfactories.JustAppointmentFactory;
-import appointments.resultsfactories.JustPrescriptionFactory;
-import appointments.resultsfactories.NoActionFactory;
-import appointments.resultsfactories.PrescriptionAndAppointmentFactory;
+import appointments.resultsfactories.ResultsFactory;
+//import appointments.resultsfactories.zAbstractResultsFactory;
+//import appointments.resultsfactories.zJustAppointmentFactory;
+//import appointments.resultsfactories.zJustPrescriptionFactory;
+//import appointments.resultsfactories.zNoActionFactory;
+//import appointments.resultsfactories.zPrescriptionAndAppointmentFactory;
 import utilities.accounts.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import requests.RequestType;
 import requests.StockRequest;
 import requests.requestfactory.AbstractRequestFactory;
@@ -42,7 +42,7 @@ public class Doctor extends Account implements Serializable, IViewAvailability {
     private final Availability availability = new Availability();
     private final AppointmentSingleton appointments = AppointmentSingleton.getOrCreate();
 
-    private AbstractResultsFactory resultsFactory;
+//    private zAbstractResultsFactory resultsFactory;
 
     /**
      * on creation, account is assigned basic information
@@ -224,17 +224,22 @@ public class Doctor extends Account implements Serializable, IViewAvailability {
      * @param timeFrame - days/weeks/months
      * @param p - the patient the consultation was with
      */
-    public void bothActionsRequired(String notes, String prescriptionName, String dosage, Integer prescriptionQuantity, Integer timeQuantity, String timeFrame, Patient p) {
-        Prescription prescription = new Prescription(prescriptionName, prescriptionQuantity, dosage, notes, p, this);
-
-        LocalDate appointmentDate = getDate(timeQuantity, timeFrame);
-
-        resultsFactory = (PrescriptionAndAppointmentFactory) new PrescriptionAndAppointmentFactory(notes);
-
-        resultsFactory.addAction(new AssignedPrescription(prescription, p));
-        resultsFactory.addAction(new FurtherAppointment(appointmentDate, p, this));
-
-        resultsFactory.addHistory(p, this);
+//    public void bothActionsRequired(String notes, String prescriptionName, String dosage, Integer prescriptionQuantity, Integer timeQuantity, String timeFrame, Patient p) {
+////        Prescription prescription = new Prescription(prescriptionName, prescriptionQuantity, dosage, notes, p, this);
+////
+////        LocalDate appointmentDate = getDate(timeQuantity, timeFrame);
+////
+////        resultsFactory = (zPrescriptionAndAppointmentFactory) new zPrescriptionAndAppointmentFactory(notes);
+////
+////        resultsFactory.addAction(new AssignedPrescription(prescription, p));
+////        resultsFactory.addAction(new FurtherAppointment(appointmentDate, p, this));
+////
+////        resultsFactory.addHistory(p, this);
+//    }
+    
+    public void processAppointment(Patient p, HashMap<String, Object> map) {
+        AbstractResultsFactory factory = new ResultsFactory(map);
+        factory.addHistory(p, this);
     }
 
     /**
@@ -246,15 +251,15 @@ public class Doctor extends Account implements Serializable, IViewAvailability {
      * @param dosage - dosage guidelines
      * @param p - patient the consultation was with
      */
-    public void justPrescriptionRequired(String notes, String name, Integer quantity, String dosage, Patient p) {
-        Prescription prescription = new Prescription(name, quantity, dosage, notes, p, this);
-
-        resultsFactory = (JustPrescriptionFactory) new JustPrescriptionFactory(notes);
-
-        resultsFactory.addAction(new AssignedPrescription(prescription, p));
-
-        resultsFactory.addHistory(p, this);
-    }
+//    public void justPrescriptionRequired(String notes, String name, Integer quantity, String dosage, Patient p) {
+////        Prescription prescription = new Prescription(name, quantity, dosage, notes, p, this);
+////
+////        resultsFactory = (zJustPrescriptionFactory) new zJustPrescriptionFactory(notes);
+////
+////        resultsFactory.addAction(new AssignedPrescription(prescription, p));
+////
+////        resultsFactory.addHistory(p, this);
+//    }
 
     /**
      * if just a further appointment required, this method called
@@ -264,14 +269,14 @@ public class Doctor extends Account implements Serializable, IViewAvailability {
      * @param timeFrame - units for above
      * @param p - patient consultation was with
      */
-    public void justAppointmentRequired(String notes, Integer timeQuantity, String timeFrame, Patient p) {
-        LocalDate appointmentDate = getDate(timeQuantity, timeFrame);
-
-        resultsFactory = (JustAppointmentFactory) new JustAppointmentFactory(notes);
-        resultsFactory.addAction(new FurtherAppointment(appointmentDate, p, this));
-
-        resultsFactory.addHistory(p, this);
-    }
+//    public void justAppointmentRequired(String notes, Integer timeQuantity, String timeFrame, Patient p) {
+////        LocalDate appointmentDate = getDate(timeQuantity, timeFrame);
+////
+////        resultsFactory = (zJustAppointmentFactory) new zJustAppointmentFactory(notes);
+////        resultsFactory.addAction(new FurtherAppointment(appointmentDate, p, this));
+////
+////        resultsFactory.addHistory(p, this);
+//    }
 
     /**
      * if no further action is required following a consultation, this method
@@ -280,31 +285,31 @@ public class Doctor extends Account implements Serializable, IViewAvailability {
      * @param notes - the notes made during consultation
      * @param p - the patient consultation was with
      */
-    public void noActionRequired(String notes, Patient p) {
-        resultsFactory = (NoActionFactory) new NoActionFactory(notes);
+//    public void noActionRequired(String notes, Patient p) {
+////        resultsFactory = (zNoActionFactory) new zNoActionFactory(notes);
+////
+////        resultsFactory.addHistory(p, this);
+//    }
 
-        resultsFactory.addHistory(p, this);
-    }
-
-    private LocalDate getDate(Integer timeQuantity, String timeFrame) {
-        LocalDate current = LocalDate.now();
-        LocalDate appointmentDate;
-        switch (timeFrame) {
-            case "DAYS":
-                appointmentDate = current.plusDays(timeQuantity);
-                break;
-            case "MONTHS":
-                appointmentDate = current.plusMonths(timeQuantity);
-                break;
-            case "YEARS":
-                appointmentDate = current.plusYears(timeQuantity);
-                break;
-            default:
-                appointmentDate = current;
-                break;
-        }
-        return appointmentDate;
-    }
+//    private LocalDate getDate(Integer timeQuantity, String timeFrame) {
+//        LocalDate current = LocalDate.now();
+//        LocalDate appointmentDate;
+//        switch (timeFrame) {
+//            case "DAYS":
+//                appointmentDate = current.plusDays(timeQuantity);
+//                break;
+//            case "MONTHS":
+//                appointmentDate = current.plusMonths(timeQuantity);
+//                break;
+//            case "YEARS":
+//                appointmentDate = current.plusYears(timeQuantity);
+//                break;
+//            default:
+//                appointmentDate = current;
+//                break;
+//        }
+//        return appointmentDate;
+//    }
 
     /**
      * method for clearing a date from a doctor. this is used after an

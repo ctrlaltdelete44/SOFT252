@@ -7,7 +7,6 @@ package utilities.accounts;
 
 import accounts.Doctor;
 import appointments.Prescription;
-import appointments.results.Notes;
 import java.io.Serializable;
 
 /**
@@ -18,7 +17,7 @@ import java.io.Serializable;
  */
 public class HistoryItem implements Serializable {
 
-    private final Notes notes;
+    private final String notes;
     private final Prescription prescription;
     private final Doctor doctor;
     private final Boolean isFurtherAppointment;
@@ -32,14 +31,14 @@ public class HistoryItem implements Serializable {
      * @param isFurtherAppointment - whether or not a further appointment was
      * scheduled
      */
-    public HistoryItem(Notes notes, Prescription prescription, Doctor doctor, Boolean isFurtherAppointment) {
+    public HistoryItem(String notes, Prescription prescription, Doctor doctor, Boolean isFurtherAppointment) {
         this.notes = notes;
         this.prescription = prescription;
         this.doctor = doctor;
         this.isFurtherAppointment = isFurtherAppointment;
     }
 
-    public Notes getNotes() {
+    public String getNotes() {
         return notes;
     }
 
@@ -61,7 +60,7 @@ public class HistoryItem implements Serializable {
      */
     @Override
     public String toString() {
-        String strReturn = "<html>Appointment taken by " + doctor.getFirstName() + " " + doctor.getSurname() + ":<br/>" + notes.getNotes() + ".<br/>";
+        String strReturn = "<html>Appointment taken by " + doctor.getFirstName() + " " + doctor.getSurname() + ":<br/>" + notes + ".<br/>";
 
         if (prescription != null) {
             strReturn += "Patient prescribed: " + prescription.getQuantity() + " " + prescription.getMedicine() + "<br/>Dosage: " + prescription.getDosage() + ".<br/>";

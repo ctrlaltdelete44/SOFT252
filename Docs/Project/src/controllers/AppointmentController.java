@@ -8,8 +8,13 @@ package controllers;
 import accounts.Doctor;
 import accounts.Patient;
 import appointments.Appointment;
+import appointments.Prescription;
+import appointments.results.AssignedPrescription;
+import appointments.results.FurtherAppointment;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.util.HashMap;
 import javax.swing.JOptionPane;
 import view.AppointmentView;
 
@@ -72,17 +77,30 @@ public class AppointmentController implements IController {
 
     public void processAppointment(String notes, String prescriptionName, Integer prescriptionQuantity, String dosage, Integer timeQuantity, String timeFrame) {
         Patient p = activeAppointment.getPatient();
+        
+        HashMap<String, Object> map = new HashMap<>();
 
-        //notes is not null, others can be
-        if (prescriptionName == null && timeQuantity == null) {
-            authorisingDoctor.noActionRequired(notes, p);
-        } else if (prescriptionName == null && timeQuantity != null) {
-            authorisingDoctor.justAppointmentRequired(notes, timeQuantity, timeFrame, p);
-        } else if (prescriptionName != null && timeQuantity == null) {
-            authorisingDoctor.justPrescriptionRequired(notes, prescriptionName, prescriptionQuantity, dosage, p);
-        } else {
-            authorisingDoctor.bothActionsRequired(notes, prescriptionName, dosage, prescriptionQuantity, timeQuantity, timeFrame, p);
+        map.put("Notes", notes);
+        
+        if (timeQuantity != null) {
+            map.put("Appointment", new FurtherAppointment(getDate(timeQuantity, timeFrame), p, authorisingDoctor));
         }
+        if (prescriptionName != null) {
+            map.put("Prescription", new AssignedPrescription(new Prescription(prescriptionName, prescriptionQuantity, dosage, notes, p, authorisingDoctor), p));
+        }
+        
+        authorisingDoctor.processAppointment(p, map);
+        
+        //notes is not null, others can be
+//        if (prescriptionName == null && timeQuantity == null) {
+//            authorisingDoctor.noActionRequired(notes, p);
+//        } else if (prescriptionName == null && timeQuantity != null) {
+//            authorisingDoctor.justAppointmentRequired(notes, timeQuantity, timeFrame, p);
+//        } else if (prescriptionName != null && timeQuantity == null) {
+//            authorisingDoctor.justPrescriptionRequired(notes, prescriptionName, prescriptionQuantity, dosage, p);
+//        } else {
+//            authorisingDoctor.bothActionsRequired(notes, prescriptionName, dosage, prescriptionQuantity, timeQuantity, timeFrame, p);
+//        }
 
         activeAppointment.getPatient().clearAppointment();
         authorisingDoctor.clearDate(activeAppointment.getDate());
@@ -91,6 +109,25 @@ public class AppointmentController implements IController {
         gui.dispose();
     }
 
+    private LocalDate getDate(Integer timeQuantity, String timeFrame) {
+        LocalDate current = LocalDate.now();
+        LocalDate appointmentDate;
+        switch (timeFrame) {
+            case "DAYS":
+                appointmentDate = current.plusDays(timeQuantity);
+                break;
+            case "MONTHS":
+                appointmentDate = current.plusMonths(timeQuantity);
+                break;
+            case "YEARS":
+                appointmentDate = current.plusYears(timeQuantity);
+                break;
+            default:
+                appointmentDate = current;
+                break;
+        }
+        return appointmentDate;
+    }
     private class chkPrescriptionListener implements ActionListener {
 
         @Override

@@ -43,8 +43,8 @@ public class AppointmentController implements IController {
 
     @Override
     public void cleanUi() {
-        gui.getLblPatient().setText(activeAppointment.getPatient().viewAccount());
-        gui.getLblDoctor().setText(authorisingDoctor.viewAccount());
+        gui.getLblPatient().setText(activeAppointment.getPatient().toString());
+        gui.getLblDoctor().setText(authorisingDoctor.toString());
         gui.getLstHistory().setListData(activeAppointment.getPatient().viewHistory());
 
         gui.getTxtNotes().setText("");

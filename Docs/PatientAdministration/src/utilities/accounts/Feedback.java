@@ -44,5 +44,10 @@ public class Feedback implements Serializable {
     public String getComments() {
         return comments;
     }
+    
+    @Override
+    public String toString() {
+        return rating+ "/5. " + comments;
+    }
 
 }

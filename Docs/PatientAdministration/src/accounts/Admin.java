@@ -11,14 +11,13 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import utilities.serialised.AccountSingleton;
 import utilities.*;
-import utilities.accounts.IViewAccounts;
 
 /**
  * admin specific functionalities and information
  *
  * @author Anthony
  */
-public class Admin extends Account implements Serializable, IViewAccounts {
+public class Admin extends Account implements Serializable{
 
     private final AbstractAccountFactory accountFactory = new ConcreteAccountFactory();
 
@@ -43,30 +42,6 @@ public class Admin extends Account implements Serializable, IViewAccounts {
         return AccountType.ADMIN;
     }
 
-    /**
-     * implemented method to view accounts of a specified type
-     *
-     * @param accountType - admin has access to view secretaries and doctors
-     * @return - returns the account information of the accounts the admin can
-     * view
-     */
-    @Override
-    public String[] viewAccounts(AccountType accountType) {
-        ArrayList<Account> list = AccountSingleton.getOrCreate().getData();
-        ArrayList<String> accountList = new ArrayList<>();
-
-        for (Account a : list) {
-            if (a.getAccountType() == accountType) {
-                accountList.add(a.viewAccount());
-            }
-        }
-
-        String[] listData = new String[accountList.size()];
-        for (int i = 0; i < accountList.size(); i++) {
-            listData[i] = accountList.get(i);
-        }
-        return listData;
-    }
 
     /**
      * method for admin to create new accounts
@@ -113,9 +88,9 @@ public class Admin extends Account implements Serializable, IViewAccounts {
      * the template for admin information
      *
      * @return - returns summary of account
-     */
+     */    
     @Override
-    public String viewAccount() {
+    public String toString() {
         return firstName + " " + surname + ": " + uniqueId;
     }
 }

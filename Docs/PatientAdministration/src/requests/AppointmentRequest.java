@@ -89,7 +89,7 @@ public class AppointmentRequest extends Request implements Serializable {
      * @return - returns summary of request
      */
     @Override
-    public String viewRequest() {
+    public String toString() {
         return account.getFirstName() + " " + account.getSurname() + ": " + RequestType.APPOINTMENT + " with " + doctor.getFirstName() + " " + doctor.getSurname() + " (" + doctor.getUniqueId() + ") on " + date;
     }
 

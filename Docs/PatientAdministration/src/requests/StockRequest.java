@@ -55,7 +55,7 @@ public class StockRequest extends Request implements Serializable {
      * @return - returns a summary of the request
      */
     @Override
-    public String viewRequest() {
+    public String toString() {
         return account.getFirstName() + " " + account.getSurname() + " (" + account.getUniqueId() + "): " + RequestType.STOCK + ": " + requestedMedicine;
     }
 

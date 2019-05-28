@@ -17,15 +17,15 @@ import utilities.serialised.RequestSingleton;
 import utilities.serialised.StockSingleton;
 import utilities.AccountAdapter;
 import utilities.DateAdapter;
+import utilities.ListToArrayAdapter;
 import utilities.RequestAdapter;
-import utilities.accounts.IViewAccounts;
 
 /**
  * secretary specific functionalities and information
  *
  * @author Anthony
  */
-public class Secretary extends Account implements Serializable, IViewAccounts {
+public class Secretary extends Account implements Serializable{
 
     /**
      * on creation, account is assigned basic information
@@ -49,31 +49,6 @@ public class Secretary extends Account implements Serializable, IViewAccounts {
     }
 
     /**
-     * secretary can view doctor and patient accounts at different times, so
-     * this method allows for the different requirements
-     *
-     * @param accountType - the account type to view at this time
-     * @return - returns the list of accounts as an array of strings
-     */
-    @Override
-    public String[] viewAccounts(AccountType accountType) {
-        ArrayList<Account> list = AccountSingleton.getOrCreate().getData();
-        ArrayList<String> accountList = new ArrayList<>();
-
-        for (Account a : list) {
-            if (a.getAccountType() == accountType) {
-                accountList.add(a.viewAccount());
-            }
-        }
-
-        String[] listData = new String[accountList.size()];
-        for (int i = 0; i < accountList.size(); i++) {
-            listData[i] = accountList.get(i);
-        }
-        return listData;
-    }
-
-    /**
      * secretary can only removeObject patient accounts, so will always cleanly delete
  them
      *
@@ -94,13 +69,10 @@ public class Secretary extends Account implements Serializable, IViewAccounts {
      * @return - returns as an array of strings for viewing
      */
     public String[] viewRequests() {
-        ArrayList<Request> list = RequestSingleton.getOrCreate().getData();
+        ArrayList<Object> list = RequestSingleton.getOrCreate().getData();
 
-        String[] listData = new String[list.size()];
-        for (int i = 0; i < list.size(); i++) {
-            Request r = list.get(i);
-            listData[i] = r.viewRequest();
-        }
+        String[] listData = ListToArrayAdapter.convert(list);
+
         return listData;
     }
 
@@ -197,13 +169,8 @@ public class Secretary extends Account implements Serializable, IViewAccounts {
      * @return - an array of strings to use with a jlist
      */
     public String[] viewStock() {
-        ArrayList<StockItem> list = StockSingleton.getOrCreate().getData();
-
-        String[] listData = new String[list.size()];
-
-        for (int i = 0; i < list.size(); i++) {
-            listData[i] = list.get(i).viewItem();
-        }
+        ArrayList<Object> list = StockSingleton.getOrCreate().getData();
+        String[] listData = ListToArrayAdapter.convert(list);
 
         return listData;
     }
@@ -237,7 +204,7 @@ public class Secretary extends Account implements Serializable, IViewAccounts {
      * @return - returns summary of account info
      */
     @Override
-    public String viewAccount() {
+    public String toString() {
         return firstName + " " + surname + ": " + uniqueId;
     }
 }

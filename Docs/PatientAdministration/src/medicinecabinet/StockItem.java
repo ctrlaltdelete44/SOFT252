@@ -54,7 +54,8 @@ public class StockItem implements Serializable {
         this.quantity = quantity;
     }
 
-    public String viewItem() {
+    @Override
+    public String toString() {
         return this.name + ": " + this.quantity;
     }
 

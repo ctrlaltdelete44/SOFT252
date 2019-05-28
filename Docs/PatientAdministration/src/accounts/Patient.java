@@ -14,16 +14,15 @@ import requests.AppointmentRequest;
 import requests.RequestType;
 import requests.requestfactory.AbstractRequestFactory;
 import requests.requestfactory.ConcreteRequestFactory;
-import utilities.serialised.AccountSingleton;
 import utilities.serialised.IdGenerator;
 import utilities.AccountAdapter;
 import appointments.Appointment;
 import appointments.Prescription;
 import requests.PrescriptionRequest;
 import requests.Request;
+import utilities.ListToArrayAdapter;
 import utilities.Observing.IObservable;
 import utilities.accounts.HistoryItem;
-import utilities.accounts.IViewAccounts;
 import utilities.accounts.IViewPrescription;
 
 /**
@@ -31,7 +30,7 @@ import utilities.accounts.IViewPrescription;
  *
  * @author Anthony
  */
-public class Patient extends Account implements Serializable, IViewAccounts, IViewPrescription, IObservable {
+public class Patient extends Account implements Serializable, IViewPrescription, IObservable {
 
     private String sex;
     private int age;
@@ -41,7 +40,7 @@ public class Patient extends Account implements Serializable, IViewAccounts, IVi
     private Appointment appointment;
     private Prescription prescription;
 
-    private final ArrayList<HistoryItem> patientHistory;
+    private final ArrayList<Object> patientHistory;
     private final ArrayList<Request> myRequests;
 
     //on creation, take information on all of these. assign patient info immediately, as this will call create request
@@ -136,32 +135,6 @@ public class Patient extends Account implements Serializable, IViewAccounts, IVi
     }
 
     /**
-     * patients can view doctor accounts in order to book an appointment
-     *
-     * @param accountType - the account type to be viewed. for patients, this
-     * will only be doctors
-     * @return - returns the doctor accounts as an array of strings to be
-     * displayed
-     */
-    @Override
-    public String[] viewAccounts(AccountType accountType) {
-        ArrayList<Account> list = AccountSingleton.getOrCreate().getData();
-        ArrayList<String> accountList = new ArrayList<>();
-
-        for (Account a : list) {
-            if (a.getAccountType() == accountType) {
-                accountList.add(a.viewAccount());
-            }
-        }
-
-        String[] listData = new String[accountList.size()];
-        for (int i = 0; i < accountList.size(); i++) {
-            listData[i] = accountList.get(i);
-        }
-        return listData;
-    }
-
-    /**
      * behaves differently to other accounts, as patients already have password
      * associated. therefore does not use the super method handler
      *
@@ -233,18 +206,13 @@ public class Patient extends Account implements Serializable, IViewAccounts, IVi
      * @return - the array of historical records
      */
     public String[] viewHistory() {
-        String[] listContents = new String[patientHistory.size()];
-
-        for (int i = 0; i < patientHistory.size(); i++) {
-            listContents[i] = patientHistory.get(i).printHistoryItem();
-        }
-
+        String[] listContents = ListToArrayAdapter.convert(patientHistory);//new String[patientHistory.size()];
         return listContents;
     }
 
     /**
      * on deletion of a patient account, will wipe any active appointments and
- removeObject any floating requests linked to the patient
+     * removeObject any floating requests linked to the patient
      */
     public void cleanDelete() {
         if (appointment != null) {
@@ -259,7 +227,7 @@ public class Patient extends Account implements Serializable, IViewAccounts, IVi
      * @return - returns a summary of account
      */
     @Override
-    public String viewAccount() {
+    public String toString() {
         return firstName + " " + surname + ": " + uniqueId;
     }
 
@@ -341,8 +309,8 @@ public class Patient extends Account implements Serializable, IViewAccounts, IVi
     }
 
     /**
-     * on patient deletion, all observers are told to removeObject themselves from the
- list of requests
+     * on patient deletion, all observers are told to removeObject themselves
+     * from the list of requests
      */
     @Override
     public void cleanDeleteObservers() {

@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import appointments.Appointment;
+import java.util.Iterator;
 import utilities.Serialiser;
 
 /**
@@ -50,12 +51,15 @@ public class AppointmentSingleton implements Serializable, ISerialise {
     @Override
     public void removeObject(Object o) {
         Appointment appRemove = (Appointment) o;
-
-        for (Appointment appointment : appointments) {
+        Iterator it = appointments.iterator();
+        while (it.hasNext()) {
+            Appointment appointment = (Appointment)it.next();
             if (appointment.getDoctor().getUniqueId().contentEquals(appRemove.getDoctor().getUniqueId()) && appointment.getDate().equals(appRemove.getDate())) {
                 appointments.remove(appointment);
                 saveChanges();
+                return;
             }
+
         }
 
     }

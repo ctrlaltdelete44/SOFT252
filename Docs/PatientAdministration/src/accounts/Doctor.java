@@ -26,6 +26,7 @@ import requests.StockRequest;
 import requests.requestfactory.AbstractRequestFactory;
 import requests.requestfactory.ConcreteRequestFactory;
 import utilities.AccountAdapter;
+import utilities.ListToArrayAdapter;
 import utilities.serialised.AppointmentSingleton;
 
 /**
@@ -36,7 +37,7 @@ import utilities.serialised.AppointmentSingleton;
 public class Doctor extends Account implements Serializable, IViewAvailability {
 
     private double rating;
-    private final ArrayList<Feedback> feedback = new ArrayList<>();
+    private final ArrayList<Object> feedback = new ArrayList<>();
 
     private final Availability availability = new Availability();
     private final AppointmentSingleton appointments = AppointmentSingleton.getOrCreate();
@@ -66,19 +67,20 @@ public class Doctor extends Account implements Serializable, IViewAvailability {
     }
 
     /**
-     * doctor can receive feedback from a patient. this method processes it by
-     * adding it to the list of feedback with the doctor and calculating a new
-     * mean for their rating
+     * doctor can receive newFeedback from a patient. this method processes it by
+ adding it to the list of newFeedback with the doctor and calculating a new
+ mean for their rating
      *
-     * @param feedback - the feedback from patients, with an associated message
-     * and rating
+     * @param newFeedback - the newFeedback from patients, with an associated message
+ and rating
      * @return returns rating for testing purposes
      */
-    public double provideFeedback(Feedback feedback) {
-        this.feedback.add(feedback);
+    public double provideFeedback(Feedback newFeedback) {
+        feedback.add(newFeedback);
 
         int total = 0;
-        for (Feedback f : this.feedback) {
+        for (Object o : feedback) {
+            Feedback f = (Feedback) o;
             total += f.getRating();
         }
 
@@ -95,11 +97,7 @@ public class Doctor extends Account implements Serializable, IViewAvailability {
      * @return - the array of feedback
      */
     public String[] viewFeedback() {
-        String[] listContents = new String[feedback.size()];
-        for (int i = 0; i < feedback.size(); i++) {
-            Feedback f = feedback.get(i);
-            listContents[i] = f.getRating() + "/5. " + f.getComments();
-        }
+        String[] listContents = ListToArrayAdapter.convert((ArrayList<Object>)feedback);//new String[feedback.size()];
         return listContents;
     }
 
@@ -175,7 +173,7 @@ public class Doctor extends Account implements Serializable, IViewAvailability {
      */
     @Override
     public String[] viewFreeDates() {
-        ArrayList<String> listContents = new ArrayList<>();
+        ArrayList<Object> listContents = new ArrayList<>();
 
         for (int i = 0; i < availability.getNumberOfAvailableDays(); i++) {
             AvailableDate ad = availability.getAvailability().get(i);
@@ -186,10 +184,7 @@ public class Doctor extends Account implements Serializable, IViewAvailability {
             }
         }
 
-        String[] array = new String[listContents.size()];
-        for (int i = 0; i < listContents.size(); i++) {
-            array[i] = listContents.get(i);
-        }
+        String[] array = ListToArrayAdapter.convert(listContents);
 
         return array;
     }
@@ -209,7 +204,7 @@ public class Doctor extends Account implements Serializable, IViewAvailability {
             LocalDate ld = a.getDate();
 
             Patient patient = (Patient) AccountAdapter.convert(a.getPatient().getUniqueId());
-            listContents[i] = (ld.getDayOfWeek() + " " + ld + ": " + patient.getFirstName() + " " + patient.getSurname() + ", " + patient.getUniqueId());
+            listContents[i] = (ld.getDayOfWeek() + " " + ld + ": " + patient.toString());
         }
 
         return listContents;
@@ -347,7 +342,7 @@ public class Doctor extends Account implements Serializable, IViewAvailability {
      * @return - returns summary of account
      */
     @Override
-    public String viewAccount() {
+    public String toString() {
         return firstName + " " + surname + ": " + uniqueId + ", " + rating + "/5";
     }
 

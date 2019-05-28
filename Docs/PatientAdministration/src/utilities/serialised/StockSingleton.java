@@ -7,6 +7,7 @@ package utilities.serialised;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Iterator;
 import medicinecabinet.StockItem;
 import utilities.Serialiser;
 
@@ -40,8 +41,8 @@ public class StockSingleton implements Serializable, ISerialise {
     }
 
     /**
-     * will removeObject stock from the cupboard. will check if the item exists, and
- also if there is enough of it to removeObject
+     * will removeObject stock from the cupboard. will check if the item exists,
+     * and also if there is enough of it to removeObject
      *
      * @param name - item to removeObject
      * @param quantity - how much is needed
@@ -49,7 +50,9 @@ public class StockSingleton implements Serializable, ISerialise {
      */
     public StockItem requestStock(String name, int quantity) {
         //loop through stock
-        for (StockItem item : stock) {
+        Iterator it = stock.iterator();
+        while (it.hasNext()) {
+            StockItem item = (StockItem) it.next();
             //if names =
             if (item.getName().contentEquals(name)) {
                 //if qunatity in stock > quantity requested
@@ -63,13 +66,14 @@ public class StockSingleton implements Serializable, ISerialise {
                     return new StockItem(name, quantity);
                 }
             }
+
         }
         return null;
     }
 
     @Override
     public void addObject(Object o) {
-        StockItem stockItem = (StockItem)o;
+        StockItem stockItem = (StockItem) o;
         Boolean isAdded = false;
         for (StockItem s : stock) {
             if (s.getName().contentEquals(stockItem.getName())) {
@@ -94,7 +98,7 @@ public class StockSingleton implements Serializable, ISerialise {
     public ArrayList getData() {
         return stock;
     }
-    
+
     @Override
     public void saveChanges() {
         new Serialiser("data/stock.paa").serialise(stock);
@@ -104,9 +108,5 @@ public class StockSingleton implements Serializable, ISerialise {
     public void loadData() {
         stock = (ArrayList<StockItem>) new Serialiser("data/stock.paa").deserialise();
     }
-
-    
-
-    
 
 }

@@ -59,7 +59,8 @@ public class HistoryItem implements Serializable {
      * @return - returns a report on the history item based on the stored
      * information
      */
-    public String printHistoryItem() {
+    @Override
+    public String toString() {
         String strReturn = "<html>Appointment taken by " + doctor.getFirstName() + " " + doctor.getSurname() + ":<br/>" + notes.getNotes() + ".<br/>";
 
         if (prescription != null) {

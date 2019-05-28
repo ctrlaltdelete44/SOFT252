@@ -8,6 +8,7 @@ package accounts;
 import utilities.accounts.AccountType;
 import java.io.Serializable;
 import java.util.ArrayList;
+import utilities.ListToArrayAdapter;
 import utilities.serialised.AccountSingleton;
 //import utilities.serialised.Compilation;
 import utilities.serialised.IdGenerator;
@@ -74,17 +75,7 @@ public abstract class Account implements Serializable {
      * @return - returns an enum
      */
     public abstract AccountType getAccountType();
-
-    /**
-     * each subclass has different information to display (patients have an age
-     * and sex, for example) so by giving the subclasses a method to display
-     * their own information you can choose a format based on the type of
-     * account
-     *
-     * @return - returns summary of account
-     */
-    public abstract String viewAccount();
-
+    
     /**
      * standard getters and setters
      *
@@ -161,6 +152,21 @@ public abstract class Account implements Serializable {
     private void clearNotifications() {
         notifications = new ArrayList<>();
         accounts.saveChanges();
+    }
+    
+    /**
+     * implemented method to view accounts of a specified type
+     *
+     * @param accountType - admin has access to view secretaries and doctors
+     * @return - returns the account information of the accounts the admin can
+     * view
+     */
+    public String[] viewAccounts(AccountType accountType) {
+        ArrayList<Object> list = AccountSingleton.getOrCreate().getData(accountType);
+
+        String[] listData = ListToArrayAdapter.convert(list);
+
+        return listData;
     }
 
 }

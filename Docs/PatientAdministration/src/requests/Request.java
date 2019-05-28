@@ -60,13 +60,6 @@ public abstract class Request implements Serializable, IObserver {
     public abstract RequestType getRequestType();
 
     /**
-     * abstract method to view a summery of the request
-     *
-     * @return - returns a string with the request contents
-     */
-    public abstract String viewRequest();
-
-    /**
      * abstract method for processing a request, as each request type handles
      * this differently
      *

@@ -63,6 +63,17 @@ public class AccountSingleton implements Serializable, ISerialise {
     public ArrayList getData() {
         return accounts;
     }
+    
+    public ArrayList getData(AccountType accountType) {
+        ArrayList<Object> retAccounts = new ArrayList<>();
+
+        for (Account a : accounts) {
+            if (a.getAccountType() == accountType) {
+                retAccounts.add(a);
+            }
+        }
+        return retAccounts;
+    }
 
     @Override
     public void saveChanges() {

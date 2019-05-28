@@ -80,8 +80,7 @@ public class Secretary extends Account implements Serializable, IViewAccounts {
      * @param strAccount - the account information of that to be deleted
      */
     public void removeAccount(String strAccount) {
-        AccountAdapter adapter = new AccountAdapter(strAccount);
-        Patient account = (Patient) adapter.convert();
+        Patient account = (Patient)AccountAdapter.convert(strAccount);
 
         account.cleanDelete();
 
@@ -112,8 +111,7 @@ public class Secretary extends Account implements Serializable, IViewAccounts {
      * @param strRequest - the request information of that to delete
      */
     public void deleteRequest(String strRequest) {
-        RequestAdapter adapter = new RequestAdapter(strRequest);
-        Request r = adapter.convert();
+        Request r = RequestAdapter.convert(strRequest);
 
         RequestSingleton.getOrCreate().removeObject(r);
     }
@@ -138,8 +136,7 @@ public class Secretary extends Account implements Serializable, IViewAccounts {
      * @return - the output message for the secretary
      */
     public String authoriseRequest(String strRequest) {
-        RequestAdapter adapter = new RequestAdapter(strRequest);
-        Request r = adapter.convert();
+        Request r = RequestAdapter.convert(strRequest);
 
         if (r.getAccount().getAccountType() == AccountType.PATIENT) {
             Patient p = (Patient) r.getAccount();
@@ -177,13 +174,9 @@ public class Secretary extends Account implements Serializable, IViewAccounts {
      */
     public String authoriseRequest(String request, String assignedDoctor, String assignedDate) {
         //get references from inputted data
-        RequestAdapter rAdapter = new RequestAdapter(request);
-        AccountAdapter doctorAdapter = new AccountAdapter(assignedDoctor);
-        DateAdapter dAdapter = new DateAdapter(assignedDate);
-
-        AppointmentRequest ar = (AppointmentRequest) rAdapter.convert();
-        Doctor d = (Doctor) doctorAdapter.convert();
-        LocalDate date = dAdapter.convert();
+        AppointmentRequest ar = (AppointmentRequest) RequestAdapter.convert(request);
+        Doctor d = (Doctor) AccountAdapter.convert(assignedDoctor);
+        LocalDate date = DateAdapter.convert(assignedDate);
 
         ar.setDate(date);
         ar.setDoctor(d);

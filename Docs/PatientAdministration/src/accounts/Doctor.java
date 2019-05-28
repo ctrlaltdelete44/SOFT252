@@ -208,8 +208,7 @@ public class Doctor extends Account implements Serializable, IViewAvailability {
             Appointment a = ownAppointments.get(i);
             LocalDate ld = a.getDate();
 
-            AccountAdapter adapter = new AccountAdapter(a.getPatient().getUniqueId());
-            Patient patient = (Patient) adapter.convert();
+            Patient patient = (Patient) AccountAdapter.convert(a.getPatient().getUniqueId());
             listContents[i] = (ld.getDayOfWeek() + " " + ld + ": " + patient.getFirstName() + " " + patient.getSurname() + ", " + patient.getUniqueId());
         }
 

@@ -12,18 +12,7 @@ import java.time.LocalDate;
  *
  * @author davie
  */
-public class DateAdapter implements IConvert {
-
-    private final String strDate;
-
-    /**
-     *
-     * @param strDate the string to adapt
-     */
-    public DateAdapter(String strDate) {
-        this.strDate = strDate;
-    }
-
+public class DateAdapter{
     /**
      * the input string is always of a set format, and the convert method
      * gradually breaks it down until it can retrieve the date, month, and year.
@@ -31,8 +20,7 @@ public class DateAdapter implements IConvert {
      *
      * @return - the localdate retrieved
      */
-    @Override
-    public LocalDate convert() {
+    public static LocalDate convert(String strDate) {
         LocalDate date;
 
         //strDate format = "DAYOFWEEK, YYYY-MM-DD: BOOKING STATUS"

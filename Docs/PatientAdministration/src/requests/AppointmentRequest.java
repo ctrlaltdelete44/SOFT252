@@ -66,8 +66,7 @@ public class AppointmentRequest extends Request implements Serializable {
      */
     @Override
     public String process() {
-        AccountAdapter patientAdapter = new AccountAdapter(account.getUniqueId());
-        Patient p = (Patient) patientAdapter.convert();
+        Patient p = (Patient) AccountAdapter.convert(account.getUniqueId());
 
         if (p.getAppointment() != null) {
             return "This patient already has an active appointment, please delete any other appointments requests from them";

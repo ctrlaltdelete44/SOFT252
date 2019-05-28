@@ -50,8 +50,7 @@ public class ViewAvailabilityController implements IController {
     }
 
     public String[] viewDoctorFreeDays(String strDoctor) {
-        AccountAdapter adapter = new AccountAdapter(strDoctor);
-        Doctor doctor = (Doctor) adapter.convert();
+        Doctor doctor = (Doctor) AccountAdapter.convert(strDoctor);
 
         return doctor.viewFreeDates();
     }

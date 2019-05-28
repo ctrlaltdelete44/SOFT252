@@ -70,8 +70,7 @@ public class AdminController extends DashboardController {
     }
 
     public String[] viewFeedback(String strDoctor) {
-        AccountAdapter adapter = new AccountAdapter(strDoctor);
-        Doctor d = (Doctor) adapter.convert();
+        Doctor d = (Doctor) AccountAdapter.convert(strDoctor);
         return d.viewFeedback();
     }
 

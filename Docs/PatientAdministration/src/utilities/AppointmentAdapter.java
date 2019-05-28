@@ -14,21 +14,8 @@ import utilities.serialised.AppointmentSingleton;
  *
  * @author davie
  */
-public class AppointmentAdapter implements IConvert {
+public class AppointmentAdapter{
 
-    private final String strAppointment;
-    private final String doctorId;
-
-    /**
-     * on creation, needs both the doctors id and the summary of information
-     *
-     * @param strAppointment - a collection of information abt the appointment
-     * @param doctorId - the doctor's unique id
-     */
-    public AppointmentAdapter(String strAppointment, String doctorId) {
-        this.strAppointment = strAppointment;
-        this.doctorId = doctorId;
-    }
 
     /**
      * searches through a list of that doctors appointments, with validation to
@@ -37,8 +24,8 @@ public class AppointmentAdapter implements IConvert {
      *
      * @return - returns a reference to the appointment found or null if not
      */
-    @Override
-    public Appointment convert() {
+
+    public static Appointment convert(String strAppointment, String doctorId) {
         AppointmentSingleton appointments = AppointmentSingleton.getOrCreate();
         for (Appointment a : appointments.getAppointments(doctorId)) {
             if (strAppointment.contains(a.getPatient().getUniqueId()) && strAppointment.contains(a.getDate().toString())) {

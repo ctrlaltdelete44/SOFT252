@@ -112,8 +112,7 @@ public class DoctorController extends DashboardController {
             } else if (selected.contains("No booking")) {
                 JOptionPane.showMessageDialog(null, "You have no booking on this day!", "No appointment", JOptionPane.OK_OPTION);
             } else {
-                AppointmentAdapter adapter = new AppointmentAdapter(selected, authorisingDoctor.getUniqueId());
-                Appointment activeAppointment = adapter.convert();
+                Appointment activeAppointment = AppointmentAdapter.convert(selected, authorisingDoctor.getUniqueId());
                 new AppointmentController(authorisingDoctor, activeAppointment);
             }
         }

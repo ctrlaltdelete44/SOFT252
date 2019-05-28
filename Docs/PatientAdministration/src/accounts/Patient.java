@@ -100,8 +100,7 @@ public class Patient extends Account implements Serializable, IViewAccounts, IVi
      * @param date - the date requested
      */
     public void createAppointmentRequest(String strDoctor, LocalDate date) {
-        AccountAdapter acctAdapter = new AccountAdapter(strDoctor);
-        Doctor doctor = (Doctor) acctAdapter.convert();
+        Doctor doctor = (Doctor) AccountAdapter.convert(strDoctor);
 
         AppointmentRequest request = (AppointmentRequest) requestFactory.createRequest(this, RequestType.APPOINTMENT);
         request.assignRequestedTarget(doctor, date);
@@ -131,8 +130,7 @@ public class Patient extends Account implements Serializable, IViewAccounts, IVi
     public void provideFeedback(int rating, String comments, String strDoctor) {
         Feedback feedback = new Feedback(rating, comments);
 
-        AccountAdapter adapter = new AccountAdapter(strDoctor);
-        Doctor doctor = (Doctor) adapter.convert();
+        Doctor doctor = (Doctor) AccountAdapter.convert(strDoctor);
 
         doctor.provideFeedback(feedback);
     }

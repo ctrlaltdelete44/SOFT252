@@ -13,24 +13,13 @@ import utilities.serialised.AccountSingleton;
  * an adapter that retrieves an account reference from a given unique id
  * @author aedavies1
  */
-public class AccountAdapter implements IConvert {
-    private final String inputString;
-    
-    /**
-     * on creating, is assigned a string containing the unique id to search for
-     * @param input - the string containing a unique id
-     */
-    public AccountAdapter(String input)
-    {
-        inputString = input;
-    }
-    
+public class AccountAdapter  {
     /**
      * on converting, loops through the list of all accounts until it finds a match
      * @return - returns a reference to the target account or null if not found
      */
-    @Override
-    public Account convert()
+
+    public static Account convert(String inputString)
     {
         for (Account a : (ArrayList<Account>)AccountSingleton.getOrCreate().getData())
         {

@@ -85,8 +85,7 @@ public class PatientController extends DashboardController {
     }
 
     private String[] viewDoctorAvailability(String strDoctor) {
-        AccountAdapter adapter = new AccountAdapter(strDoctor);
-        Doctor doctor = (Doctor) adapter.convert();
+        Doctor doctor = (Doctor) AccountAdapter.convert(strDoctor);
 
         return doctor.viewFreeDates();
     }
@@ -146,8 +145,7 @@ public class PatientController extends DashboardController {
             } else if (strRequestedDate == null) {
                 JOptionPane.showMessageDialog(null, "Please select a date", "No date selected", JOptionPane.OK_OPTION);
             } else {
-                DateAdapter datAdapter = new DateAdapter(strRequestedDate);
-                LocalDate date = datAdapter.convert();
+                LocalDate date = DateAdapter.convert(strRequestedDate);
 
                 authorisingPatient.createAppointmentRequest(strRequestedDoctor, date);
                 JOptionPane.showMessageDialog(null, "Your request has been submitted", "Action processed", JOptionPane.OK_OPTION);

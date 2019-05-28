@@ -46,8 +46,7 @@ public class DeleteRequest extends Request implements Serializable {
      */
     @Override
     public String process() {
-        AccountAdapter adapter = new AccountAdapter(account.getUniqueId());
-        Patient p = (Patient) adapter.convert();
+        Patient p = (Patient) AccountAdapter.convert(account.getUniqueId());
 
         p.cleanDelete();
         AccountSingleton.getOrCreate().removeObject(p);

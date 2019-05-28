@@ -17,17 +17,8 @@ import utilities.serialised.RequestSingleton;
  *
  * @author davie
  */
-public class RequestAdapter implements IConvert {
+public class RequestAdapter{
 
-    private final String strRequest;
-
-    /**
-     *
-     * @param strRequest - the request information to search for
-     */
-    public RequestAdapter(String strRequest) {
-        this.strRequest = strRequest;
-    }
 
     /**
      * loops through a list of all requests and compares their information to
@@ -35,8 +26,7 @@ public class RequestAdapter implements IConvert {
      *
      * @return - returns a reference to the request if found, else null
      */
-    @Override
-    public Request convert() {
+    public static Request convert(String strRequest) {
         //loops through all requests
         for (Request r : (ArrayList<Request>)RequestSingleton.getOrCreate().getData()) {
             if (strRequest.contains(r.getAccount().getFirstName()) && strRequest.contains(r.getAccount().getSurname()) && strRequest.contains(r.getRequestType().toString())) {

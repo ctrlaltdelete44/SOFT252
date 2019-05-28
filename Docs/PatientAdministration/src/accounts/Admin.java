@@ -94,8 +94,7 @@ public class Admin extends Account implements Serializable, IViewAccounts {
      * @param accountInformation - information of account to delete
      */
     public void deleteAccount(String accountInformation) {
-        AccountAdapter aa = new AccountAdapter(accountInformation);
-        AccountSingleton.getOrCreate().removeObject(aa.convert());
+        AccountSingleton.getOrCreate().removeObject(AccountAdapter.convert(accountInformation));
     }
 
     /**
@@ -105,8 +104,7 @@ public class Admin extends Account implements Serializable, IViewAccounts {
      * @param message - the message to send
      */
     public void provideFeedback(String accountInformation, String message) {
-        AccountAdapter aa = new AccountAdapter(accountInformation);
-        Account account = aa.convert();
+        Account account = AccountAdapter.convert(accountInformation);
 
         account.addNotification(message);
     }

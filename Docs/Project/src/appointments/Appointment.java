@@ -38,6 +38,8 @@ public class Appointment implements Serializable {
         this.patient = patient;
         this.doctor = doctor;
         this.date = date;
+        
+        System.out.println("New appt created!");
     }
 
     /**
@@ -45,11 +47,12 @@ public class Appointment implements Serializable {
  tracker
      */
     public void connect() {
+        System.out.println("Connecting to patient account");
         appointments.addObject(this);
         patient.setAppointment(this);
 
         accounts.saveChanges();
-        appointments.saveChanges();
+        //appointments.saveChanges();
     }
 
     public Patient getPatient() {

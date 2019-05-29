@@ -43,7 +43,6 @@ public class Doctor extends Account implements Serializable, IViewAvailability {
     private final AppointmentSingleton appointments = AppointmentSingleton.getOrCreate();
 
 //    private zAbstractResultsFactory resultsFactory;
-
     /**
      * on creation, account is assigned basic information
      *
@@ -67,12 +66,12 @@ public class Doctor extends Account implements Serializable, IViewAvailability {
     }
 
     /**
-     * doctor can receive newFeedback from a patient. this method processes it by
- adding it to the list of newFeedback with the doctor and calculating a new
- mean for their rating
+     * doctor can receive newFeedback from a patient. this method processes it
+     * by adding it to the list of newFeedback with the doctor and calculating a
+     * new mean for their rating
      *
-     * @param newFeedback - the newFeedback from patients, with an associated message
- and rating
+     * @param newFeedback - the newFeedback from patients, with an associated
+     * message and rating
      * @return returns rating for testing purposes
      */
     public double provideFeedback(Feedback newFeedback) {
@@ -97,7 +96,7 @@ public class Doctor extends Account implements Serializable, IViewAvailability {
      * @return - the array of feedback
      */
     public String[] viewFeedback() {
-        String[] listContents = ListToArrayAdapter.convert((ArrayList<Object>)feedback);//new String[feedback.size()];
+        String[] listContents = ListToArrayAdapter.convert((ArrayList<Object>) feedback);//new String[feedback.size()];
         return listContents;
     }
 
@@ -122,6 +121,7 @@ public class Doctor extends Account implements Serializable, IViewAvailability {
             }
 
         }
+        System.out.println("Doctor booked date");
     }
 
     /**
@@ -236,9 +236,8 @@ public class Doctor extends Account implements Serializable, IViewAvailability {
 ////
 ////        resultsFactory.addHistory(p, this);
 //    }
-    
-    public void processAppointment(Patient p, HashMap<String, Object> map) {
-        AbstractResultsFactory factory = new ResultsFactory(map);
+    public void processAppointment(HashMap<String, Boolean> map, String notes, Patient p, LocalDate date, String prescriptionName, String dosage, int prescriptionQuantity) {
+        AbstractResultsFactory factory = new ResultsFactory(map, notes, p, this, date, prescriptionName, dosage, prescriptionQuantity);
         factory.addHistory(p, this);
     }
 
@@ -260,7 +259,6 @@ public class Doctor extends Account implements Serializable, IViewAvailability {
 ////
 ////        resultsFactory.addHistory(p, this);
 //    }
-
     /**
      * if just a further appointment required, this method called
      *
@@ -277,7 +275,6 @@ public class Doctor extends Account implements Serializable, IViewAvailability {
 ////
 ////        resultsFactory.addHistory(p, this);
 //    }
-
     /**
      * if no further action is required following a consultation, this method
      * called
@@ -290,7 +287,6 @@ public class Doctor extends Account implements Serializable, IViewAvailability {
 ////
 ////        resultsFactory.addHistory(p, this);
 //    }
-
 //    private LocalDate getDate(Integer timeQuantity, String timeFrame) {
 //        LocalDate current = LocalDate.now();
 //        LocalDate appointmentDate;
@@ -310,7 +306,6 @@ public class Doctor extends Account implements Serializable, IViewAvailability {
 //        }
 //        return appointmentDate;
 //    }
-
     /**
      * method for clearing a date from a doctor. this is used after an
      * appointment is completed, and it clears any appontments as well as

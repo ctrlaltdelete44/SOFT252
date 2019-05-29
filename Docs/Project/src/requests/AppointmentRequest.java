@@ -41,6 +41,7 @@ public class AppointmentRequest extends Request implements Serializable {
      * @param date - requested date
      */
     public void assignRequestedTarget(Doctor doctor, LocalDate date) {
+        System.out.println("Assigning new appt argets");
         this.doctor = doctor;
         this.date = date;
 
@@ -80,7 +81,9 @@ public class AppointmentRequest extends Request implements Serializable {
 
         appointment.connect();
 
-        return p.getFirstName() + " " + p.getSurname() + " now has an appointment with " + doctor.getFirstName() + " " + doctor.getSurname() + " on " + date;
+        return appointment.getPatient().getFirstName() + " " + appointment.getPatient().getSurname()
+                + " now has an appointment with " + appointment.getDoctor().getFirstName() + " "
+                + appointment.getDoctor().getSurname() + " on " + appointment.getDate();
     }
 
     /**

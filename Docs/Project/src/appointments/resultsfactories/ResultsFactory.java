@@ -7,8 +7,8 @@ package appointments.resultsfactories;
 
 import accounts.Doctor;
 import accounts.Patient;
-import appointments.results.AssignedPrescription;
-import appointments.results.FurtherAppointment;
+import appointments.Prescription;
+import java.time.LocalDate;
 import java.util.HashMap;
 import utilities.accounts.HistoryItem;
 
@@ -18,38 +18,35 @@ import utilities.accounts.HistoryItem;
  */
 public class ResultsFactory extends AbstractResultsFactory {
 
-    public ResultsFactory(HashMap<String, Object> actions) {
-        super(actions);
-        
+    public ResultsFactory(HashMap<String, Boolean> actions, String notes, Patient patient, Doctor doctor, LocalDate appointmentDate, String prescriptionName, String prescriptionDosage, Integer prescriptionQuantity) {
+        super(actions, notes, patient, doctor, appointmentDate, prescriptionName, prescriptionDosage, prescriptionQuantity);
+    }
+
+    @Override
+    public void createActions() {
+        if (actions.get("Appointment")) {
+            patient.createAppointmentRequest(doctor.getUniqueId(), appointmentDate);
+        }
+        if (actions.get("Prescription")) {
+            prescription = new Prescription(prescriptionName, prescriptionQuantity, prescriptionDosage, notes, patient, doctor);
+            patient.createPrescriptionRequest(prescription);
+        }
     }
 
     @Override
     public void addHistory(Patient patient, Doctor doctor) {
         HistoryItem h;
-        if (prescription != null) {
-            h = new HistoryItem(notes, prescription.getPrescription(), doctor, appointment == null);
+        if (isPrescription) {
+            h = new HistoryItem(notes, prescription, doctor, isAppointment);
         }
         else {
-            h = new HistoryItem(notes, null, doctor, appointment == null);
+            h = new HistoryItem(notes, null, doctor, isAppointment);
         }
       
         patient.addHistoryItem(h);
         patient.addNotification("Your appointment has been processed");
     }
 
-    @Override
-    public void createActions() {
-        notes = (String)actions.get("Notes");
-        
-        if (actions.containsKey("Appointment")) {
-            appointment = (FurtherAppointment)actions.get("Appointment");
-            appointment.processRequest();
-        }
-        
-        if (actions.containsKey("Prescription")) {
-            prescription = (AssignedPrescription)actions.get("Prescription");
-            prescription.processRequest();
-        }
-    }
+    
 
 }

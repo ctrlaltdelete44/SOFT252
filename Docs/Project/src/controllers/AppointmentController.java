@@ -8,9 +8,6 @@ package controllers;
 import accounts.Doctor;
 import accounts.Patient;
 import appointments.Appointment;
-import appointments.Prescription;
-import appointments.results.AssignedPrescription;
-import appointments.results.FurtherAppointment;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
@@ -78,18 +75,18 @@ public class AppointmentController implements IController {
     public void processAppointment(String notes, String prescriptionName, Integer prescriptionQuantity, String dosage, Integer timeQuantity, String timeFrame) {
         Patient p = activeAppointment.getPatient();
         
-        HashMap<String, Object> map = new HashMap<>();
+        HashMap<String, Boolean> map = new HashMap<>();
 
-        map.put("Notes", notes);
+        //map.put("Notes", notes);
         
         if (timeQuantity != null) {
-            map.put("Appointment", new FurtherAppointment(getDate(timeQuantity, timeFrame), p, authorisingDoctor));
+            map.put("Appointment", true);//new Appointment(getDate(timeQuantity, timeFrame), p, authorisingDoctor));
         }
         if (prescriptionName != null) {
-            map.put("Prescription", new AssignedPrescription(new Prescription(prescriptionName, prescriptionQuantity, dosage, notes, p, authorisingDoctor), p));
+            map.put("Prescription", true);//new AssignedPrescription(new Prescription(prescriptionName, prescriptionQuantity, dosage, notes, p, authorisingDoctor), p));
         }
         
-        authorisingDoctor.processAppointment(p, map);
+        authorisingDoctor.processAppointment(map, notes, p, getDate(timeQuantity, timeFrame), prescriptionName, dosage, prescriptionQuantity);
         
         //notes is not null, others can be
 //        if (prescriptionName == null && timeQuantity == null) {
@@ -102,7 +99,7 @@ public class AppointmentController implements IController {
 //            authorisingDoctor.bothActionsRequired(notes, prescriptionName, dosage, prescriptionQuantity, timeQuantity, timeFrame, p);
 //        }
 
-        activeAppointment.getPatient().clearAppointment();
+        p.clearAppointment();
         authorisingDoctor.clearDate(activeAppointment.getDate());
 
         JOptionPane.showMessageDialog(null, "Appointment has been processed", "Appointment completed", JOptionPane.OK_OPTION);

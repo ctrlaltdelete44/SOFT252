@@ -186,6 +186,7 @@ public class Patient extends Account implements Serializable, IViewPrescription,
      * once appointment is taken, clears it from patient
      */
     public void clearAppointment() {
+        System.out.println("Clearing appointment here for " + uniqueId);
         this.appointment = null;
     }
 
@@ -206,7 +207,7 @@ public class Patient extends Account implements Serializable, IViewPrescription,
      * @return - the array of historical records
      */
     public String[] viewHistory() {
-        String[] listContents = ListToArrayAdapter.convert(patientHistory);//new String[patientHistory.size()];
+        String[] listContents = ListToArrayAdapter.convert(patientHistory);
         return listContents;
     }
 

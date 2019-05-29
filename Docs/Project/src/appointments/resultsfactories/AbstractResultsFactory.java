@@ -7,9 +7,9 @@ package appointments.resultsfactories;
 
 import accounts.Doctor;
 import accounts.Patient;
-import appointments.results.AssignedPrescription;
-import appointments.results.FurtherAppointment;
+import appointments.Prescription;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.HashMap;
 
 /**
@@ -18,16 +18,36 @@ import java.util.HashMap;
  */
 public abstract class AbstractResultsFactory implements Serializable {
 
-    protected final HashMap<String, Object> actions;
+    protected final HashMap<String, Boolean> actions;
     
     protected String notes = null;
-    protected FurtherAppointment appointment = null;
-    protected AssignedPrescription prescription = null;
+    protected Boolean isAppointment = false;
+    protected Boolean isPrescription = false;
 
-    public AbstractResultsFactory(HashMap<String, Object> actions) {
+    protected Patient patient = null;
+    protected Doctor doctor = null;
+    
+    protected LocalDate appointmentDate = LocalDate.MIN;
+    
+    protected String prescriptionName = null;
+    protected String prescriptionDosage = null;
+    protected Integer prescriptionQuantity = null;
+    
+    protected Prescription prescription = null;
+
+    public AbstractResultsFactory(HashMap<String, Boolean> actions, String notes, Patient patient, Doctor doctor, LocalDate appointmentDate, String prescriptionName, String prescriptionDosage, Integer prescriptionQuantity) {
         this.actions = actions;
+        this.notes = notes;
+        this.patient = patient;
+        this.doctor = doctor;
+        this.appointmentDate = appointmentDate;
+        this.prescriptionName = prescriptionName;
+        this.prescriptionDosage = prescriptionDosage;
+        this.prescriptionQuantity = prescriptionQuantity;
+        
         createActions();
     }
+   
     
     public abstract void createActions(); 
     
